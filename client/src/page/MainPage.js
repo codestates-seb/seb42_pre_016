@@ -1,6 +1,6 @@
 import React from "react";
-import Head from "../components/Header/Head";
-import HeadLogout from "../components/Header/HeadLogout";
+import Head from "../components/Header/Head";
+import HeadLogout from "../components/Header/HeadLogout";
 
 const Mainpage = () => {
   return (
