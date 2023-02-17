@@ -1,13 +1,9 @@
-import Head from "./components/Header/Head";
-import HeadLogout from "./components/Header/HeadLogout";
+import Mainpage from "./page/MainPage";
 
 function App() {
   return (
     <>
-      <div>로그인 후</div>
-      <Head />
-      <div>로그인 전</div>
-      <HeadLogout />
+      <Mainpage />
     </>
   );
 }
