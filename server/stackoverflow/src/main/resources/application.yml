@@ -1,0 +1,7 @@
+spring:
+  h2:
+    console:
+      enabled: true # H2 Console ?? ??
+      path: /h2     # Context path ??
+  datasource:
+    url: jdbc:h2:mem:test     # JDBC URL ??
