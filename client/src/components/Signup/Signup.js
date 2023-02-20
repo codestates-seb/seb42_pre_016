@@ -71,7 +71,7 @@ const Signup = () => {
         Log in with Facebook
       </FacebookButton>
       <Form>
-        <Text top="5%">display name</Text>
+        <Text top="5%">Display name</Text>
         <Input top="10%" />
         <Text top="20%">Email</Text>
         <Input top="25%" />
