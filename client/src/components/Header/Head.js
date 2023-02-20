@@ -138,6 +138,7 @@ const Head = () => {
         <ProductsButton>Products</ProductsButton>
         <SearchInput placeholder="       Search..."></SearchInput>
         <MyHome src={MyPhoto} />
+        <Number>1</Number>
         <InboxSrc src={Inbox} />
         <AchievementsSrc src={Achievements} />
         <QuestionsSrc src={Questions} />

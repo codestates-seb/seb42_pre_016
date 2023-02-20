@@ -12,6 +12,7 @@ const HeadBar = styled.div`
   position: relative;
   box-sizing: border-box;
   outline: none;
+  padding-top: 7px;
 `;
 
 const Line = styled.hr`
@@ -40,7 +41,7 @@ const LogoSrc = styled.img`
 const StatusButton = styled.button`
   width: 78.47px;
   height: 35px;
-  background: #fffff8;
+  background: #f7faf9;
   border-radius: 1000px;
   border: none;
   padding: 10px;
