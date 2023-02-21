@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import SignUp_question from "../../img/SignUp_question.png";
 import SignUp_unlock from "../../img/SignUp_unlock.png";
 import SignUp_tags from "../../img/SignUp_tags.png";
@@ -91,9 +92,11 @@ const Signup = () => {
           <UnderText top="50%" left="9%">
             Already have an account?
           </UnderText>
-          <UnderText color="#0c96fe" top="50%" left="57%">
-            Log in
-          </UnderText>
+          <Link to="/login">
+            <UnderText color="#0c96fe" top="50%" left="57%">
+              Log in
+            </UnderText>
+          </Link>
         </FootWrapper>
       </Form>
     </>

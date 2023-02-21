@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-import { dummydata } from "./testdata2";
+import { dummydata } from "../Questions/testdata2";
 
 const QustionButton = styled.button`
   height: 33px;
@@ -74,7 +74,9 @@ const QuestionList = () => {
           return (
             <div className="question_data">
               {/* <div className="question">0 question</div> */}
-              <Questiontitle>{data.title}</Questiontitle>
+              <Link to="/questions">
+                <Questiontitle>{data.title}</Questiontitle>
+              </Link>
             </div>
           );
         })}
