@@ -1,14 +1,22 @@
 import React from "react";
+import styled from "styled-components";
 import Head from "../components/Header/Head";
 import Sidebar from "../components/Sidebar/Sidebar";
 import QuestionList from "../components/Questions/QuestionList";
+
+const WrapperBody = styled.div`
+  margin: 0 auto;
+  display: flex;
+`;
 
 const Mainpage = () => {
   return (
     <div>
       <Head />
-      <Sidebar />
-      <QuestionList/>
+      <WrapperBody>
+        <Sidebar />
+        <QuestionList/>
+      </WrapperBody>
     </div>
   );
 };
