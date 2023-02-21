@@ -3,12 +3,9 @@ import styled from "styled-components";
 import { createGlobalStyle } from "styled-components";
 import HeadLogout from "../components/Header/HeadLogout";
 import Signup from "../components/Signup/Signup";
+import SidebarDropdown from "../components/Sidebar/SidebarDropdown";
 
 const GlobalStyle = createGlobalStyle`
-* {
-    margin : 0;
-    padding: 0;
-}
 body {
     box-sizing: border-box;
     background: #f0f2f4;
@@ -17,11 +14,12 @@ body {
 
 const SignupPage = () => {
   return (
-    <div>
+    <>
       <GlobalStyle />
       <HeadLogout />
+      <SidebarDropdown />
       <Signup />
-    </div>
+    </>
   );
 };
 

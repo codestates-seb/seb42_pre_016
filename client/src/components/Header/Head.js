@@ -18,6 +18,7 @@ import {
   AchievementsSrc,
   QuestionsSrc,
   CommunitySrc,
+  Space,
 } from "../Style components/Head_styled";
 
 const Head = () => {
@@ -25,6 +26,7 @@ const Head = () => {
     <>
       <Line />
       <HeadBar>
+        <Space />
         <LogoSrc src={Logo} />
         <ProductsButton>Products</ProductsButton>
         <SearchInput placeholder="       Search..."></SearchInput>
@@ -34,6 +36,7 @@ const Head = () => {
         <AchievementsSrc src={Achievements} />
         <QuestionsSrc src={Questions} />
         <CommunitySrc src={Community} />
+        <Space />
       </HeadBar>
     </>
   );

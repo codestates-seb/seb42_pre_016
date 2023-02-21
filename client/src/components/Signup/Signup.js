@@ -1,5 +1,7 @@
 import React from "react";
 import styled from "styled-components";
+import { Navigate } from "react-router-dom";
+
 import SignUp_question from "../../img/SignUp_question.png";
 import SignUp_unlock from "../../img/SignUp_unlock.png";
 import SignUp_tags from "../../img/SignUp_tags.png";

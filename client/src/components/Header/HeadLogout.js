@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 import Logo from "../../img/logo-stackoverflow.png";
 import Sidebar from "../../img/sidebar.png";
 import {
@@ -7,6 +8,7 @@ import {
   Line,
   LogoSrc,
   SearchInput,
+  Space,
 } from "../Style components/Head_styled";
 import {
   SidebarSrc,
@@ -20,14 +22,22 @@ const HeadLogout = () => {
     <>
       <Line />
       <HeadBar>
+        <Space />
         <SidebarSrc src={Sidebar} />
-        <LogoSrc src={Logo} />
+        <Link to="/">
+          <LogoSrc src={Logo} />
+        </Link>
         <StatusButton>About</StatusButton>
         <StatusButton>Products</StatusButton>
         <StatusButton>ForTeams</StatusButton>
         <SearchInput placeholder="       Search..."></SearchInput>
-        <LoginButton>Log in</LoginButton>
-        <SignupButton>Sign up</SignupButton>
+        <Link to="/login">
+          <LoginButton>Log in</LoginButton>
+        </Link>
+        <Link to="/signup">
+          <SignupButton>Sign up</SignupButton>
+        </Link>
+        <Space />
       </HeadBar>
     </>
   );

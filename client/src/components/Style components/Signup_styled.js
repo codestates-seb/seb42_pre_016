@@ -69,6 +69,7 @@ export const SignupButton = styled.button`
   position: absolute;
   top: ${(props) => props.top};
   left: ${(props) => props.left};
+  cursor: pointer;
 `;
 
 export const Checkbox = styled.input`
@@ -98,6 +99,7 @@ export const GoogleButton = styled.button`
   position: absolute;
   top: 27.5%;
   left: 45%;
+  cursor: pointer;
 `;
 
 export const GithubButton = styled.button`
@@ -110,6 +112,7 @@ export const GithubButton = styled.button`
   position: absolute;
   top: 31%;
   left: 45%;
+  cursor: pointer;
 `;
 
 export const FacebookButton = styled.button`
@@ -122,6 +125,7 @@ export const FacebookButton = styled.button`
   position: absolute;
   top: 34.5%;
   left: 45%;
+  cursor: pointer;
 `;
 
 export const FootWrapper = styled.form`

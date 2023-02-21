@@ -1,7 +1,12 @@
 import styled from "styled-components";
 
+export const Space = styled.span`
+  display: flex;
+  flex: 1 1 auto;
+  width: 20px;
+`;
+
 export const HeadBar = styled.div`
-  width: 100%;
   height: 50px;
   background: #f7faf9;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
@@ -10,10 +15,16 @@ export const HeadBar = styled.div`
   box-sizing: border-box;
   outline: none;
   padding-top: 7px;
+  margin-top: -7px;
+  margin-left: -10px;
+  margin-right: -20px;
 `;
 
 export const Line = styled.hr`
   border: solid 2px #f48024;
+  margin-top: -7px;
+  margin-left: -10px;
+  margin-right: -10px;
 `;
 
 export const LogoSrc = styled.img`
@@ -29,7 +40,7 @@ export const LogoSrc = styled.img`
 export const ProductsButton = styled.button`
   width: 78.47px;
   height: 35px;
-  background: #fffff8;
+  background: #f7faf9;
   border-radius: 1000px;
   border: none;
   padding: 10px;
@@ -120,5 +131,8 @@ export const CommunitySrc = styled.img`
   box-sizing: border-box;
   &:hover {
     background: #d7d7dabf;
+  }
+  &:active {
+    <Logoutbar />
   }
 `;
