@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { FootWrapper } from "./Signup_styled";
 
 export const Wrapper = styled.div`
   width: 527px;

@@ -1,5 +1,4 @@
 import React from "react";
-import styled from "styled-components";
 import LogoLogin from "../../img/Logo_Login.png";
 import Gmail from "../../img/Gmail.png";
 import Github from "../../img/Github.png";

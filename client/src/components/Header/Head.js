@@ -1,5 +1,4 @@
 import React from "react";
-import styled from "styled-components";
 import { Link } from "react-router-dom";
 import Logo from "../../img/logo-stackoverflow.png";
 import MyPhoto from "../../img/myphoto.jpeg";
@@ -33,7 +32,9 @@ const Head = () => {
         </Link>
         <ProductsButton>Products</ProductsButton>
         <SearchInput placeholder="Search..."></SearchInput>
-        <MyHome src={MyPhoto} />
+        <Link to="/mypage">
+          <MyHome src={MyPhoto} />
+        </Link>
         <Number>1</Number>
         <InboxSrc src={Inbox} />
         <AchievementsSrc src={Achievements} />

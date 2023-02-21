@@ -1,5 +1,4 @@
 import React from "react";
-import styled from "styled-components";
 import { Link } from "react-router-dom";
 import Logo from "../../img/logo-stackoverflow.png";
 import Sidebar from "../../img/sidebar.png";
