@@ -47,3 +47,19 @@ export const Line = styled.hr`
   top: 60%;
   left: 8%;
 `;
+
+export const Checkbox = styled.input`
+  position: absolute;
+  top: 69%;
+  left: 8%;
+`;
+
+export const CheckText = styled.span`
+  width: 210px;
+  height: 32.59px;
+  color: black;
+  font-size: 12.5px;
+  position: absolute;
+  top: 69%;
+  left: 8%;
+`;

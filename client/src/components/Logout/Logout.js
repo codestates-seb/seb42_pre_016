@@ -5,6 +5,8 @@ import {
   Head,
   Text,
   Line,
+  Checkbox,
+  CheckText,
 } from "../Style components/Logout_styled";
 
 const Logout = () => {
@@ -23,6 +25,8 @@ const Logout = () => {
         <Text top="45%">stackoverflow.com</Text>
         <Text top="52%">superuser.com</Text>
         <Line />
+        <Checkbox />
+        <CheckText>Log out on all devices</CheckText>
       </Form>
     </Wrapper>
   );
