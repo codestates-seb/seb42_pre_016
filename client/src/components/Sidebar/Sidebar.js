@@ -10,7 +10,7 @@ const SideContainer = styled.div`
     width: 215px;
     background-color: #ffffff;
     position: relative;
-    /* float: left; */
+    float: left; 
     border-right: solid 1px #d6d8db;
     box-sizing: border-box;
     display: flex;
