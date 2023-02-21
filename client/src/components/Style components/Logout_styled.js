@@ -37,7 +37,7 @@ export const Text = styled.span`
   color: #0f79ce;
   position: absolute;
   top: ${(props) => props.top};
-  left: 8%;
+  left: 17%;
 `;
 
 export const Line = styled.hr`
@@ -49,8 +49,12 @@ export const Line = styled.hr`
 `;
 
 export const Checkbox = styled.input`
+  width: 8px;
+  height: 10px;
   position: absolute;
-  top: 69%;
+  border: solid 1px #d1cfcfe6;
+  border-radius: 3px;
+  top: 68%;
   left: 8%;
 `;
 
@@ -60,6 +64,50 @@ export const CheckText = styled.span`
   color: black;
   font-size: 12.5px;
   position: absolute;
-  top: 69%;
+  top: 68%;
+  left: 15%;
+`;
+
+export const LogoutButton = styled.button`
+  width: 70px;
+  height: 35px;
+  background: #0c96fe;
+  color: #ffffff;
+  border-radius: 3px;
+  border: solid 0.5px #4b80a6;
+  margin-left: 10px;
+  box-shadow: 1px 1px 2px #ffffffb1 inset;
+  cursor: pointer;
+  &:hover {
+    background: #006cbfe9;
+  }
+  position: absolute;
+  top: 77%;
+  left: 5%;
+`;
+
+export const CancelButton = styled.button`
+  width: 70px;
+  height: 35px;
+  background: #ffffff;
+  color: #0c96fe;
+  border-radius: 3px;
+  border: solid 0.5px #ffffff;
+  margin-left: 10px;
+  box-shadow: 1px 1px 2px #ffffffb1 inset;
+  cursor: pointer;
+  &:hover {
+    background: #cbe6fb71;
+  }
+  position: absolute;
+  top: 77%;
+  left: 32%;
+`;
+
+export const Imgsrc = styled.img`
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  top: ${(props) => props.top};
   left: 8%;
 `;
