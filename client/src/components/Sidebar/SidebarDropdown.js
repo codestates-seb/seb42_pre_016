@@ -156,10 +156,10 @@ const ExploreCollectives = styled.div`
 `;
 
 const InfoIcon = styled(FaInfoCircle)`
-  left: 185px;
-  position: absolute;
-  color: #6c727a;
-`;
+    left: 185px;
+    position: absolute;
+    color: #6c727a;
+`
 
 const Teams = styled.div`
   width: 100%;
