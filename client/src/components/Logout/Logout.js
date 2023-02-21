@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import {
   Wrapper,
   Form,
@@ -42,10 +43,12 @@ const Logout = () => {
         <Imgsrc src={Logout_super} top="52%" />
         <Text top="52%">superuser.com</Text>
         <Line />
-        <Checkbox />
+        <Checkbox type="checkbox" />
         <CheckText>Log out on all devices</CheckText>
         <LogoutButton>Log out</LogoutButton>
-        <CancelButton>Cancel</CancelButton>
+        <Link to="/">
+          <CancelButton>Cancel</CancelButton>
+        </Link>
       </Form>
     </Wrapper>
   );

@@ -49,12 +49,12 @@ export const Line = styled.hr`
 `;
 
 export const Checkbox = styled.input`
-  width: 8px;
-  height: 10px;
+  width: 12px;
+  height: 12px;
   position: absolute;
   border: solid 1px #d1cfcfe6;
   border-radius: 3px;
-  top: 68%;
+  top: 67.5%;
   left: 8%;
 `;
 

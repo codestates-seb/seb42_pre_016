@@ -1,8 +1,6 @@
 import React from "react";
 import styled from "styled-components";
 
-
-
 const QustionButton = styled.button`
   width: "Auto";
   height: 33px;
@@ -11,8 +9,8 @@ const QustionButton = styled.button`
   padding: 8px 10.4px;
   border-radius: 3px;
   border: 1px solid transparent;
-  color: #FFFFFF;
-  background-color: #0A95FF;
+  color: #ffffff;
+  background-color: #0a95ff;
 
   cursor: pointer;
   box-shadow: rgba(255, 255, 255, 0.4) 0px 2px 0px 0px inset;
@@ -55,20 +53,19 @@ const MainStyle = styled.div`
 `;
 
 const QuestionList = () => {
-    return (
-        <>
-            <MainStyle>
-                <div className="title">
-                <h1>All Questions</h1>
-                    <QustionButton>Ask Question</QustionButton>
-                </div>
-                <div className="question_data">
-                    <div className="question">0 question</div>
-                </div>
-            </MainStyle>
-        </>
-    )
-}
-
+  return (
+    <>
+      <MainStyle>
+        <div className="title">
+          <h1>All Questions</h1>
+          <QustionButton>Ask Question</QustionButton>
+        </div>
+        <div className="question_data">
+          <div className="question">0 question</div>
+        </div>
+      </MainStyle>
+    </>
+  );
+};
 
 export default QuestionList;
