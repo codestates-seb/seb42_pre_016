@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 import { dummydata } from "./testdata2";
 
 const QustionButton = styled.button`
@@ -9,8 +10,8 @@ const QustionButton = styled.button`
   padding: 8px 10.4px;
   border-radius: 3px;
   border: 1px solid transparent;
-  color: #FFFFFF;
-  background-color: #0A95FF;
+  color: #ffffff;
+  background-color: #0a95ff;
 
   cursor: pointer;
   box-shadow: rgba(255, 255, 255, 0.4) 0px 2px 0px 0px inset;
@@ -22,7 +23,7 @@ const MainStyle = styled.div`
   & .title {
     height: 38px;
     margin-bottom: 24px;
-    
+
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -54,33 +55,32 @@ const MainStyle = styled.div`
 `;
 
 const Questiontitle = styled.div`
-    font-size: 30px;
-    line-height: 40px;
-    color: #0074cc;
-`
+  font-size: 30px;
+  line-height: 40px;
+  color: #0074cc;
+`;
 
 const QuestionList = () => {
-    return (
-        <>
-       
-        <MainStyle>
-            <div className="title">
-            <h1>All Questions</h1>
-                <QustionButton>Ask Question</QustionButton>
+  return (
+    <>
+      <MainStyle>
+        <div className="title">
+          <h1>All Questions</h1>
+          <Link to="/askquestions">
+            <QustionButton>Ask Question</QustionButton>
+          </Link>
+        </div>
+        {dummydata.map((data) => {
+          return (
+            <div className="question_data">
+              {/* <div className="question">0 question</div> */}
+              <Questiontitle>{data.title}</Questiontitle>
             </div>
-            {dummydata.map((data) =>{
-                return(
-                <div className="question_data">
-                    {/* <div className="question">0 question</div> */}
-                    <Questiontitle>{data.title}</Questiontitle>
-                </div>
-                )
-            })} 
-        </MainStyle>
-         
-        </>
-    )
-}
-
+          );
+        })}
+      </MainStyle>
+    </>
+  );
+};
 
 export default QuestionList;

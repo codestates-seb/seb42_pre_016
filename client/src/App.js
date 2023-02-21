@@ -7,6 +7,7 @@ import SignupPage from "./page/SignupPage";
 import LogputPage from "./page/LogputPage";
 import QuestionPage from "./page/QuestionPage";
 import Mypage from "./page/MyPage";
+import AskQuestionsPage from "./page/AskQuestionsPage";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
           <Route path="/logout" element={<LogputPage />} />
           <Route path="/questions" element={<QuestionPage />} />
           <Route path="/mypage" element={<Mypage />} />
+          <Route path="/askquestions" element={<AskQuestionsPage />} />
         </Routes>
       </BrowserRouter>
     </>
