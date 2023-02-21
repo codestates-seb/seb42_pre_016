@@ -5,6 +5,7 @@ import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 import Mainpage from "./page/MainPage";
 import LoginPage from "./page/LoginPage";
 import SignupPage from "./page/SignupPage";
+import LogputPage from "./page/LogputPage";
 
 const Main = styled.div`
   display: flex;
@@ -24,6 +25,7 @@ function App() {
           <Route path="/" element={<Mainpage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/signup" element={<SignupPage />} />
+          <Route path="/logout" element={<LogputPage />} />
         </Routes>
       </BrowserRouter>
     </>
