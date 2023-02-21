@@ -8,7 +8,7 @@ const Mainpage = () => {
     <div>
       <Head />
       <Sidebar />
-      <QuestionList/>
+      <QuestionList />
     </div>
   );
 };

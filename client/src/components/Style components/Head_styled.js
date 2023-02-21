@@ -140,7 +140,4 @@ export const CommunitySrc = styled.img`
   &:hover {
     background: #d7d7dabf;
   }
-  &:active {
-    <Logoutbar />
-  }
 `;

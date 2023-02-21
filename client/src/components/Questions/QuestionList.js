@@ -2,7 +2,6 @@ import React from "react";
 import styled from "styled-components";
 
 const QustionButton = styled.button`
-  width: "Auto";
   height: 33px;
   outline: none;
   margin: 0 3px;
