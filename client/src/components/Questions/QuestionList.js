@@ -3,7 +3,6 @@ import styled from "styled-components";
 import { dummydata } from "./testdata2";
 
 const QustionButton = styled.button`
-  width: "Auto";
   height: 33px;
   outline: none;
   margin: 0 3px;
