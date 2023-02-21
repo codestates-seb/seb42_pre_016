@@ -61,12 +61,20 @@ export const SearchInput = styled.input`
   border-radius: 5px;
   background-image: url(https://cdn1.iconfinder.com/data/icons/hawcons/32/698627-icon-111-search-256.png);
   background-position: left;
+  background-attachment: auto;
   background-size: contain;
   background-repeat: no-repeat;
   background-size: 28px;
+  padding-left: 40px;
   &:hover {
     border: #0c7de7;
     box-shadow: 5px 3px 7px #3fa2ff;
+  }
+  &:focus {
+    border: #0c7de7;
+    box-shadow: 5px 3px 7px #3fa2ff;
+    border: 1px solid var(--blue-600);
+    outline: 3px solid var(--blue-100);
   }
 `;
 

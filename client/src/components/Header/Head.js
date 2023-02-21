@@ -29,7 +29,7 @@ const Head = () => {
         <Space />
         <LogoSrc src={Logo} />
         <ProductsButton>Products</ProductsButton>
-        <SearchInput placeholder="       Search..."></SearchInput>
+        <SearchInput placeholder="Search..."></SearchInput>
         <MyHome src={MyPhoto} />
         <Number>1</Number>
         <InboxSrc src={Inbox} />

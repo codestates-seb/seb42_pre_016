@@ -30,7 +30,7 @@ const HeadLogout = () => {
         <StatusButton>About</StatusButton>
         <StatusButton>Products</StatusButton>
         <StatusButton>ForTeams</StatusButton>
-        <SearchInput placeholder="       Search..."></SearchInput>
+        <SearchInput placeholder="Search..."></SearchInput>
         <Link to="/login">
           <LoginButton>Log in</LoginButton>
         </Link>
