@@ -5,9 +5,9 @@ import HeadLogout from "../components/Header/HeadLogout";
 const Mainpage = () => {
   return (
     <div>
-      <div>로그인 후</div>
+      <div>로그인 후 </div>
       <Head />
-      <div>로그인 전</div>
+      <div>로그인 전 </div>
       <HeadLogout />
     </div>
   );
