@@ -25,6 +25,7 @@ export const GoogleButton = styled.button`
   position: absolute;
   top: 35%;
   left: 35%;
+  cursor: pointer;
 `;
 
 export const GithubButton = styled.button`
@@ -37,6 +38,7 @@ export const GithubButton = styled.button`
   position: absolute;
   top: 38.5%;
   left: 35%;
+  cursor: pointer;
 `;
 
 export const FacebookButton = styled.button`
@@ -49,6 +51,7 @@ export const FacebookButton = styled.button`
   position: absolute;
   top: 42%;
   left: 35%;
+  cursor: pointer;
 `;
 
 export const Form = styled.form`
@@ -100,6 +103,7 @@ export const LoginButton = styled.button`
   position: absolute;
   top: 73%;
   left: 8%;
+  cursor: pointer;
 `;
 
 export const UnderText = styled.span`

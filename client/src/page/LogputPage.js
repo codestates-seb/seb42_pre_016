@@ -1,9 +1,8 @@
 import React from "react";
-import styled from "styled-components";
 import { createGlobalStyle } from "styled-components";
-import HeadLogout from "../components/Header/HeadLogout";
-import Signup from "../components/Signup/Signup";
+import Head from "../components/Header/Head";
 import SidebarDropdown from "../components/Sidebar/SidebarDropdown";
+import Logout from "../components/Logout/Logout";
 
 const GlobalStyle = createGlobalStyle`
 body {
@@ -12,15 +11,15 @@ body {
 }
 `;
 
-const SignupPage = () => {
+const LogputPage = () => {
   return (
-    <>
+    <div>
       <GlobalStyle />
-      <HeadLogout />
+      <Head />
       <SidebarDropdown />
-      <Signup />
-    </>
+      <Logout />
+    </div>
   );
 };
 
-export default SignupPage;
+export default LogputPage;

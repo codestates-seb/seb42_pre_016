@@ -1,7 +1,6 @@
 import styled from "styled-components";
 
 export const HeadBar = styled.div`
-  width: 100%;
   height: 50px;
   background: #f7faf9;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
@@ -10,10 +9,16 @@ export const HeadBar = styled.div`
   box-sizing: border-box;
   outline: none;
   padding-top: 7px;
+  margin-top: -7px;
+  margin-left: -10px;
+  margin-right: -20px;
 `;
 
 export const Line = styled.hr`
   border: solid 2px #f48024;
+  margin-top: -7px;
+  margin-left: -10px;
+  margin-right: -10px;
 `;
 
 export const SidebarSrc = styled.img`
@@ -77,6 +82,7 @@ export const LoginButton = styled.button`
   border: solid 0.5px #0c96fe;
   margin-left: 10px;
   box-shadow: 1px 1px 2px #ffffffb1 inset;
+  cursor: pointer;
 `;
 
 export const SignupButton = styled.button`
@@ -88,5 +94,5 @@ export const SignupButton = styled.button`
   border: solid 0.5px #4b80a6;
   margin-left: 10px;
   box-shadow: 1px 1px 2px #ffffffb1 inset;
-  margin-right: 20px;
+  cursor: pointer;
 `;

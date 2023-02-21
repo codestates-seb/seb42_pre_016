@@ -1,7 +1,12 @@
 import styled from "styled-components";
 
+export const Space = styled.span`
+  display: flex;
+  flex: 1 1 auto;
+  width: 20px;
+`;
+
 export const HeadBar = styled.div`
-  width: 100%;
   height: 50px;
   background: #f7faf9;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
@@ -10,10 +15,16 @@ export const HeadBar = styled.div`
   box-sizing: border-box;
   outline: none;
   padding-top: 7px;
+  margin-top: -7px;
+  margin-left: -10px;
+  margin-right: -20px;
 `;
 
 export const Line = styled.hr`
   border: solid 2px #f48024;
+  margin-top: -7px;
+  margin-left: -10px;
+  margin-right: -10px;
 `;
 
 export const LogoSrc = styled.img`
@@ -29,7 +40,7 @@ export const LogoSrc = styled.img`
 export const ProductsButton = styled.button`
   width: 78.47px;
   height: 35px;
-  background: #fffff8;
+  background: #f7faf9;
   border-radius: 1000px;
   border: none;
   padding: 10px;
@@ -50,12 +61,20 @@ export const SearchInput = styled.input`
   border-radius: 5px;
   background-image: url(https://cdn1.iconfinder.com/data/icons/hawcons/32/698627-icon-111-search-256.png);
   background-position: left;
+  background-attachment: auto;
   background-size: contain;
   background-repeat: no-repeat;
   background-size: 28px;
+  padding-left: 40px;
   &:hover {
     border: #0c7de7;
     box-shadow: 5px 3px 7px #3fa2ff;
+  }
+  &:focus {
+    border: #0c7de7;
+    box-shadow: 5px 3px 7px #3fa2ff;
+    border: 1px solid var(--blue-600);
+    outline: 3px solid var(--blue-100);
   }
 `;
 
@@ -120,5 +139,8 @@ export const CommunitySrc = styled.img`
   box-sizing: border-box;
   &:hover {
     background: #d7d7dabf;
+  }
+  &:active {
+    <Logoutbar />
   }
 `;

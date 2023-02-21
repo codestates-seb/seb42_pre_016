@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 import Logo from "../../img/logo-stackoverflow.png";
 import MyPhoto from "../../img/myphoto.jpeg";
 import Inbox from "../../img/inbox.png";
@@ -18,6 +19,7 @@ import {
   AchievementsSrc,
   QuestionsSrc,
   CommunitySrc,
+  Space,
 } from "../Style components/Head_styled";
 
 const Head = () => {
@@ -25,15 +27,21 @@ const Head = () => {
     <>
       <Line />
       <HeadBar>
-        <LogoSrc src={Logo} />
+        <Space />
+        <Link to="/">
+          <LogoSrc src={Logo} />
+        </Link>
         <ProductsButton>Products</ProductsButton>
-        <SearchInput placeholder="       Search..."></SearchInput>
+        <SearchInput placeholder="Search..."></SearchInput>
         <MyHome src={MyPhoto} />
         <Number>1</Number>
         <InboxSrc src={Inbox} />
         <AchievementsSrc src={Achievements} />
         <QuestionsSrc src={Questions} />
-        <CommunitySrc src={Community} />
+        <Link to="/logout">
+          <CommunitySrc src={Community} />
+        </Link>
+        <Space />
       </HeadBar>
     </>
   );
