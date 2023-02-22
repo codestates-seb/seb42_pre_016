@@ -1,22 +1,16 @@
 package com.idle.stackoverflow.question.service;
 
-
-
+import com.idle.stackoverflow.exception.BusinessLogicException;
+import com.idle.stackoverflow.exception.ExceptionCode;
 import com.idle.stackoverflow.question.entity.Question;
 import com.idle.stackoverflow.question.repository.QuestionRepository;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class QuestionService {
-
-    LocalDateTime createTime = LocalDateTime.now();
-    LocalDateTime updateTime = LocalDateTime.now();
-
-
-
     private final QuestionRepository questionRepository;
 
     public QuestionService(QuestionRepository questionRepository) {
@@ -34,21 +28,13 @@ public class QuestionService {
 
 //        return questionRepository.save(question);
     }
+
     public Question findQuestion(long questionId) {
-        Question question =
-                new Question(questionId,"title", "content", createTime, updateTime);
-        return question;
-
-        // stub 데이터, 레포 추가
+        return findVerifiedQuestion(questionId);    // 질문 검증
     }
-    public List<Question> findQuestions() {
-        List<Question> questions = List.of(
-                new Question(1L, "title", "content", createTime, updateTime),
-                new Question(2L,"title2","content2", createTime, updateTime)
-        );
-        return questions;
 
-        // stub 데이터
+    public List<Question> findQuestions() {
+        return null;
     }
 
     public void deleteQuestion(long questionId) {
@@ -57,13 +43,10 @@ public class QuestionService {
 
     }
 
-//    public Question findVerifiedQuestion(long questionId) {
-//        Optional<Question> optionalQuestion = questionRepository.findById(questionId);
-//        question findQuestion =
-//                optionalQuestion.orElseThrow(() ->
-//                        new BusinessLogicException(ExceptionCode.)
-//    }
-
-
-
+    // 질문 검증
+    private Question findVerifiedQuestion(long questionId) {
+        Optional<Question> optionalQuestion = questionRepository.findById(questionId);
+        Question findQuestion = optionalQuestion.orElseThrow(() -> new BusinessLogicException(ExceptionCode.QUESTION_NOT_FOUND));
+        return findQuestion;
+    }
 }
