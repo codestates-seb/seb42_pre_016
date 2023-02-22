@@ -1,8 +1,9 @@
 import React from "react";
 import { createGlobalStyle } from "styled-components";
 import Head from "../components/Header/Head";
-import Sidebar from "../components/Sidebar/Sidebar";
 import AskQuestions from "../components/AskQuestions/AskQuestions";
+import Footer from "../components/Footer/Footer";
+import SidebarDropdown from "../components/Sidebar/SidebarDropdown";
 
 const GlobalStyle = createGlobalStyle`
 body {
@@ -16,8 +17,9 @@ const AskQuestionsPage = () => {
     <div>
       <GlobalStyle />
       <Head />
-      <Sidebar />
+      <SidebarDropdown />
       <AskQuestions />
+      <Footer />
     </div>
   );
 };

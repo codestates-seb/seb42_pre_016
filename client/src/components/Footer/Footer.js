@@ -30,6 +30,9 @@ const FooterContainer = styled.div`
         color: #d3d3d3;
         }
     }
+    .footer-wrapper {
+        display: flex;
+    }
 `
 const Title = styled.ul`
     font-weight: bold;
@@ -72,73 +75,74 @@ const SNSLinks = styled.div`
 
 const Copyright = styled.div`
     font-size: 13px;
-    display: flex;
-    flex-direction: row;
     color: #91989f;
-    position: relative;
-    top: 270px;
-    left: -200px;
+    position: absolute;
+    top: 1610px;
+    left: 1125px;
     width: 300px;
-    height: 60px;
+    height: 70px;
 `
 
 const Footer = () => {
     return (
         <>
         <FooterContainer>
-            <StackoverflowIcon src={Logo_Stackoverflow}/>
+            <div className="footer-wrapper">
+            <StackoverflowIcon src={Logo_Stackoverflow} alt="Stack Overflow Logo"/>
             <div className="section">
-                <Title>STACK OVERFLOW</Title>
+                <Title><a href="https://stackoverflow.com/">STACK OVERFLOW</a></Title>
                 <Menu>
                     <ul><a href="https://stackoverflow.com/questions">Questions</a></ul>
                     <ul><a href="https://stackoverflow.com/help">Help</a></ul>
                 </Menu>
             </div>
             <div className="section">
-                <Title>PRODUCTS</Title>
+                <Title><a href="https://stackoverflow.co/">PRODUCTS</a></Title>
                 <Menu>
-                    <ul><a href="https://stackoverflow.com/questions">Teams</a></ul>
-                    <ul><a href="https://stackoverflow.com/help">Advertising</a></ul>
-                    <ul><a href="https://stackoverflow.com/questions">Collectives</a></ul>
-                    <ul><a href="https://stackoverflow.com/help">Talent</a></ul>
+                    <ul><a href="https://stackoverflow.co/teams">Teams</a></ul>
+                    <ul><a href="https://stackoverflow.co/advertising">Advertising</a></ul>
+                    <ul><a href="https://stackoverflow.co/collectives">Collectives</a></ul>
+                    <ul><a href="https://stackoverflow.co/talent">Talent</a></ul>
                 </Menu>
             </div>
             <div className="section">
-                <Title>COMPANY</Title>
+                <Title><a href="https://stackoverflow.co/">COMPANY</a></Title>
                 <Menu>
-                    <ul><a href="https://stackoverflow.com/questions">About</a></ul>
-                    <ul><a href="https://stackoverflow.com/help">Press</a></ul>
-                    <ul><a href="https://stackoverflow.com/questions">Work Here</a></ul>
-                    <ul><a href="https://stackoverflow.com/help">Legal</a></ul>
-                    <ul><a href="https://stackoverflow.com/questions">Privacy Policy</a></ul>
-                    <ul><a href="https://stackoverflow.com/help">Terms of Service</a></ul>
-                    <ul><a href="https://stackoverflow.com/questions">Contact Us</a></ul>
-                    <ul><a href="https://stackoverflow.com/help">Cookie Settings</a></ul>
+                    <ul><a href="https://stackoverflow.co/">About</a></ul>
+                    <ul><a href="https://stackoverflow.co/company/press">Press</a></ul>
+                    <ul><a href="https://stackoverflow.co/company/work-here">Work Here</a></ul>
+                    <ul><a href="https://stackoverflow.com/legal">Legal</a></ul>
+                    <ul><a href="https://stackoverflow.com/legal/privacy-policy">Privacy Policy</a></ul>
+                    <ul><a href="https://stackoverflow.com/legal/terms-of-service">Terms of Service</a></ul>
+                    <ul><a href="https://stackoverflow.co/company/contact">Contact Us</a></ul>
+                    <ul><a href="https://stackoverflow.com/questions/ask#">Cookie Settings</a></ul>
+                    <ul><a href="https://stackoverflow.com/legal/cookie-policy">Cookie Policy</a></ul>
                 </Menu>
             </div>
             <div className="section">
-                <Title>STACK EXCHANGE NETWORK</Title>
+                <Title><a href="https://stackexchange.com/">STACK EXCHANGE NETWORK</a></Title>
                 <Menu>
-                    <ul><a href="https://stackoverflow.com/questions">Technology</a></ul>
-                    <ul><a href="https://stackoverflow.com/help">Culture & recreation</a></ul>
-                    <ul><a href="https://stackoverflow.com/questions">Life & arts</a></ul>
-                    <ul><a href="https://stackoverflow.com/help">Science</a></ul>
-                    <ul><a href="https://stackoverflow.com/questions">Professional</a></ul>
-                    <ul><a href="https://stackoverflow.com/help">Business</a></ul>
-                    <ul><a href="https://stackoverflow.com/questions">API</a></ul>
-                    <ul><a href="https://stackoverflow.com/help">Data</a></ul>
+                    <ul><a href="https://stackexchange.com/sites#technology">Technology</a></ul>
+                    <ul><a href="https://stackexchange.com/sites#culturerecreation">Culture & recreation</a></ul>
+                    <ul><a href="https://stackexchange.com/sites#lifearts">Life & arts</a></ul>
+                    <ul><a href="https://stackexchange.com/sites#science">Science</a></ul>
+                    <ul><a href="https://stackexchange.com/sites#professional">Professional</a></ul>
+                    <ul><a href="https://stackexchange.com/sites#business">Business</a></ul>
+                    <ul><a href="https://api.stackexchange.com/">API</a></ul>
+                    <ul><a href="https://data.stackexchange.com/">Data</a></ul>
                 </Menu>
             </div>
             <SNSLinks>
-                <ul><a href="https://stackoverflow.com/help">Blog</a></ul>
-                <ul><a href="https://stackoverflow.com/help">Facebook</a></ul>
-                <ul><a href="https://stackoverflow.com/help">Twitter</a></ul>
-                <ul><a href="https://stackoverflow.com/help">LinkedIn</a></ul>
-                <ul><a href="https://stackoverflow.com/help">Instagram</a></ul>
+                <ul><a href="https://stackoverflow.blog/?blb=1&_ga=2.263772684.1259605100.1676857739-1484494193.1665685709">Blog</a></ul>
+                <ul><a href="https://www.facebook.com/officialstackoverflow/">Facebook</a></ul>
+                <ul><a href="https://twitter.com/stackoverflow">Twitter</a></ul>
+                <ul><a href="https://linkedin.com/company/stack-overflow">LinkedIn</a></ul>
+                <ul><a href="https://www.instagram.com/thestackoverflow">Instagram</a></ul>
             </SNSLinks>
             <Copyright>
-            Site design / logo © 2023 Stack Exchange Inc; user contributions licensed under CC BY-SA. rev 2023.2.17.43248
+            Site design / logo © 2023 Stack Exchange Inc; user contributions licensed under <a href="https://stackoverflow.com/help/licensing">CC BY-SA</a>. rev 2023.2.17.43248
             </Copyright>
+            </div>
         </FooterContainer>
         </>
     )

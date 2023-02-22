@@ -2,10 +2,12 @@ import React from "react";
 import styled from "styled-components";
 
 const AskQuestionsWrapper = styled.div`
-  background-color: #f8f8f8;
   width: 100%;
   height: 100%;
   position: relative;
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
 `;
 
 const AskQuestionContainer = styled.div`
@@ -134,7 +136,9 @@ const PostButton = styled.button`
   height: 40px;
   border-radius: 5px;
   font-size: 15px;
+  margin-bottom: 30px;
 `;
+
 const DiscardButton = styled.button`
   background-color: transparent;
   color: red;
