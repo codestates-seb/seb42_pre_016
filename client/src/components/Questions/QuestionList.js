@@ -12,12 +12,13 @@ const QustionButton = styled.button`
   border: 1px solid transparent;
   color: #ffffff;
   background-color: #0a95ff;
-
   cursor: pointer;
   box-shadow: rgba(255, 255, 255, 0.4) 0px 2px 0px 0px inset;
 `;
 
 const MainStyle = styled.div`
+  /* background-color: #0a95ff; */
+  margin-left: 10px;
   padding: 24px;
   width: 100%;
   & .title {

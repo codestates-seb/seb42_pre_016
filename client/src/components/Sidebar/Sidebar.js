@@ -4,22 +4,22 @@ import { FaInfoCircle, FaGlobeAmericas } from "react-icons/fa";
 import { RiMedalFill } from "react-icons/ri";
 import { IoMdBriefcase } from "react-icons/io";
 
-export const Space = styled.span`
+export const Space = styled.div`
   display: flex;
   flex: 1 1 auto;
-  width: 20px;
+  width: 5%;
 `;
 
 const SideContainer = styled.div`
   height: 100vh;
-  width: 300px;
+  width: 230px;
   background-color: #ffffff;
-  position: relative;
-  /* position: sticky; */
+  position: sticky;
   z-index: 1;
   border-right: solid 1px #d6d8db;
   box-sizing: border-box;
   display: flex;
+  flex-flow: column nowrap;
   flex-direction: column;
   margin-top: 1px;
 `;
@@ -210,7 +210,6 @@ const CreateFreeTeam = styled.div`
 const Sidebar = () => {
   return (
     <>
-      <Space />
       <SideContainer>
         <Home>Home</Home>
         <Public>PUBLIC</Public>

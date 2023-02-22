@@ -147,7 +147,7 @@ export const AnswerWrapper = styled.div`
   margin-bottom: 100px;
   position: absolute;
   top: 62%;
-  left: 17%;
+  left: 18%;
 `;
 
 export const H2Text = styled.div`

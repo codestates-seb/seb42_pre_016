@@ -3,7 +3,6 @@ import { GrMenu, GrClose } from "react-icons/gr"; // 햄버거 버튼, x 버튼
 import { Dropdown } from "../Sidebar/Dropdown";
 import { Link } from "react-router-dom";
 import Logo from "../../img/logo-stackoverflow.png";
-import Sidebar from "../../img/sidebar.png";
 import {
   HeadBar,
   LogoSrc,
@@ -11,7 +10,6 @@ import {
   Space,
 } from "../Style components/Head_styled";
 import {
-  SidebarSrc,
   StatusButton,
   LoginButton,
   SignupButton,

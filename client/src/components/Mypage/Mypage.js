@@ -36,6 +36,8 @@ const MypageContainer = styled.div`
   margin-top: 1px;
   align-items: center;
   position: relative;
+  padding-top: 100px;
+  padding-left: 300px;
 `;
 
 const ProfilePicture = styled.img`
