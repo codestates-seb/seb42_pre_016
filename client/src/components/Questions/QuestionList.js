@@ -18,9 +18,10 @@ const QustionButton = styled.button`
 
 const MainStyle = styled.div`
   /* background-color: #0a95ff; */
-  margin-left: 10px;
+  box-sizing: border-box;
   padding: 24px;
-  width: 100%;
+  width: 1500px;
+  flex: 1 1 auto;
   & .title {
     height: 38px;
     margin-bottom: 24px;
@@ -61,6 +62,12 @@ const Questiontitle = styled.div`
   color: #0074cc;
 `;
 
+export const Space = styled.div`
+  display: flex;
+  flex: 1 1 auto;
+  width: 5%;
+`;
+
 const QuestionList = () => {
   return (
     <>
@@ -82,6 +89,7 @@ const QuestionList = () => {
           );
         })}
       </MainStyle>
+      <Space />
     </>
   );
 };

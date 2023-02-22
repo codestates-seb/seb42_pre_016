@@ -5,6 +5,8 @@ import { RiMedalFill } from "react-icons/ri";
 import { IoMdBriefcase } from "react-icons/io";
 
 export const Space = styled.div`
+  border-right: solid 1px #d6d8db;
+  background-color: #ffffff;
   display: flex;
   flex: 1 1 auto;
   width: 5%;
@@ -210,6 +212,7 @@ const CreateFreeTeam = styled.div`
 const Sidebar = () => {
   return (
     <>
+      <Space />
       <SideContainer>
         <Home>Home</Home>
         <Public>PUBLIC</Public>
