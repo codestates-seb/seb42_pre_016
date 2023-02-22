@@ -51,7 +51,7 @@ public class UserController {
         return new ResponseEntity<>(new SingleResponseDto<>(userMapper.userToUserResponseDto(user)), HttpStatus.OK);
     }
 
-    // 전체 유저 조회(페이지네이션)
+    // TODO 전체 유저 조회(페이지네이션)
     @GetMapping
     public ResponseEntity getUsers(@RequestParam int page, @RequestParam int size) {
         Page<User> pageUsers = userService.findUsers(page -1, size);
