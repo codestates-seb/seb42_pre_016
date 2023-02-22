@@ -8,7 +8,7 @@ import Footer from "../components/Footer/Footer";
 const GlobalStyle = createGlobalStyle`
 body {
     box-sizing: border-box;
-    background: #f0f2f4;
+    background:  #ffffff;
     margin: 0;
 }
 `;

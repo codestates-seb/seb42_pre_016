@@ -5,9 +5,10 @@ export const HeadWrapper = styled.div`
   width: 1480px;
   height: 120px;
   position: absolute;
-  top: 4%;
+  top: 4.5%;
   left: 19%;
   flex: 1 1 auto;
+  overflow: hidden;
 `;
 
 export const H1Text = styled.div`
@@ -123,7 +124,7 @@ export const BodyWrapper = styled.div`
   width: 1440px;
   height: 700px;
   position: absolute;
-  top: 13%;
+  top: 14%;
   left: 19%;
 `;
 
@@ -142,7 +143,7 @@ export const AnswerWrapper = styled.div`
   justify-content: center;
   align-items: center;
   width: 1440px;
-  height: 600px;
+  height: 540px;
   margin-bottom: 100px;
   position: absolute;
   top: 62%;
@@ -155,7 +156,7 @@ export const H2Text = styled.div`
   margin: 10px 20px;
   position: absolute;
   left: 2%;
-  top: 10%;
+  top: 5%;
 `;
 
 export const H3Text = styled.div`
@@ -164,7 +165,7 @@ export const H3Text = styled.div`
   margin: 20px 20px;
   position: absolute;
   left: 2%;
-  top: 17%;
+  top: 10%;
 `;
 
 export const AnswerButton = styled.button`
