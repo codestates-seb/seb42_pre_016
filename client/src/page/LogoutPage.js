@@ -1,25 +1,24 @@
 import React from "react";
 import { createGlobalStyle } from "styled-components";
-import Head from "../components/Header/Head";
-import SidebarDropdown from "../components/Sidebar/SidebarDropdown";
+import HeadDrop from "../components/Header/HeadDrop";
 import Logout from "../components/Logout/Logout";
 
 const GlobalStyle = createGlobalStyle`
 body {
     box-sizing: border-box;
     background: #f0f2f4;
+    margin: 0;
 }
 `;
 
-const LogputPage = () => {
+const LogoutPage = () => {
   return (
     <div>
       <GlobalStyle />
-      <Head />
-      <SidebarDropdown />
+      <HeadDrop />
       <Logout />
     </div>
   );
 };
 
-export default LogputPage;
+export default LogoutPage;

@@ -1,12 +1,12 @@
 import styled from "styled-components";
-import Questions_up from "../../img/Questions_up.png";
 
 export const HeadWrapper = styled.div`
   display: flex;
   width: 1480px;
   height: 120px;
   position: absolute;
-  left: 17%;
+  top: 4%;
+  left: 19%;
   flex: 1 1 auto;
 `;
 
@@ -124,7 +124,7 @@ export const BodyWrapper = styled.div`
   height: 700px;
   position: absolute;
   top: 13%;
-  left: 17%;
+  left: 19%;
 `;
 
 export const MainWrapper = styled.div`
@@ -143,6 +143,7 @@ export const AnswerWrapper = styled.div`
   align-items: center;
   width: 1440px;
   height: 600px;
+  margin-bottom: 100px;
   position: absolute;
   top: 62%;
   left: 17%;
@@ -181,7 +182,7 @@ export const AnswerButton = styled.button`
     background: #006cbfe9;
   }
   position: absolute;
-  top: 85%;
+  top: 80%;
   left: 2%;
 `;
 

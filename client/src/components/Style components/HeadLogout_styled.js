@@ -1,17 +1,17 @@
 import styled from "styled-components";
 
 export const HeadBar = styled.div`
-  height: 50px;
+  height: 55px;
   background: #f7faf9;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
   display: flex;
+  border-top: 3px solid hsl(27, 90%, 55%);
   position: relative;
   box-sizing: border-box;
   outline: none;
-  padding-top: 7px;
-  margin-top: -7px;
   margin-left: -10px;
   margin-right: -20px;
+  padding: 7px 0px;
 `;
 
 export const Line = styled.hr`

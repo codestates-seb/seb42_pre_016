@@ -7,24 +7,49 @@ export const Space = styled.span`
 `;
 
 export const HeadBar = styled.div`
-  height: 50px;
+  height: 55px;
   background: #f7faf9;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
   display: flex;
+  border-top: 3px solid hsl(27, 90%, 55%);
   position: relative;
   box-sizing: border-box;
   outline: none;
-  padding-top: 7px;
-  margin-top: -7px;
   margin-left: -10px;
   margin-right: -20px;
-`;
+  padding: 7px 0px;
 
-export const Line = styled.hr`
-  border: solid 2px #f48024;
-  margin-top: -7px;
-  margin-left: -10px;
-  margin-right: -10px;
+  > .navbar-wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 100%;
+    background-color: hsl(210, 8%, 97.5%);
+    position: relative;
+    margin: 0px 7px;
+
+    > .menuBtn {
+      background: #f7faf9;
+      border: none;
+      justify-content: center;
+      align-items: center;
+      height: 48px;
+      padding: 0px 16px;
+      cursor: pointer;
+      :hover {
+        border: none;
+        background-color: #e2e6e8;
+      }
+    }
+    > .dropdown-menu2 {
+      position: absolute;
+      top: 45px;
+      left: 0;
+      box-shadow: 0px 0 5px 0px #e2e6e8;
+    }
+  }
 `;
 
 export const LogoSrc = styled.img`
