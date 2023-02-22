@@ -1,14 +1,11 @@
 package com.idle.stackoverflow.question.entity;
 
-
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import javax.persistence.*;
 import java.time.LocalDateTime;
-
-
 
 @Entity
 @Getter
@@ -17,40 +14,21 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 public class Question {
 
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long questionId;
+    private Long questionId;    // 질문 고유 번호
 
-    @Column(name = "title")
-    private String title;
+    @Column
+    private String title;   // 제목
 
-    @Column(name = "content")
-    private String content;
+    @Column
+    private String content; // 내용
 
-    @Column(name = "created_at", nullable = false)
-    private LocalDateTime createTime = LocalDateTime.now();
+    @Column
+    private LocalDateTime createdAt = LocalDateTime.now();  // 생성 시간
 
-    @Column(name = "updated_at", nullable = false)
-    private LocalDateTime updateTime = LocalDateTime.now();
+    @Column
+    private LocalDateTime modifiedAt = LocalDateTime.now(); // 수정 시간
 
-
-
-//    @OneToMany(mappedBy = "questionId")
-//    private List<Tag> tags = new ArrayList<>();
-
-//    public Question(String title) {
-//        this.title = title;
-//    }
-//
-//    public Question(String title, String content, LocalDateTime createTime, LocalDateTime updateTime) {
-//        this.title = title;
-//        this.content = content;
-//        this.createTime = createTime;
-//        this.updateTime = updateTime;
-//    }
-//
-//    public void addTag(Tag tag) {
-//        tags.add(tag);
-//    }
+    // TODO 질문 상태 (질문 등록, 질문 삭제)
 }
