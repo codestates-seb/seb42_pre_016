@@ -26,7 +26,7 @@ const device = {
 };
 
 const MypageContainer = styled.div`
-  width: max-width;
+  width: 100%;
   height: 200px;
   background: #ffffff;
   display: flex;
@@ -36,8 +36,7 @@ const MypageContainer = styled.div`
   margin-top: 1px;
   align-items: center;
   position: relative;
-  padding-top: 100px;
-  padding-left: 300px;
+  /* border: red solid; */
 `;
 
 const ProfilePicture = styled.img`
