@@ -1,5 +1,16 @@
 import styled from "styled-components";
 
+export const Wrapper = styled.div`
+  display: flex;
+  justify-content: flex-start;
+  position: absolute;
+  width: 1000px;
+  height: 1000px;
+  top: 10%;
+  left: 15%;
+  flex: 1 0 auto;
+`;
+
 export const SideWrapper = styled.form`
   display: flex;
   justify-content: flex-start;
@@ -15,7 +26,7 @@ export const HText = styled.div`
   display: flex;
   justify-content: flex-start;
   position: absolute;
-  font-size: 27px;
+  font-size: 27.2px;
   font-weight: 500;
 `;
 
@@ -55,7 +66,7 @@ export const Form = styled.form`
   box-shadow: 2px 2px 5px #c2c2c2;
   position: absolute;
   top: 39%;
-  left: 45%;
+  left: 58%;
 `;
 
 export const SignupButton = styled.button`
@@ -97,8 +108,8 @@ export const GoogleButton = styled.button`
   color: ${(props) => props.color};
   border: solid 1px #cbcbcbe6;
   position: absolute;
-  top: 27.5%;
-  left: 45%;
+  top: 26.5%;
+  left: 58%;
   cursor: pointer;
 `;
 
@@ -110,8 +121,8 @@ export const GithubButton = styled.button`
   color: ${(props) => props.color};
   border: solid 1px #cbcbcbe6;
   position: absolute;
-  top: 31%;
-  left: 45%;
+  top: 30.5%;
+  left: 58%;
   cursor: pointer;
 `;
 
@@ -124,7 +135,7 @@ export const FacebookButton = styled.button`
   border: solid 1px #cbcbcbe6;
   position: absolute;
   top: 34.5%;
-  left: 45%;
+  left: 58%;
   cursor: pointer;
 `;
 

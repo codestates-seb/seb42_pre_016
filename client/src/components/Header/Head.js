@@ -8,7 +8,6 @@ import Questions from "../../img/questions.png";
 import Community from "../../img/community.png";
 import {
   HeadBar,
-  Line,
   LogoSrc,
   ProductsButton,
   SearchInput,
@@ -24,7 +23,6 @@ import {
 const Head = () => {
   return (
     <>
-      <Line />
       <HeadBar>
         <Space />
         <Link to="/">

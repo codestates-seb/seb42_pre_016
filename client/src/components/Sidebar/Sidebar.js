@@ -4,18 +4,27 @@ import { FaInfoCircle, FaGlobeAmericas } from "react-icons/fa";
 import { RiMedalFill } from "react-icons/ri";
 import { IoMdBriefcase } from "react-icons/io";
 
+export const Space = styled.div`
+  border-right: solid 1px #d6d8db;
+  background-color: #ffffff;
+  display: flex;
+  flex: 1 1 auto;
+  width: 5%;
+`;
+
 const SideContainer = styled.div`
-    height: 100vh;
-    width: 215px;
-    background-color: #ffffff;
-    position: relative;
-    float: left; 
-    border-right: solid 1px #d6d8db;
-    box-sizing: border-box;
-    display: flex;
-    flex-direction: column;
-    margin-top: 1px;
-`
+  height: 100vh;
+  width: 250px;
+  background-color: #ffffff;
+  position: sticky;
+  z-index: 1;
+  border-right: solid 1px #d6d8db;
+  box-sizing: border-box;
+  display: flex;
+  flex-flow: column nowrap;
+  flex-direction: column;
+  margin-top: 1px;
+`;
 // 사이즈 작아지면 (768px?) 사라지고
 // 헤드의 메뉴버튼 클릭 시 노출
 
@@ -203,6 +212,7 @@ const CreateFreeTeam = styled.div`
 const Sidebar = () => {
   return (
     <>
+      <Space />
       <SideContainer>
         <Home>Home</Home>
         <Public>PUBLIC</Public>

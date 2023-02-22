@@ -12,14 +12,16 @@ const QustionButton = styled.button`
   border: 1px solid transparent;
   color: #ffffff;
   background-color: #0a95ff;
-
   cursor: pointer;
   box-shadow: rgba(255, 255, 255, 0.4) 0px 2px 0px 0px inset;
 `;
 
 const MainStyle = styled.div`
+  /* background-color: #0a95ff; */
+  box-sizing: border-box;
   padding: 24px;
-  width: 100%;
+  width: 1500px;
+  flex: 1 1 auto;
   & .title {
     height: 38px;
     margin-bottom: 24px;
@@ -171,6 +173,12 @@ const CreatedAt = styled.span`
 
 
 
+export const Space = styled.div`
+  display: flex;
+  flex: 1 1 auto;
+  width: 5%;
+`;
+
 const QuestionList = () => {
   return (
     <>
@@ -209,6 +217,7 @@ const QuestionList = () => {
           );
         })}
       </MainStyle>
+      <Space />
     </>
   );
 };
