@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import Logo_Stackoverflow from "/Users/minju/seb42_pre_016/client/src/img/Logo_Stackoverflow.png"
+import Logo_Stackoverflow from "../../img/Logo_Stackoverflow.png"
 
 const StackoverflowIcon = styled.img`
     width: 70px;
@@ -76,11 +76,11 @@ const SNSLinks = styled.div`
 const Copyright = styled.div`
     font-size: 13px;
     color: #91989f;
-    position: absolute;
-    top: 1610px;
-    left: 1125px;
+    position: relative;
     width: 300px;
     height: 70px;
+    top: 200px;
+    left: -200px
 `
 
 const Footer = () => {

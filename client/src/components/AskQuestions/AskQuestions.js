@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import WritingHand from '../../img/WritingHand.png'
 
 const AskQuestionsWrapper = styled.div`
   width: 100%;
@@ -8,6 +9,7 @@ const AskQuestionsWrapper = styled.div`
   box-sizing: border-box;
   padding: 0;
   margin: 0;
+  display: flex;
 `;
 
 const AskQuestionContainer = styled.div`
@@ -39,6 +41,49 @@ const QuestionTip = styled.div`
     margin-left: 20px;
   }
 `;
+
+const WritingTip = styled.div`
+    box-shadow: 1px 1px 5px 0px rgba(0,0,0,0.43);
+    position: relative;
+    border: solid 1px #d5d8da;
+    width: 450px;
+    height: fit-content;
+    position: relative;
+    left: 20px;
+    top: 452px;
+    .writing-tip-title {
+        border: solid 1px #d5d8da;
+        background-color: #f8f9f9;
+        font-size: 20px;
+        padding: 15px;
+    }
+    .writing-tip-description {
+        border: solid 1px #d5d8da;
+        height: 120px;
+        font-size: 15px;
+        align-content: center;
+    }
+    p {
+        display: flex;
+        height: auto;
+        flex-direction: column;
+        position: relative;
+        top: 11px;
+        margin-right: 12px;
+        flex-wrap: wrap;
+    }
+;
+`
+const WritingIcon = styled.img`
+    width: 60px;
+    height: 60px;
+    display: flex;
+    float: left;
+    margin-right: 20px;
+    position: relative;
+    top: 25px;
+    left: 10px;
+`
 const Title = styled.div`
   background-color: white;
   border: solid 1px #91989f;
@@ -153,6 +198,12 @@ const DiscardButton = styled.button`
   }
 `;
 
+const EditorContainer = styled.div`
+    width: 99%;
+    height: auto;
+`
+
+
 const AskQuestions = () => {
   return (
     <AskQuestionsWrapper>
@@ -198,9 +249,8 @@ const AskQuestions = () => {
             Introduce the problem and expand on what you put in the title.
             Minimum 20 characters.
           </div>
-          <div>
-            <input type="text" placeholder="편집기가 들어갑니다"></input>
-          </div>
+          <EditorContainer>
+          </EditorContainer>
           <NextButton>Next</NextButton>
         </Problem>
         <Expect>
@@ -232,6 +282,14 @@ const AskQuestions = () => {
         <PostButton>Post your question</PostButton>
         <DiscardButton>Discard draft</DiscardButton>
       </AskQuestionContainer>
+      <WritingTip>
+            <div className="writing-tip-title">Writing a good title</div>
+            <div className="writing-tip-description">
+                <WritingIcon src={WritingHand} />
+            <p>Your title should summarize the problem.</p>
+            <p>You might find that you have a better idea of your title after writing out the rest of the question.</p>
+            </div>
+        </WritingTip>
     </AskQuestionsWrapper>
   );
 };
