@@ -6,6 +6,7 @@ import com.idle.stackoverflow.exception.BusinessLogicException;
 import com.idle.stackoverflow.exception.ExceptionCode;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -30,8 +31,8 @@ public class AnswerService {
 
         Optional.ofNullable(answer.getContent())
                 .ifPresent(content -> findAnswer.setContent(content));
-        Optional.ofNullable(answer.getUpdatedAt())
-                .ifPresent(updateAt -> findAnswer.setUpdatedAt(updateAt));
+        Optional.ofNullable(answer.getModifiedAt())
+                .ifPresent(updateAt -> findAnswer.setModifiedAt(updateAt));
         Optional.ofNullable(answer.getVoteCnt())
                 .ifPresent(voteCnt -> findAnswer.setVoteCnt(voteCnt));
 
