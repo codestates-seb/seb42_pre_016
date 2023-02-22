@@ -11,7 +11,9 @@ import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.util.UriComponentsBuilder;
 
+import java.net.URI;
 import java.util.List;
 
 @RestController
@@ -30,8 +32,12 @@ public class UserController {
     @PostMapping("/signup")
     public ResponseEntity postUser(@RequestBody UserPostDto userPostDto) {
         User user = userMapper.userPostDtoToUser(userPostDto);
-        User response = userService.createUser(user);   // 유저 정보 등록
-        return new ResponseEntity<>(userMapper.userToUserResponseDto(response), HttpStatus.CREATED);
+//        User response = userService.createUser(user);   // 유저 등록
+//        return new ResponseEntity<>(userMapper.userToUserResponseDto(response), HttpStatus.CREATED);
+        userService.createUser(user);   // 유저 등록
+        URI location = UriComponentsBuilder.newInstance()
+                .path("/stackoverflow.com/users" + "/signup" + "/{user-id}").buildAndExpand(user.getUserId()).toUri();
+        return ResponseEntity.created(location).build();
     }
 
     // 유저 정보 수정
