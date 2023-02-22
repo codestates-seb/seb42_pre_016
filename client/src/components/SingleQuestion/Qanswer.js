@@ -1,4 +1,5 @@
 import React from "react";
+import Editor from "./Editor";
 import {
   AnswerWrapper,
   H2Text,
@@ -16,6 +17,7 @@ const Qanswer = () => {
         </H2Text>
         <H3Text>Your Answer</H3Text>
         <AnswerButton>Post Your Answer</AnswerButton>
+        <Editor />
       </AnswerWrapper>
     </div>
   );

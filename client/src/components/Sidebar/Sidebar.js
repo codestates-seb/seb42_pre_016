@@ -4,11 +4,18 @@ import { FaInfoCircle, FaGlobeAmericas } from "react-icons/fa";
 import { RiMedalFill } from "react-icons/ri";
 import { IoMdBriefcase } from "react-icons/io";
 
+export const Space = styled.span`
+  display: flex;
+  flex: 1 1 auto;
+  width: 20px;
+`;
+
 const SideContainer = styled.div`
   height: 100vh;
   width: 250px;
   background-color: #ffffff;
-  position: sticky;
+  position: relative;
+  /* position: sticky; */
   z-index: 1;
   border-right: solid 1px #d6d8db;
   box-sizing: border-box;
@@ -203,6 +210,7 @@ const CreateFreeTeam = styled.div`
 const Sidebar = () => {
   return (
     <>
+      <Space />
       <SideContainer>
         <Home>Home</Home>
         <Public>PUBLIC</Public>
