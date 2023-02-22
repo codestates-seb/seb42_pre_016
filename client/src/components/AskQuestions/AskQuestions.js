@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import WritingHand from '../../img/WritingHand.png'
+import QuestionEditor from "../Editor/Editor";
 
 const AskQuestionsWrapper = styled.div`
   width: 100%;
@@ -70,7 +71,6 @@ const WritingTip = styled.div`
         position: relative;
         top: 11px;
         margin-right: 12px;
-        flex-wrap: wrap;
     }
 ;
 `
@@ -130,6 +130,7 @@ const Problem = styled.div`
   .title-description {
     font-size: 15px;
     margin-top: 5px;
+    margin-bottom: 10px;
   }
 `;
 
@@ -146,6 +147,7 @@ const Expect = styled.div`
   .title-description {
     font-size: 15px;
     margin-top: 5px;
+    margin-bottom: 10px;
   }
 `;
 
@@ -201,6 +203,10 @@ const DiscardButton = styled.button`
 const EditorContainer = styled.div`
     width: 99%;
     height: auto;
+    .ck.ck-editor__editable:not(.ck-editor__nested-editable) {
+  min-height: 300px;
+  margin-bottom: 20px;
+}
 `
 
 
@@ -250,6 +256,7 @@ const AskQuestions = () => {
             Minimum 20 characters.
           </div>
           <EditorContainer>
+            <QuestionEditor/>
           </EditorContainer>
           <NextButton>Next</NextButton>
         </Problem>
@@ -261,9 +268,9 @@ const AskQuestions = () => {
             Describe what you tried, what you expected to happen, and what
             actually resulted. Minimum 20 characters.
           </div>
-          <div>
-            <input type="text" placeholder="편집기가 들어갑니다"></input>
-          </div>
+          <EditorContainer>
+            <QuestionEditor/>
+          </EditorContainer>
           <NextButton>Next</NextButton>
         </Expect>
         <Tags>

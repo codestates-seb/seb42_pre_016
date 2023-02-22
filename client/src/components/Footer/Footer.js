@@ -1,6 +1,12 @@
 import React from "react";
 import styled from "styled-components";
-import Logo_Stackoverflow from "/Users/minju/seb42_pre_016/client/src/img/Logo_Stackoverflow.png"
+import Logo_Stackoverflow from "../../img/Logo_Stackoverflow.png";
+
+export const Space = styled.span`
+  display: flex;
+  flex: 1 1 auto;
+  width: 20px;
+`;
 
 const StackoverflowIcon = styled.img`
   width: 70px;
@@ -77,14 +83,14 @@ const SNSLinks = styled.div`
 `;
 
 const Copyright = styled.div`
-    font-size: 13px;
-    color: #91989f;
-    position: absolute;
-    top: 1610px;
-    left: 1125px;
-    width: 300px;
-    height: 70px;
-`
+  font-size: 13px;
+  color: #91989f;
+  position: relative;
+  top: 101px;
+  left: -200px;
+  width: 300px;
+  height: 70px;
+`;
 
 const Footer = () => {
   return (

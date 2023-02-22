@@ -12,7 +12,7 @@ export const Space = styled.span`
 
 const SideContainer = styled.div`
   height: 100vh;
-  width: 250px;
+  width: 300px;
   background-color: #ffffff;
   position: relative;
   /* position: sticky; */
