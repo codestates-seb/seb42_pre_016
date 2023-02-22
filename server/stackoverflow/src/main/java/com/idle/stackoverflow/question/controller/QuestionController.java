@@ -9,10 +9,10 @@ import com.idle.stackoverflow.question.entity.Question;
 import com.idle.stackoverflow.question.mapper.QuestionMapper;
 import com.idle.stackoverflow.question.service.QuestionService;
 import com.idle.stackoverflow.response.SingleResponseDto;
-import com.idle.stackoverflow.utils.UriCreator;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.util.UriComponentsBuilder;
 
 import java.net.URI;
 import java.util.List;
@@ -35,7 +35,12 @@ public class QuestionController {
 
         Question question = mapper.questionPostToQuestion(questionPostDto);
         questionService.createQuestion(question); // db
-        URI location = UriCreator.createUri(QUESTION_DEFAULT_URL, question.getQuestionId());
+        URI location =
+                UriComponentsBuilder
+                        .newInstance()
+                        .path(QUESTION_DEFAULT_URL + "/{question-id}")
+                        .buildAndExpand(question.getQuestionId())
+                        .toUri();
 
         return ResponseEntity.created(location).build();
     }

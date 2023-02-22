@@ -5,13 +5,9 @@ import lombok.Getter;
 
 @Getter
 public class QuestionPostDto {
-    private Long questionId;
+    // private Long questionId; // DB가 넣어 줌
     private String title;
     private String content;
-
-
-
-
 }
 
 

@@ -25,11 +25,7 @@ public class QuestionService {
 
     public Question createQuestion(Question question) {
 
-        Question createdQuestion = question;
-        return createdQuestion;
-
-//        return questionRepository.save(question);
-
+        return questionRepository.save(question);
     }
     public Question updateQuestion(Question question) {
 
