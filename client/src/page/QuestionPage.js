@@ -5,9 +5,18 @@ import Sidebar from "../components/Sidebar/Sidebar";
 import Question from "../components/SingleQuestion/Question";
 import Footer from "../components/Footer/Footer";
 
+const GlobalStyle = createGlobalStyle`
+body {
+    box-sizing: border-box;
+    background:  #ffffff;
+    margin: 0;
+}
+`;
+
 const SingleQuestionsPage = () => {
   return (
     <div>
+      <GlobalStyle />
       <Head />
       <Sidebar />
       <Question />

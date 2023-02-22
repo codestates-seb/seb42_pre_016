@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
+import { GrMenu, GrClose } from "react-icons/gr"; // 햄버거 버튼, x 버튼
+import { Dropdown } from "../Sidebar/Dropdown";
 import { Link } from "react-router-dom";
 import Logo from "../../img/logo-stackoverflow.png";
 import Sidebar from "../../img/sidebar.png";
 import {
   HeadBar,
-  Line,
   LogoSrc,
   SearchInput,
   Space,
@@ -16,13 +17,25 @@ import {
   SignupButton,
 } from "../Style components/HeadLogout_styled";
 
-const HeadLogout = () => {
+const HeadLogout = (type) => {
+  const [click, setClick] = useState(false);
+
+  const handleClick = () => {
+    setClick(!click);
+  };
+
   return (
     <>
-      <Line />
       <HeadBar>
         <Space />
-        <SidebarSrc src={Sidebar} />
+        <div className="navbar-wrapper">
+          <button className="menuBtn" onClick={handleClick}>
+            {click ? <GrClose /> : <GrMenu />}
+          </button>
+          <div className="dropdown-menu2">
+            {click ? <Dropdown page2={type.page2} /> : null}
+          </div>
+        </div>
         <Link to="/">
           <LogoSrc src={Logo} />
         </Link>

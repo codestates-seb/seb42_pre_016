@@ -1,5 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { GrMenu, GrClose } from "react-icons/gr"; // 햄버거 버튼, x 버튼
+import { Dropdown } from "../Sidebar/Dropdown";
 import Logo from "../../img/logo-stackoverflow.png";
 import MyPhoto from "../../img/myphoto.jpeg";
 import Inbox from "../../img/inbox.png";
@@ -20,11 +22,25 @@ import {
   Space,
 } from "../Style components/Head_styled";
 
-const Head = () => {
+const Head = (type) => {
+  const [click, setClick] = useState(false);
+
+  const handleClick = () => {
+    setClick(!click);
+  };
+
   return (
     <>
       <HeadBar>
         <Space />
+        <div className="navbar-wrapper">
+          <button className="menuBtn" onClick={handleClick}>
+            {click ? <GrClose /> : <GrMenu />}
+          </button>
+          <div className="dropdown-menu2">
+            {click ? <Dropdown page2={type.page2} /> : null}
+          </div>
+        </div>
         <Link to="/">
           <LogoSrc src={Logo} />
         </Link>

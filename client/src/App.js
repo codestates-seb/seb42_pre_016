@@ -4,7 +4,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Mainpage from "./page/MainPage";
 import LoginPage from "./page/LoginPage";
 import SignupPage from "./page/SignupPage";
-import LogputPage from "./page/LogputPage";
+import LogoutPage from "./page/LogoutPage";
 import QuestionPage from "./page/QuestionPage";
 import Mypage from "./page/MyPage";
 import AskQuestionsPage from "./page/AskQuestionsPage";
@@ -17,7 +17,7 @@ function App() {
           <Route path="/" element={<Mainpage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/signup" element={<SignupPage />} />
-          <Route path="/logout" element={<LogputPage />} />
+          <Route path="/logout" element={<LogoutPage />} />
           <Route path="/questions" element={<QuestionPage />} />
           <Route path="/mypage" element={<Mypage />} />
           <Route path="/askquestions" element={<AskQuestionsPage />} />
