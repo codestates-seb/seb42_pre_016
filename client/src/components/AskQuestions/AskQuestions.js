@@ -60,10 +60,13 @@ const Title = styled.div`
 `;
 
 const NextButton = styled.button`
-  background-color: #5494fb;
+  background-color: #0c96fe;
+  box-shadow: 1px 1px 2px #ffffffb1 inset;
+  border: solid 0.5px #4b80a6;
+  margin: 7px 0;
   color: white;
-  width: 60px;
-  height: 40px;
+  width: 50px;
+  height: 37px;
   border-radius: 5px;
 `;
 
@@ -123,7 +126,9 @@ const Tags = styled.div`
 `;
 
 const PostButton = styled.button`
-  background-color: #5494fb;
+  background-color: #0c96fe;
+  box-shadow: 1px 1px 2px #ffffffb1 inset;
+  border: solid 0.5px #4b80a6;
   color: white;
   width: 160px;
   height: 40px;
