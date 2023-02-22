@@ -15,7 +15,7 @@ export const HText = styled.div`
   display: flex;
   justify-content: flex-start;
   position: absolute;
-  font-size: 27px;
+  font-size: 27.2px;
   font-weight: 500;
 `;
 
