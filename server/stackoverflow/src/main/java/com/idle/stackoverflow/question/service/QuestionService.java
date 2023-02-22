@@ -2,15 +2,12 @@ package com.idle.stackoverflow.question.service;
 
 
 
-import com.idle.stackoverflow.question.dto.QuestionDto;
 import com.idle.stackoverflow.question.entity.Question;
 import com.idle.stackoverflow.question.repository.QuestionRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class QuestionService {

@@ -33,8 +33,8 @@ public class AnswerDto {
     public static class Response {
         private long answerId;
         private String content;
-        private String createdAt; // LocalDateTime
-        private String updatedAt; // LocalDateTime
+        private LocalDateTime createdAt;
+        private LocalDateTime updatedAt;
         private long voteCnt;
         private long userId;
         private long questionId;

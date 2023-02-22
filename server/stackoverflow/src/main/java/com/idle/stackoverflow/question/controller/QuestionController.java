@@ -2,7 +2,6 @@ package com.idle.stackoverflow.question.controller;
 
 
 
-import com.idle.stackoverflow.question.dto.QuestionDto;
 import com.idle.stackoverflow.question.dto.QuestionPatchDto;
 import com.idle.stackoverflow.question.dto.QuestionPostDto;
 import com.idle.stackoverflow.question.dto.QuestionResponseDto;
@@ -13,7 +12,6 @@ import com.idle.stackoverflow.response.SingleResponseDto;
 import com.idle.stackoverflow.utils.UriCreator;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
@@ -35,7 +33,7 @@ public class QuestionController {
     @PostMapping("/ask")
     public ResponseEntity postQuestion(@RequestBody QuestionPostDto questionPostDto) {
 
-        Question question = questionService.createQuestion(mapper.questionPostToQuestion(questionPostDto));
+        Question question = mapper.questionPostToQuestion(questionPostDto);
         questionService.createQuestion(question); // db
         URI location = UriCreator.createUri(QUESTION_DEFAULT_URL, question.getQuestionId());
 
