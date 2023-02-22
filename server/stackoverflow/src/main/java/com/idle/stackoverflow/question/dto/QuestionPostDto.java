@@ -11,8 +11,8 @@ public class QuestionPostDto {
     private Long questionId;
     private String title;
     private String content;
-    private LocalDateTime creatTime;
-    private LocalDateTime updateTime;
+    private LocalDateTime createdTime;
+    private LocalDateTime updatedTime;
 
 
 
