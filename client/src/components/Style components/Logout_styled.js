@@ -7,7 +7,7 @@ export const Wrapper = styled.div`
   justify-content: center;
   position: absolute;
   top: 25%;
-  left: 30%;
+  left: 35%;
 `;
 
 export const Head = styled.div`

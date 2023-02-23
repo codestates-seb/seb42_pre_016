@@ -7,7 +7,7 @@ export const Wrapper = styled.div`
   width: 1000px;
   height: 1000px;
   top: 10%;
-  left: 15%;
+  left: 20%;
   flex: 1 0 auto;
 `;
 

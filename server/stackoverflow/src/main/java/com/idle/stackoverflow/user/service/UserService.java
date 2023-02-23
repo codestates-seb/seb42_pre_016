@@ -42,10 +42,11 @@ public class UserService {
     }
 
     public Page<User> findUsers(int page, int size) {
-        return userRepository.findAll(PageRequest.of(page, size, Sort.by("createdAt").descending()));
+        // 활동 상태의 신규 유저 정렬
+        return userRepository.findAllByUserStatus(User.UserStatus.USER_ACTIVE, PageRequest.of(page, size, Sort.by("createdAt").descending()));
+//        return userRepository.findAll(PageRequest.of(page, size, Sort.by("createdAt").descending()));
     }
 
-    // FIXME 유저 정보 삭제(회원탈퇴) 기능 삭제
     public void deleteUser(long userId) {
         User findUser = findVerifiedUser(userId);   // 유저 검증
         userRepository.delete(findUser);    // 유저 삭제
@@ -55,6 +56,7 @@ public class UserService {
     public User findVerifiedUser(long userId) {
         Optional<User> optionalUser = userRepository.findById(userId);
         User findUser = optionalUser.orElseThrow(() -> new BusinessLogicException(ExceptionCode.USER_NOT_FOUND));
+        // TODO 휴면 상태, 회원 탈퇴
         return findUser;
     }
 

@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import WritingHand from '../../img/WritingHand.png'
+import WritingHand from "../../img/WritingHand.png";
 import QuestionEditor from "../Editor/Editor";
 
 const AskQuestionsWrapper = styled.div`
@@ -11,6 +11,7 @@ const AskQuestionsWrapper = styled.div`
   padding: 0;
   margin: 0;
   display: flex;
+  flex: 1 1 auto;
 `;
 
 const AskQuestionContainer = styled.div`
@@ -44,46 +45,45 @@ const QuestionTip = styled.div`
 `;
 
 const WritingTip = styled.div`
-    box-shadow: 1px 1px 5px 0px rgba(0,0,0,0.43);
-    position: relative;
+  box-shadow: 1px 1px 5px 0px rgba(0, 0, 0, 0.43);
+  position: relative;
+  border: solid 1px #d5d8da;
+  width: 450px;
+  height: fit-content;
+  position: relative;
+  left: 20px;
+  top: 452px;
+  .writing-tip-title {
     border: solid 1px #d5d8da;
-    width: 450px;
-    height: fit-content;
-    position: relative;
-    left: 20px;
-    top: 452px;
-    .writing-tip-title {
-        border: solid 1px #d5d8da;
-        background-color: #f8f9f9;
-        font-size: 20px;
-        padding: 15px;
-    }
-    .writing-tip-description {
-        border: solid 1px #d5d8da;
-        height: 120px;
-        font-size: 15px;
-        align-content: center;
-    }
-    p {
-        display: flex;
-        height: auto;
-        flex-direction: column;
-        position: relative;
-        top: 11px;
-        margin-right: 12px;
-    }
-;
-`
-const WritingIcon = styled.img`
-    width: 60px;
-    height: 60px;
+    background-color: #f8f9f9;
+    font-size: 20px;
+    padding: 15px;
+  }
+  .writing-tip-description {
+    border: solid 1px #d5d8da;
+    height: 120px;
+    font-size: 15px;
+    align-content: center;
+  }
+  p {
     display: flex;
-    float: left;
-    margin-right: 20px;
+    height: auto;
+    flex-direction: column;
     position: relative;
-    top: 25px;
-    left: 10px;
-`
+    top: 11px;
+    margin-right: 12px;
+  }
+`;
+const WritingIcon = styled.img`
+  width: 60px;
+  height: 60px;
+  display: flex;
+  float: left;
+  margin-right: 20px;
+  position: relative;
+  top: 25px;
+  left: 10px;
+`;
 const Title = styled.div`
   background-color: white;
   border: solid 1px #91989f;
@@ -201,18 +201,24 @@ const DiscardButton = styled.button`
 `;
 
 const EditorContainer = styled.div`
-    width: 99%;
-    height: auto;
-    .ck.ck-editor__editable:not(.ck-editor__nested-editable) {
-  min-height: 300px;
-  margin-bottom: 20px;
-}
-`
+  width: 99%;
+  height: auto;
+  .ck.ck-editor__editable:not(.ck-editor__nested-editable) {
+    min-height: 300px;
+    margin-bottom: 20px;
+  }
+`;
 
+export const Space = styled.div`
+  display: flex;
+  flex: 1 1 auto;
+  width: 5%;
+`;
 
 const AskQuestions = () => {
   return (
     <AskQuestionsWrapper>
+      <Space />
       <AskQuestionContainer>
         <h1>Ask a public question</h1>
         <QuestionTip>
@@ -256,7 +262,7 @@ const AskQuestions = () => {
             Minimum 20 characters.
           </div>
           <EditorContainer>
-            <QuestionEditor/>
+            <QuestionEditor />
           </EditorContainer>
           <NextButton>Next</NextButton>
         </Problem>
@@ -269,7 +275,7 @@ const AskQuestions = () => {
             actually resulted. Minimum 20 characters.
           </div>
           <EditorContainer>
-            <QuestionEditor/>
+            <QuestionEditor />
           </EditorContainer>
           <NextButton>Next</NextButton>
         </Expect>
@@ -290,13 +296,17 @@ const AskQuestions = () => {
         <DiscardButton>Discard draft</DiscardButton>
       </AskQuestionContainer>
       <WritingTip>
-            <div className="writing-tip-title">Writing a good title</div>
-            <div className="writing-tip-description">
-                <WritingIcon src={WritingHand} />
-            <p>Your title should summarize the problem.</p>
-            <p>You might find that you have a better idea of your title after writing out the rest of the question.</p>
-            </div>
-        </WritingTip>
+        <div className="writing-tip-title">Writing a good title</div>
+        <div className="writing-tip-description">
+          <WritingIcon src={WritingHand} />
+          <p>Your title should summarize the problem.</p>
+          <p>
+            You might find that you have a better idea of your title after
+            writing out the rest of the question.
+          </p>
+        </div>
+      </WritingTip>
+      <Space />
     </AskQuestionsWrapper>
   );
 };

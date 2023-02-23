@@ -56,10 +56,119 @@ const MainStyle = styled.div`
   }
 `;
 
+const timecheck = (createdAtUTC) => {
+  const createdAt = Date.parse(createdAtUTC.replace("T", "Z"));
+  const diffSeconds = Math.round((Date.now() - createdAt) / 1000);
+
+  if (diffSeconds < 60) {
+    if (diffSeconds === 1) return "1 sec ago";
+    return `${diffSeconds} secs ago`;
+  }
+
+  const diffMinutes = Math.round(diffSeconds / 60);
+
+  if (diffMinutes < 60) {
+    if (diffMinutes === 1) return "1 sec ago";
+    return `${diffMinutes} mins ago`;
+  }
+
+  const diffHours = Math.round(diffMinutes / 60);
+
+  if (diffHours < 24) {
+    if (diffHours === 1) return "1 hour ago";
+    return `${diffHours} hours ago`;
+  }
+
+  const diffDays = Math.round(diffHours / 24);
+
+  if (diffDays < 3) {
+    if (diffDays === 1) return "yesterday";
+    return "2 days ago";
+  }
+
+  const dateCreatedAt = new Date(createdAt - 32400000);
+  //한국시간으로 변환 32400000
+
+  const month = [
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec",
+  ];
+
+  return `${
+    month[dateCreatedAt.getMonth()]
+  } ${dateCreatedAt.getDate()}, ${dateCreatedAt.getFullYear()} at ${String(
+    dateCreatedAt.getHours()
+  ).padStart(2, "0")}:${String(dateCreatedAt.getMinutes()).padStart(2, "0")}`;
+  // 시간 두자리수 표기법 padStart 사용하기
+};
+
 const Questiontitle = styled.div`
-  font-size: 30px;
-  line-height: 40px;
+  flex-basis: 50%;
+  font-size: 28px;
+  line-height: 20px;
   color: #0074cc;
+`;
+
+const ListLeft = styled.div`
+  font-size: 13px;
+  line-height: 17px;
+  color: #6a737c;
+  width: 80px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+
+  span {
+    display: block;
+    margin-bottom: 5px;
+  }
+
+  span:first-child {
+    color: #0c0d0e;
+  }
+`;
+
+const ListMain = styled.div`
+  color: #6a737c;
+  display: flex;
+  gap: 15px;
+  flex-basis: 100%;
+  position: relative;
+`;
+
+const List = styled.li`
+  border-top: 1px solid rgb(219, 222, 224);
+  padding: 20px;
+  display: flex;
+  width: 100%;
+  gap: 15px;
+`;
+
+const WriterAndtime = styled.div`
+  font-size: 12px;
+  line-height: 12px;
+  position: absolute;
+  right: 0px;
+  top: 45px;
+`;
+
+const Author = styled.span`
+  margin-right: 3px;
+  color: #0074cc;
+`;
+
+const CreatedAt = styled.span`
+  color: #525960;
 `;
 
 export const Space = styled.div`
@@ -80,11 +189,27 @@ const QuestionList = () => {
         </div>
         {dummydata.map((data) => {
           return (
-            <div className="question_data">
-              {/* <div className="question">0 question</div> */}
-              <Link to="/questions">
-                <Questiontitle>{data.title}</Questiontitle>
-              </Link>
+            <div className="question_data" key={data.id}>
+              <List>
+                <ListLeft>
+                  <span>0 votes</span>
+                  <span>1 answer</span>
+                  <span>10 views</span>
+                </ListLeft>
+                <ListMain>
+                  {/* <div className="question">0 question</div> */}
+                  <Link to="/questions">
+                    <Questiontitle>{data.title}</Questiontitle>
+                  </Link>
+
+                  <WriterAndtime>
+                    <Author>{data.username}</Author>
+                    <CreatedAt>{`asked ${timecheck(
+                      data.createdAt
+                    )}`}</CreatedAt>
+                  </WriterAndtime>
+                </ListMain>
+              </List>
             </div>
           );
         })}
