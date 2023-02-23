@@ -1,16 +1,10 @@
 import React from "react";
-import styled, { createGlobalStyle } from "styled-components";
+import styled from "styled-components";
+import { createGlobalStyle } from "styled-components";
 import Head from "../components/Header/Head";
 import Sidebar from "../components/Sidebar/Sidebar";
-import QuestionList from "../components/Questions/QuestionList";
 import Footer from "../components/Footer/Footer";
-import AskQuestions from "../components/AskQuestions/AskQuestions";
-import QuestionEditPage from "./QuestionEditPage";
-
-const WrapperBody = styled.div`
-  margin: 0 auto;
-  display: flex;
-`;
+import QuestionEdit from "../components/Edit/QuestionEdit";
 
 const GlobalStyle = createGlobalStyle`
 body {
@@ -19,19 +13,24 @@ body {
     margin: 0;
 }
 `;
+const WrapperBody = styled.div`
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: row;
+`;
 
-const Mainpage = () => {
+const QuestionEditPage = () => {
   return (
     <div>
       <GlobalStyle />
       <Head />
       <WrapperBody>
-        <Sidebar />
-        <QuestionList />
+      <Sidebar />
+      <QuestionEdit />
       </WrapperBody>
       <Footer />
     </div>
   );
 };
 
-export default Mainpage;
+export default QuestionEditPage;

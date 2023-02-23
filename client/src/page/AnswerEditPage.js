@@ -1,16 +1,9 @@
 import React from "react";
-import styled, { createGlobalStyle } from "styled-components";
+import styled from "styled-components";
+import { createGlobalStyle } from "styled-components";
 import Head from "../components/Header/Head";
 import Sidebar from "../components/Sidebar/Sidebar";
-import QuestionList from "../components/Questions/QuestionList";
 import Footer from "../components/Footer/Footer";
-import AskQuestions from "../components/AskQuestions/AskQuestions";
-import QuestionEditPage from "./QuestionEditPage";
-
-const WrapperBody = styled.div`
-  margin: 0 auto;
-  display: flex;
-`;
 
 const GlobalStyle = createGlobalStyle`
 body {
@@ -19,19 +12,23 @@ body {
     margin: 0;
 }
 `;
+const WrapperBody = styled.div`
+  margin: 0 auto;
+  display: flex;
+`;
 
-const Mainpage = () => {
+const Mypage = () => {
   return (
     <div>
       <GlobalStyle />
       <Head />
       <WrapperBody>
-        <Sidebar />
-        <QuestionList />
+      <Sidebar />
+      {/* 답변수정페이지 */}
       </WrapperBody>
       <Footer />
     </div>
   );
 };
 
-export default Mainpage;
+export default Mypage;
