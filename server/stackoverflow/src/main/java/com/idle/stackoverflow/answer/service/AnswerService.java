@@ -31,10 +31,11 @@ public class AnswerService {
 
         Optional.ofNullable(answer.getContent())
                 .ifPresent(content -> findAnswer.setContent(content));
-        Optional.ofNullable(answer.getModifiedAt())
-                .ifPresent(updateAt -> findAnswer.setModifiedAt(updateAt));
-        Optional.ofNullable(answer.getVoteCnt())
-                .ifPresent(voteCnt -> findAnswer.setVoteCnt(voteCnt));
+
+        // voteCnt는 빼야 할 듯 투표 업데이트 된다고 수정시간 업데이트 될 순 없으니...
+        Optional.ofNullable(answer.getVoteCnt()).ifPresent(voteCnt -> findAnswer.setVoteCnt(voteCnt));
+
+        findAnswer.setModifiedAt(LocalDateTime.now()); // 수정 시간 업데이트
 
         return answerRepository.save(findAnswer);
     }
