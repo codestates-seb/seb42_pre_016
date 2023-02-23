@@ -1,5 +1,6 @@
 package com.idle.stackoverflow.user.entity;
 
+import com.idle.stackoverflow.answer.entity.Answer;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -7,6 +8,8 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity(name = "USERS")
 @Getter
@@ -37,6 +40,9 @@ public class User {
 
     // TODO QUESTION, ANSWER 매핑
 
+    @OneToMany(mappedBy = "user")
+    private List<Answer> answers = new ArrayList<>();
+
     public User(Long userId) {
         this.userId = userId;
     }
@@ -45,6 +51,10 @@ public class User {
         this.userId = userId;
         this.displayName = displayName;
         this.email = email;
+    }
+
+    public void addAnswer(Answer answer) {
+        answers.add(answer);
     }
 
     // FIXME 회원 상태 기능 삭제
