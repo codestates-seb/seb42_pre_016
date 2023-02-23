@@ -6,6 +6,7 @@ const QuestionEditor = () => {
   return (
   <>
 <CKEditor editor={ClassicEditor} onReady={editor => {
+ // editor.setData('테스트문자')
   console.log('Editor is ready to use!', editor);
 }}
 onChange={(event, editor) => {
