@@ -52,64 +52,65 @@ const MainStyle = styled.div`
       font-weight: 450;
     }
 
-
     border-bottom: solid 1px #d6d9dc;
   }
 `;
 
-const timecheck = createdAtUTC => {
-    const createdAt = Date.parse(createdAtUTC.replace('T', 'Z'));
-    const diffSeconds = Math.round((Date.now() - createdAt) / 1000);
+const timecheck = (createdAtUTC) => {
+  const createdAt = Date.parse(createdAtUTC.replace("T", "Z"));
+  const diffSeconds = Math.round((Date.now() - createdAt) / 1000);
 
-    if (diffSeconds < 60) {
-      if (diffSeconds === 1) return '1 sec ago';
-      return `${diffSeconds} secs ago`;
-    }
+  if (diffSeconds < 60) {
+    if (diffSeconds === 1) return "1 sec ago";
+    return `${diffSeconds} secs ago`;
+  }
 
-    const diffMinutes = Math.round(diffSeconds / 60);
+  const diffMinutes = Math.round(diffSeconds / 60);
 
-    if (diffMinutes < 60) {
-      if (diffMinutes === 1) return '1 sec ago';
-      return `${diffMinutes} mins ago`;
-    }
+  if (diffMinutes < 60) {
+    if (diffMinutes === 1) return "1 sec ago";
+    return `${diffMinutes} mins ago`;
+  }
 
-    const diffHours = Math.round(diffMinutes / 60);
+  const diffHours = Math.round(diffMinutes / 60);
 
-    if (diffHours < 24) {
-      if (diffHours === 1) return '1 hour ago';
-      return `${diffHours} hours ago`;
-    }
+  if (diffHours < 24) {
+    if (diffHours === 1) return "1 hour ago";
+    return `${diffHours} hours ago`;
+  }
 
-    const diffDays = Math.round(diffHours / 24);
+  const diffDays = Math.round(diffHours / 24);
 
-    if (diffDays < 3) {
-      if (diffDays === 1) return 'yesterday';
-      return '2 days ago';
-    }
+  if (diffDays < 3) {
+    if (diffDays === 1) return "yesterday";
+    return "2 days ago";
+  }
 
-    const dateCreatedAt = new Date(createdAt - 32400000);
-    //한국시간으로 변환 32400000
+  const dateCreatedAt = new Date(createdAt - 32400000);
+  //한국시간으로 변환 32400000
 
-    const month = [
-      'Jan',
-      'Feb',
-      'Mar',
-      'Apr',
-      'May',
-      'Jun',
-      'Jul',
-      'Aug',
-      'Sep',
-      'Oct',
-      'Nov',
-      'Dec',
-    ];
+  const month = [
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec",
+  ];
 
-    return `${
-      month[dateCreatedAt.getMonth()]
-    } ${dateCreatedAt.getDate()}, ${dateCreatedAt.getFullYear()} at ${String(dateCreatedAt.getHours()).padStart(2,"0")}:${String(dateCreatedAt.getMinutes()).padStart(2,"0")}`;
-    // 시간 두자리수 표기법 padStart 사용하기
-  };
+  return `${
+    month[dateCreatedAt.getMonth()]
+  } ${dateCreatedAt.getDate()}, ${dateCreatedAt.getFullYear()} at ${String(
+    dateCreatedAt.getHours()
+  ).padStart(2, "0")}:${String(dateCreatedAt.getMinutes()).padStart(2, "0")}`;
+  // 시간 두자리수 표기법 padStart 사용하기
+};
 
 const Questiontitle = styled.div`
   flex-basis: 50%;
@@ -145,7 +146,6 @@ const ListMain = styled.div`
   position: relative;
 `;
 
-
 const List = styled.li`
   border-top: 1px solid rgb(219, 222, 224);
   padding: 20px;
@@ -171,8 +171,6 @@ const CreatedAt = styled.span`
   color: #525960;
 `;
 
-
-
 export const Space = styled.div`
   display: flex;
   flex: 1 1 auto;
@@ -192,27 +190,26 @@ const QuestionList = () => {
         {dummydata.map((data) => {
           return (
             <div className="question_data" key={data.id}>
-            <List>
-            <ListLeft>
-                <span>0 votes</span>
-                <span>1 answer</span>
-                <span>10 views</span>
-            </ListLeft>
-            <ListMain>
-              {/* <div className="question">0 question</div> */}
-              <Link to="/questions">
-                <Questiontitle>{data.title}</Questiontitle>
-              </Link>
-              
-                <WriterAndtime>
+              <List>
+                <ListLeft>
+                  <span>0 votes</span>
+                  <span>1 answer</span>
+                  <span>10 views</span>
+                </ListLeft>
+                <ListMain>
+                  {/* <div className="question">0 question</div> */}
+                  <Link to="/questions">
+                    <Questiontitle>{data.title}</Questiontitle>
+                  </Link>
+
+                  <WriterAndtime>
                     <Author>{data.username}</Author>
-                    <CreatedAt>{`asked ${timecheck(data.createdAt)}`}</CreatedAt>
-                </WriterAndtime>
-              
-            </ListMain>
-            </List>
-            
-            
+                    <CreatedAt>{`asked ${timecheck(
+                      data.createdAt
+                    )}`}</CreatedAt>
+                  </WriterAndtime>
+                </ListMain>
+              </List>
             </div>
           );
         })}

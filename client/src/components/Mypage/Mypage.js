@@ -26,7 +26,8 @@ const device = {
 };
 
 const MypageContainer = styled.div`
-  width: 100%;
+  flex: 2 1 auto;
+  width: 1000px;
   height: 200px;
   background: #ffffff;
   display: flex;
@@ -36,6 +37,7 @@ const MypageContainer = styled.div`
   margin-top: 1px;
   align-items: center;
   position: relative;
+  margin: 5px 60px;
   /* border: red solid; */
 `;
 
@@ -147,6 +149,14 @@ const PenIcon = styled(FaPen)`
   margin-right: 5px;
 `;
 
+export const Space = styled.div`
+  border-right: solid 1px #d6d8db;
+  background-color: #ffffff;
+  display: flex;
+  flex: 1 1 auto;
+  width: 5%;
+`;
+
 const MypageProfile = () => {
   return (
     <>
@@ -174,6 +184,7 @@ const MypageProfile = () => {
           </Anniversaries>
         </NameCard>
       </MypageContainer>
+      <Space />
     </>
   );
 };
