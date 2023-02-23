@@ -20,6 +20,5 @@ public class UserResponseDto {
 
     private LocalDateTime modifiedAt;  // 수정 시간
 
-    // FIXME 회원 상태 기능 삭제
     private User.UserStatus userStatus;
 }
