@@ -14,7 +14,7 @@ export const Space = styled.div`
 
 const SideContainer = styled.div`
   height: 100vh;
-  width: 250px;
+  width: 256px;
   background-color: #ffffff;
   position: sticky;
   z-index: 1;
@@ -140,14 +140,23 @@ const MedalIcon = styled(RiMedalFill)`
   height: 20px;
 `;
 
+const CollectivesWrapper = styled.div`
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+`
+
 const Collectives = styled.div`
-  width: 100%;
+  width: fit-content;
   height: 30px;
   margin-top: 20px;
   position: relative;
   box-sizing: border-box;
-  padding: 6px 10px 6px;
+  padding: 6px 10px 6px ;
   font-size: 14px;
+  display: flex;
+  justify-content: space-between;
 `;
 
 const ExploreCollectives = styled.div`
@@ -168,10 +177,21 @@ const ExploreCollectives = styled.div`
 `;
 
 const InfoIcon = styled(FaInfoCircle)`
-  left: 185px;
-  position: absolute;
+  position: relative;
   color: #6c727a;
+  width: fit-content;
+  height: 16px;
+  padding-top: 7px;
+  padding-bottom: 7px;
+  margin-right: 10px;
 `;
+
+const TeamsWrapper = styled.div`
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+`
 
 const Teams = styled.div`
   width: 100%;
@@ -223,18 +243,22 @@ const Sidebar = () => {
         <Tags>Tags</Tags>
         <Users>Users</Users>
         <Companies>Companies</Companies>
-        <Collectives>
-          COLLECTIVES
-          <InfoIcon />
+        <CollectivesWrapper>
+          <Collectives>
+            COLLECTIVES
         </Collectives>
+        <InfoIcon />
+        </CollectivesWrapper>
         <ExploreCollectives>
           <MedalIcon />
           Explore Collectives
         </ExploreCollectives>
-        <Teams>
-          TEAMS
+        <TeamsWrapper>
+          <Teams>
+            TEAMS
+          </Teams>
           <InfoIcon />
-        </Teams>
+        </TeamsWrapper>
         <CreateFreeTeam>
           <BriefcaseIcon />
           Create Free Team
