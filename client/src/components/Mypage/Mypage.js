@@ -157,7 +157,35 @@ export const Space = styled.div`
   width: 5%;
 `;
 
+const RemoveButton = styled.button`
+  width: 130px;
+  height: 38px;
+  background-color: #ffffff;
+  border: solid 1px #d2393f;
+  color: #d2393f;
+  margin-right: 10px;
+  border-radius: 4px;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  &:hover {
+    background-color: #fac7c965;
+  }
+`;
+
 const MypageProfile = () => {
+  const OnRemove = () => {
+    if (
+      window.confirm(
+        "Are you sure you want to remove this login from your account?"
+      )
+    ) {
+      alert("Remove Account is complete");
+    } else {
+      return;
+    }
+  };
+
   return (
     <>
       <MypageContainer>
@@ -171,6 +199,7 @@ const MypageProfile = () => {
             Profiles
             <TriangleIcon />
           </ProfilesButton>
+          <RemoveButton onClick={OnRemove}>Remove Account</RemoveButton>
         </ButtonContainer>
         <NameCard>
           <YourName>Your Name Here</YourName>

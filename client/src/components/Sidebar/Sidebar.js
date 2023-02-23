@@ -14,7 +14,7 @@ export const Space = styled.div`
 
 const SideContainer = styled.div`
   height: 100vh;
-  width: 256px;
+  width: 260px;
   background-color: #ffffff;
   position: sticky;
   z-index: 1;
@@ -24,6 +24,7 @@ const SideContainer = styled.div`
   flex-flow: column nowrap;
   flex-direction: column;
   margin-top: 1px;
+  padding: 0 5px;
 `;
 // 사이즈 작아지면 (768px?) 사라지고
 // 헤드의 메뉴버튼 클릭 시 노출
@@ -145,7 +146,7 @@ const CollectivesWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
-`
+`;
 
 const Collectives = styled.div`
   width: fit-content;
@@ -153,7 +154,7 @@ const Collectives = styled.div`
   margin-top: 20px;
   position: relative;
   box-sizing: border-box;
-  padding: 6px 10px 6px ;
+  padding: 6px 10px 2px;
   font-size: 14px;
   display: flex;
   justify-content: space-between;
@@ -191,7 +192,7 @@ const TeamsWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
-`
+`;
 
 const Teams = styled.div`
   width: 100%;
@@ -244,19 +245,15 @@ const Sidebar = () => {
         <Users>Users</Users>
         <Companies>Companies</Companies>
         <CollectivesWrapper>
-          <Collectives>
-            COLLECTIVES
-        </Collectives>
-        <InfoIcon />
+          <Collectives>COLLECTIVES</Collectives>
+          <InfoIcon />
         </CollectivesWrapper>
         <ExploreCollectives>
           <MedalIcon />
           Explore Collectives
         </ExploreCollectives>
         <TeamsWrapper>
-          <Teams>
-            TEAMS
-          </Teams>
+          <Teams>TEAMS</Teams>
           <InfoIcon />
         </TeamsWrapper>
         <CreateFreeTeam>
