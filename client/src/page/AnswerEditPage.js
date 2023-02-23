@@ -4,6 +4,7 @@ import { createGlobalStyle } from "styled-components";
 import Head from "../components/Header/Head";
 import Sidebar from "../components/Sidebar/Sidebar";
 import Footer from "../components/Footer/Footer";
+import AnswerEdit from "../components/Edit/AnswerEdit";
 
 const GlobalStyle = createGlobalStyle`
 body {
@@ -17,18 +18,18 @@ const WrapperBody = styled.div`
   display: flex;
 `;
 
-const Mypage = () => {
+const AnswerEditPage = () => {
   return (
     <div>
       <GlobalStyle />
       <Head />
       <WrapperBody>
       <Sidebar />
-      {/* 답변수정페이지 */}
+      <AnswerEdit />
       </WrapperBody>
       <Footer />
     </div>
   );
 };
 
-export default Mypage;
+export default AnswerEditPage;

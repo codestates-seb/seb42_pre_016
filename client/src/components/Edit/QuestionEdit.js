@@ -69,7 +69,7 @@ const Body = styled.div`
 
 `
 
-const QuestionText = styled.div`
+const QuestionText = styled.form`
   background-color: white;
   width: 790px;
   margin-top: 20px;
@@ -178,7 +178,7 @@ const QuestionEdit = () => {
                 <QuestionEditor />
             </EditorContainer>
         </BodyWrapper>
-        <QuestionText>Questions 원문이 들어갑니다.</QuestionText>
+        <QuestionText>Question 원문이 들어갑니다.</QuestionText>
         <ButtonWrapper>
             <SaveEditsButton>Save edits</SaveEditsButton>
             <CancelButton>Cancel</CancelButton>
