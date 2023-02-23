@@ -1,6 +1,5 @@
 package com.idle.stackoverflow.user.dto;
 
-import com.idle.stackoverflow.user.entity.User;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

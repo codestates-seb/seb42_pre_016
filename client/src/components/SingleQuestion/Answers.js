@@ -1,26 +1,32 @@
 import React, { useState } from "react";
 import {
-  SideWrapper,
+  AHeadWrapper,
+  H4Text,
+  ASideWrapper,
   Button,
   Button2,
-  BodyWrapper,
-  MainWrapper,
+  ABodyWrapper,
+  AMainWrapper,
   ArrowDownSvg,
   ArrowUpSvg,
   BookmarkSvg,
   HistorySvg,
-  EditWrapper,
+  AEditWrapper,
   EditText,
-  Line,
 } from "../Style components/Question_styled";
 
-const Qbody = () => {
+const Answers = () => {
   const [vote, setVote] = useState(0);
 
   return (
     <div>
-      <BodyWrapper>
-        <SideWrapper>
+      <ABodyWrapper>
+        <AHeadWrapper>
+          <H4Text>
+            In the Finn example（tfc_end2end_example） ， I cannot run this cell
+          </H4Text>
+        </AHeadWrapper>
+        <ASideWrapper>
           <Button onClick={() => setVote(vote + 1)}>
             <ArrowUpSvg />
           </Button>
@@ -34,14 +40,14 @@ const Qbody = () => {
           <Button>
             <HistorySvg />
           </Button>
-        </SideWrapper>
-        <MainWrapper>{/* 본문 내용은 여기에 ! */}</MainWrapper>
-        <EditWrapper>
+        </ASideWrapper>
+        <AMainWrapper></AMainWrapper>
+        <AEditWrapper>
           <EditText>Edit</EditText>
-        </EditWrapper>
-      </BodyWrapper>
+        </AEditWrapper>
+      </ABodyWrapper>
     </div>
   );
 };
 
-export default Qbody;
+export default Answers;

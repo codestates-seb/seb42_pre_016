@@ -23,10 +23,10 @@ public class Answer {
     private String content;
 
     @Column(nullable = false)
-    private LocalDateTime createdAt = LocalDateTime.now(); // LocalDateTime
+    private LocalDateTime createdAt = LocalDateTime.now();
 
     @Column(nullable = false)
-    private LocalDateTime updatedAt = LocalDateTime.now(); // LocalDateTime
+    private LocalDateTime modifiedAt = LocalDateTime.now();
 
     @Column(nullable = false)
     private Long voteCnt = 0L; // vote와 매핑, answerVoteId를 해야하나?...1대1인가?

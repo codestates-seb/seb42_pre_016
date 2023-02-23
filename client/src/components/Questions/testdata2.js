@@ -1,3 +1,5 @@
+import React from "react";  
+  
   const getParsedDate = (createdAt) => {
     return new Date(createdAt).toLocaleDateString('ko-KR');
   }
@@ -48,6 +50,15 @@
       createdAt: getParsedDate('2022-02-28T16:17:47.000Z'),
       updatedAt: getParsedDate('2022-02-28T16:17:47.000Z'),
     },
+    {
+        id: 6,
+        title: "avengers assemble",
+        username: 'choiback',
+        content:
+          '주거에 대한 압수나 수색을 할 때에는 검사의 신청에 의하여 법관이 발부한 영장을 제시하여야 한다. 대한민국은 국제평화의 유지에 노력하고 침략적 전쟁을 부인한다. 국가유공자·상이군경 및 전몰군경의 유가족은 법률이 정하는 바에 의하여 우선적으로 근로의 기회를 부여받는다. 여자의 근로는 특별한 보호를 받으며, 고용·임금 및 근로조건에 있어서 부당한 차별을 받지 아니한다. 모든 국민은 주거의 자유를 침해받지 아니한다.',
+        createdAt: getParsedDate('2023-02-20T16:17:47.000Z'),
+        updatedAt: getParsedDate('2023-02-20T16:17:47.000Z'),
+      },
   ];
   
   

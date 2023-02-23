@@ -8,6 +8,9 @@ import LogoutPage from "./page/LogoutPage";
 import QuestionPage from "./page/QuestionPage";
 import Mypage from "./page/MyPage";
 import AskQuestionsPage from "./page/AskQuestionsPage";
+import SignupSuccess from "./page/SignupSuccess";
+
+
 
 function App() {
   return (
@@ -21,6 +24,7 @@ function App() {
           <Route path="/questions" element={<QuestionPage />} />
           <Route path="/mypage" element={<Mypage />} />
           <Route path="/askquestions" element={<AskQuestionsPage />} />
+          <Route path="/success" element={<SignupSuccess />} />
         </Routes>
       </BrowserRouter>
     </>

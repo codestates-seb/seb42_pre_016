@@ -3,8 +3,8 @@ import styled from "styled-components";
 import { createGlobalStyle } from "styled-components";
 import Head from "../components/Header/Head";
 import Sidebar from "../components/Sidebar/Sidebar";
-import MyPage from "../components/Mypage/Mypage";
 import Footer from "../components/Footer/Footer";
+import QuestionEdit from "../components/Edit/QuestionEdit";
 
 const GlobalStyle = createGlobalStyle`
 body {
@@ -14,22 +14,23 @@ body {
 }
 `;
 const WrapperBody = styled.div`
-  margin: 0 auto;
   display: flex;
+  justify-content: flex-start;
+  flex-direction: row;
 `;
 
-const Mypage = () => {
+const QuestionEditPage = () => {
   return (
     <div>
       <GlobalStyle />
       <Head />
       <WrapperBody>
       <Sidebar />
-      <MyPage />
+      <QuestionEdit />
       </WrapperBody>
       <Footer />
     </div>
   );
 };
 
-export default Mypage;
+export default QuestionEditPage;

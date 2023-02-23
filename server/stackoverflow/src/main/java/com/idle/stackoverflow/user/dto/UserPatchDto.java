@@ -17,6 +17,5 @@ public class UserPatchDto {
 
     private String email;   // 이메일
 
-    // FIXME 회원 상태 기능 삭제
     private User.UserStatus userStatus;
 }
