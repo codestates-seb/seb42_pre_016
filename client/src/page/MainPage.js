@@ -25,14 +25,14 @@ body {
 const Mainpage = () => {
   return (
     <div>
-      {/* <GlobalStyle />
+      <GlobalStyle />
       <Head />
       <WrapperBody>
         <Sidebar />
         <QuestionList />
       </WrapperBody>
-      <Footer /> */}
-      <AnswerEditPage />
+      <Footer />
+      {/* <AnswerEditPage /> */}
     </div>
   );
 };

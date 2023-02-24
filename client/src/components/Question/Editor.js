@@ -5,14 +5,11 @@ import styled from "styled-components";
 
 const Wrapper = styled.div`
   display: flex;
-  width: 1100px;
+  width: 700px;
   height: 300px;
-  position: absolute;
-  left: 3%;
-  background: pink;
 
   .ck-editor__editable_inline {
-    width: 1100px;
+    width: 980px;
     min-height: 260px;
   }
 `;

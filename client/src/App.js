@@ -10,8 +10,6 @@ import Mypage from "./page/MyPage";
 import AskQuestionsPage from "./page/AskQuestionsPage";
 import SignupSuccess from "./page/SignupSuccess";
 
-
-
 function App() {
   return (
     <>
@@ -24,7 +22,9 @@ function App() {
           <Route path="/questions" element={<QuestionPage />} />
           <Route path="/mypage" element={<Mypage />} />
           <Route path="/askquestions" element={<AskQuestionsPage />} />
-          <Route path="/success" element={<SignupSuccess />} />
+          <Route path="/siunpsuccess" element={<SignupSuccess />} />
+          {/* <Route path="/questionedit" element={<Questionedit />} /> */}
+          {/* <Route path="/answeredit" element={<Answeredit />} /> */}
         </Routes>
       </BrowserRouter>
     </>

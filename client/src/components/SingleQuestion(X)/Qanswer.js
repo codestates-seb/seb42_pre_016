@@ -1,5 +1,5 @@
 import React from "react";
-import Editor from "./Editor";
+import Editor from "../Question/Editor";
 import {
   AnswerWrapper,
   H2Text,

@@ -9,7 +9,7 @@ export const Space = styled.div`
   background-color: #ffffff;
   display: flex;
   flex: 1 1 auto;
-  width: 5%;
+  width: 20px;
 `;
 
 const SideContainer = styled.div`
