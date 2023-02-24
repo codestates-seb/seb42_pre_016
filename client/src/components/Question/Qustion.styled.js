@@ -181,14 +181,14 @@ export const AnswerCreate = styled.div`
 `;
 
 export const DeleteButton = styled.button`
-  background: #0a95ff;
-  border: transparent;
+  background: #ffffff;
+  border: solid 1px #d2393f;
+  color: #d2393f;
   border-radius: 4px;
   margin-top: 10px;
   padding: 10px;
-  color: #ffffff;
 
   &:hover {
-    background: #0074cc;
+    background: #fac7c965;
   }
 `;
