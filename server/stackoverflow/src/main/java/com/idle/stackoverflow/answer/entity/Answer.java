@@ -1,5 +1,7 @@
 package com.idle.stackoverflow.answer.entity;
 
+import com.idle.stackoverflow.question.entity.Question;
+import com.idle.stackoverflow.user.entity.User;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -31,7 +33,35 @@ public class Answer {
     @Column(nullable = false)
     private Long voteCnt = 0L; // vote와 매핑, answerVoteId를 해야하나?...1대1인가?
 
+    @ManyToOne
+    @JoinColumn(name = "USER_ID")
+    private User user; // 회원과 매핑 FK (one)
 
-    private Long userId; // 회원과 매핑 FK (one)
-    private Long questionId; // 질문과 매핑 FK (one)
+    // 유어 클래스 있었으나 안씀
+//    public void addUser(User user) {
+//        this.user = user;
+//    }
+
+    @ManyToOne
+    @JoinColumn(name = "QUESTION_ID")
+    private Question question; // 질문과 매핑 FK (one)
+
+    // 유어 클래스 있었으나 안씀
+//    public void addQuestion(Question question) {
+//        this.question = question;
+//    }
+
+    // 양방향 연관 관계를 안전하게 매핑하기 위한 코드
+    public void setUser(User user) {
+        this.user = user;
+        if(!this.user.getAnswers().contains(this)) {
+            this.user.getAnswers().add(this);
+        }
+    }
+    public void setQuestion(Question question) {
+        this.question = question;
+        if(!this.question.getAnswers().contains(this)) {
+            this.question.getAnswers().add(this);
+        }
+    }
 }

@@ -4,6 +4,8 @@ import com.idle.stackoverflow.answer.entity.Answer;
 import com.idle.stackoverflow.answer.repository.AnswerRepository;
 import com.idle.stackoverflow.exception.BusinessLogicException;
 import com.idle.stackoverflow.exception.ExceptionCode;
+import com.idle.stackoverflow.question.service.QuestionService;
+import com.idle.stackoverflow.user.service.UserService;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -13,14 +15,22 @@ import java.util.Optional;
 
 @Service
 public class AnswerService {
+    private final UserService userService;
+
+    private final QuestionService questionService;
 
     private  final AnswerRepository answerRepository;
 
-    public AnswerService(AnswerRepository answerRepository) {
+    public AnswerService(UserService userService,
+                         QuestionService questionService,
+                         AnswerRepository answerRepository) {
+        this.userService = userService;
+        this.questionService = questionService;
         this.answerRepository = answerRepository;
     }
 
     public Answer createAnswer(Answer answer) {
+        verifyOrder(answer);
 
         return answerRepository.save(answer);
     }
@@ -40,9 +50,9 @@ public class AnswerService {
         return answerRepository.save(findAnswer);
     }
 
-    public List<Answer> findAnswers(long questionId) { // 해당 질문 Id에 해당하는 답변리스트 반환
+    public List<Answer> findAnswers() { // 해당 질문 Id에 해당하는 답변리스트 반환
 
-        return answerRepository.findByQuestionId(questionId); // 특정 ID 찾게 해야하는데...
+        return answerRepository.findAll();
     }
 
     public void deleteAnswer(long answerId) {
@@ -51,13 +61,21 @@ public class AnswerService {
     }
 
     // 이미 존재하는 answer인지 검증
-    private Answer findVerifiedAnswer(Long answerId) { // public으로 해야할 수도
+    public Answer findVerifiedAnswer(Long answerId) {
         Optional<Answer> optionalAnswer =
                 answerRepository.findById(answerId);
         Answer findAnswer =
                 optionalAnswer.orElseThrow(()->
                         new BusinessLogicException(ExceptionCode.ANSWER_NOT_FOUND));
         return findAnswer;
+    }
+
+    private void verifyOrder(Answer answer) {
+        // 회원(1)이 존재하는지 확인
+        userService.findVerifiedUser(answer.getUser().getUserId());
+
+        // 질문(1)이 존재하는지 확인
+        questionService.findVerifiedQuestion(answer.getQuestion().getQuestionId());
     }
 
 }

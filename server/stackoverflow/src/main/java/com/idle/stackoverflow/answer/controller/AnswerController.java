@@ -4,6 +4,8 @@ import com.idle.stackoverflow.answer.dto.AnswerDto;
 import com.idle.stackoverflow.answer.entity.Answer;
 import com.idle.stackoverflow.answer.mapper.AnswerMapper;
 import com.idle.stackoverflow.answer.service.AnswerService;
+import com.idle.stackoverflow.question.service.QuestionService;
+import com.idle.stackoverflow.user.service.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -19,9 +21,18 @@ public class AnswerController {
     private final AnswerService answerService;
     private final AnswerMapper mapper;
 
-    public AnswerController(AnswerService answerService, AnswerMapper mapper) { // 생성자 DI
+    private final UserService userService;
+
+    private final QuestionService questionService;
+
+    public AnswerController(AnswerService answerService,
+                            AnswerMapper mapper,
+                            UserService userService,
+                            QuestionService questionService) {
         this.answerService = answerService;
         this.mapper = mapper;
+        this.userService = userService;
+        this.questionService = questionService;
     }
 
     @PostMapping
@@ -33,7 +44,7 @@ public class AnswerController {
                 UriComponentsBuilder
                         .newInstance()
                         .path(ANSWER_DEFAULT_URL + "/{question-id}")
-                        .buildAndExpand(answer.getQuestionId())
+                        .buildAndExpand(answer.getQuestion().getQuestionId())
                         .toUri(); // "/stackoverflow.com/{question-id}"
 
         return ResponseEntity.created(location).build();
@@ -52,7 +63,7 @@ public class AnswerController {
 
     @GetMapping("/{question-id}") // 일단 전체 목록 조회, 할 수 있으면 페이지네이션 적용
     public ResponseEntity getAnswers(@PathVariable("question-id") long questionId) {
-        List<Answer> answers = answerService.findAnswers(questionId);
+        List<Answer> answers = answerService.findAnswers();
 
         List<AnswerDto.Response> response = mapper.answersToAnswerResponse(answers);
         return new ResponseEntity(response, HttpStatus.OK);

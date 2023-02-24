@@ -12,6 +12,7 @@ public class AnswerDto {
     public static class Post {
         // private long answerId; // DB에서 등록
         private String content;
+        // 없애기
         private long userId;
         private long questionId;
 
