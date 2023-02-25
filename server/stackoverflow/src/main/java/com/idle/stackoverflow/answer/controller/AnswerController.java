@@ -4,7 +4,9 @@ import com.idle.stackoverflow.answer.dto.AnswerDto;
 import com.idle.stackoverflow.answer.entity.Answer;
 import com.idle.stackoverflow.answer.mapper.AnswerMapper;
 import com.idle.stackoverflow.answer.service.AnswerService;
+import com.idle.stackoverflow.question.entity.Question;
 import com.idle.stackoverflow.question.service.QuestionService;
+import com.idle.stackoverflow.user.entity.User;
 import com.idle.stackoverflow.user.service.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -38,7 +40,14 @@ public class AnswerController {
     @PostMapping
     public ResponseEntity postAnswer(@RequestBody AnswerDto.Post requestBody) {
         Answer answer = mapper.answerPostToAnswer(requestBody);
-        answerService.createAnswer(answer); // DB에 저장
+
+        User user = userService.findVerifiedUser(requestBody.getUserId());
+        Question question = questionService.findVerifiedQuestion(requestBody.getQuestionId());
+
+        answer.setUser(user);
+        answer.setQuestion(question);
+
+        answer = answerService.createAnswer(answer); // DB에 저장
 
         URI location =
                 UriComponentsBuilder

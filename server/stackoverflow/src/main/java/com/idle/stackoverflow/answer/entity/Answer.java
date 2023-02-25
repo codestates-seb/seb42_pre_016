@@ -12,8 +12,8 @@ import java.time.LocalDateTime;
 
 @Getter
 @Setter
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor // 순서 유의
 @Entity
 public class Answer {
     // content, createdAt, updateAt=createdAt, voteCnt=0 초기화 필요

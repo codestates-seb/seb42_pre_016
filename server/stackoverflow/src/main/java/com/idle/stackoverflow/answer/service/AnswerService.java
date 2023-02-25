@@ -9,7 +9,6 @@ import com.idle.stackoverflow.user.service.UserService;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -30,7 +29,6 @@ public class AnswerService {
     }
 
     public Answer createAnswer(Answer answer) {
-        verifyOrder(answer);
 
         return answerRepository.save(answer);
     }
@@ -68,14 +66,6 @@ public class AnswerService {
                 optionalAnswer.orElseThrow(()->
                         new BusinessLogicException(ExceptionCode.ANSWER_NOT_FOUND));
         return findAnswer;
-    }
-
-    private void verifyOrder(Answer answer) {
-        // 회원(1)이 존재하는지 확인
-        userService.findVerifiedUser(answer.getUser().getUserId());
-
-        // 질문(1)이 존재하는지 확인
-        questionService.findVerifiedQuestion(answer.getQuestion().getQuestionId());
     }
 
 }
