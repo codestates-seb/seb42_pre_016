@@ -1,6 +1,7 @@
 package com.idle.stackoverflow.answer.dto;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 
 import java.time.LocalDateTime;
@@ -31,6 +32,7 @@ public class AnswerDto {
 
     @Getter
     @AllArgsConstructor
+    @Builder
     public static class Response {
         private long answerId;
         private String content;

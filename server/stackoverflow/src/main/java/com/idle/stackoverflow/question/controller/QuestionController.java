@@ -62,11 +62,7 @@ public class QuestionController {
         Question question = questionService.findQuestion(questionId);
 
         return new ResponseEntity<>(
-                new SingleResponseDto<>(mapper.questionToQuestionResponse(question)),
-                HttpStatus.OK);
-
-
-
+                new SingleResponseDto<>(mapper.questionToQuestionMainResponseDto(question)), HttpStatus.OK);
     }
 
     @GetMapping

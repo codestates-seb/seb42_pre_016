@@ -22,5 +22,7 @@ public interface AnswerMapper {
         );
         return response;
     }
-    List<AnswerDto.Response> answersToAnswerResponse(List<Answer> answers); // List<Entity> -> List<DTO>
+
+//    questionId에 해당하는 answers목록 조회 QuestionController에 적용함
+//    List<AnswerDto.Response> answersToAnswerResponse(List<Answer> answers); // List<Entity> -> List<DTO>
 }

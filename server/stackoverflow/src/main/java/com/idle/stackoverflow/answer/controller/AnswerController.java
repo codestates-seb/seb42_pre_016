@@ -6,6 +6,7 @@ import com.idle.stackoverflow.answer.mapper.AnswerMapper;
 import com.idle.stackoverflow.answer.service.AnswerService;
 import com.idle.stackoverflow.question.entity.Question;
 import com.idle.stackoverflow.question.service.QuestionService;
+import com.idle.stackoverflow.response.SingleResponseDto;
 import com.idle.stackoverflow.user.entity.User;
 import com.idle.stackoverflow.user.service.UserService;
 import org.springframework.http.HttpStatus;
@@ -49,14 +50,16 @@ public class AnswerController {
 
         answer = answerService.createAnswer(answer); // DB에 저장
 
+        /*
+        * Answer는 get요청 없어짐
         URI location =
                 UriComponentsBuilder
                         .newInstance()
                         .path(ANSWER_DEFAULT_URL + "/{question-id}")
                         .buildAndExpand(answer.getQuestion().getQuestionId())
-                        .toUri(); // "/stackoverflow.com/{question-id}"
+                        .toUri(); // "/stackoverflow.com/{question-id}"*/
 
-        return ResponseEntity.created(location).build();
+        return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
     @PatchMapping("/{answer-id}")
@@ -67,16 +70,19 @@ public class AnswerController {
         Answer answer = mapper.answerPatchToAnswer(requestBody);
         Answer response = answerService.updateAnswer(answer);
 
-        return new ResponseEntity<>(mapper.answerToAnswerResponse(response), HttpStatus.OK);
+        return new ResponseEntity<>(
+                new SingleResponseDto<>(mapper.answerToAnswerResponse(response)), HttpStatus.OK);
     }
 
-    @GetMapping("/{question-id}") // 일단 전체 목록 조회, 할 수 있으면 페이지네이션 적용
+   /*
+   * questionId에 해당하는 answers목록 조회 QuestionController에 적용함
+   @GetMapping("/{question-id}") // 일단 전체 목록 조회, 할 수 있으면 페이지네이션 적용
     public ResponseEntity getAnswers(@PathVariable("question-id") long questionId) {
         List<Answer> answers = answerService.findAnswers();
 
         List<AnswerDto.Response> response = mapper.answersToAnswerResponse(answers);
         return new ResponseEntity(response, HttpStatus.OK);
-    }
+    }*/
 
     @DeleteMapping("/{answer-id}")
     public ResponseEntity deleteAnswer(@PathVariable("answer-id") long answerId) {

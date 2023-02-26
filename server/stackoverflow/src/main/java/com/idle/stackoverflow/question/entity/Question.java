@@ -33,7 +33,7 @@ public class Question {
     @Column
     private LocalDateTime modifiedAt = LocalDateTime.now(); // 수정 시간
 
-    @OneToMany(mappedBy = "question")
+    @OneToMany(mappedBy = "question", cascade = CascadeType.PERSIST)
     private List<Answer> answers = new ArrayList<>();
 
     // 유어 클래스 있었으나 안씀

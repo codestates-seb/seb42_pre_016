@@ -48,10 +48,12 @@ public class AnswerService {
         return answerRepository.save(findAnswer);
     }
 
+    /*
+    * questionId에 해당하는 answers목록 조회 QuestionController에 적용함
     public List<Answer> findAnswers() { // 해당 질문 Id에 해당하는 답변리스트 반환
 
         return answerRepository.findAll();
-    }
+    }*/
 
     public void deleteAnswer(long answerId) {
         Answer findAnswer = findVerifiedAnswer(answerId);
