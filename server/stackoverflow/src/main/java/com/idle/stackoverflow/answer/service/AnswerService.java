@@ -41,7 +41,7 @@ public class AnswerService {
                 .ifPresent(content -> findAnswer.setContent(content));
 
         // voteCnt는 빼야 할 듯 투표 업데이트 된다고 수정시간 업데이트 될 순 없으니...
-        Optional.ofNullable(answer.getVoteCnt()).ifPresent(voteCnt -> findAnswer.setVoteCnt(voteCnt));
+//        Optional.ofNullable(answer.getVoteCnt()).ifPresent(voteCnt -> findAnswer.setVoteCnt(voteCnt));
 
         findAnswer.setModifiedAt(LocalDateTime.now()); // 수정 시간 업데이트
 

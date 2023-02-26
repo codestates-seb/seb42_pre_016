@@ -48,7 +48,7 @@ public class AnswerController {
         answer.setUser(user);
         answer.setQuestion(question);
 
-        answer = answerService.createAnswer(answer); // DB에 저장
+        answerService.createAnswer(answer); // DB에 저장
 
         /*
         * Answer는 get요청 없어짐
