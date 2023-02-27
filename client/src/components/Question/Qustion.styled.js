@@ -196,6 +196,10 @@ export const DeleteButton = styled.button`
 
 export const EditorWrap = styled.div`
   border-radius: 4px;
+  .ck-editor__editable_inline {
+    width: 980px;
+    min-height: 260px;
+  }
 `;
 
 export const ErrorMassage = styled.p`

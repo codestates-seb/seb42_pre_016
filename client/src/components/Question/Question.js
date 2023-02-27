@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Link, useParams } from "react-router-dom";
 import axios from "axios";
 import AnswerVoteForm from "./AnswerVoteForm";
@@ -18,6 +18,10 @@ import {
   QuestionHeader,
 } from "./Qustion.styled";
 
+import { CKEditor } from "@ckeditor/ckeditor5-react";
+import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
+import { EditorWrap, ErrorMassage, AnswerButton } from "./Qustion.styled";
+
 const Question = () => {
   const { id } = useParams();
 
@@ -29,6 +33,9 @@ const Question = () => {
   // vote (isVote: 서버에 등록된 투표 이력, isClickVote: 현재 누른 버튼)
   const [VoteQ, setVoteQ] = useState("");
   const [voteA, setVoteA] = useState(0);
+
+  const [body, setBody] = useState("");
+  const answerRef = useRef();
 
   //* 질문 총 정보(data) 가져오기
   useEffect(() => {
@@ -97,6 +104,31 @@ const Question = () => {
       })
       .catch((err) => {
         console.log(err);
+      });
+  };
+
+  //* 새 답변 post 요청
+  const addAnswer = async (id, body) => {
+    axios.defaults.withCredentials = true;
+    await axios
+      .post(
+        `/api/answers`,
+        {
+          content: `${body}`,
+          userId: 1,
+          questionId: 1,
+        },
+        {
+          headers: {
+            "ngrok-skip-browser-warning": "12",
+          },
+        }
+      )
+      .then(() => {
+        window.location.reload();
+      })
+      .catch((error) => {
+        console.log(error);
       });
   };
 
@@ -210,7 +242,8 @@ const Question = () => {
                   <div className="flex">
                     <div className="user-info">
                       <span className="asked">
-                        Asked <time>{`${SingleA.createdAt}`.slice(0, 10)}</time>
+                        Answered
+                        <time>{`${SingleA.createdAt}`.slice(0, 10)}</time>
                       </span>
                       <div className="user-container">
                         <div className="user">
@@ -242,7 +275,22 @@ const Question = () => {
             <div className="answer-header">
               <h1>Your Answer</h1>
             </div>
-            <AnswerForm />
+            {/* 답변 에디터 */}
+            <EditorWrap>
+              <CKEditor
+                ref={answerRef}
+                editor={ClassicEditor}
+                onChange={(event, editor) => {
+                  const data = editor.getData();
+                  const cutData = data.slice(3, data.length - 4); //앞뒤 <p></p> 마크다운 제거
+                  setBody(cutData);
+                  console.log(data);
+                }}
+              />
+            </EditorWrap>
+            <AnswerButton onClick={() => addAnswer(id, body)}>
+              Post Your Answer
+            </AnswerButton>
           </AnswerCreate>
         </AnswerArea>
       </Section>
