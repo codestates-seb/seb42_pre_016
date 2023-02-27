@@ -4,6 +4,9 @@ import com.idle.stackoverflow.exception.BusinessLogicException;
 import com.idle.stackoverflow.exception.ExceptionCode;
 import com.idle.stackoverflow.question.entity.Question;
 import com.idle.stackoverflow.question.repository.QuestionRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -21,6 +24,7 @@ public class QuestionService {
     public Question createQuestion(Question question) {
         return questionRepository.save(question);   // 질문 등록
     }
+
     public Question updateQuestion(Question question) {
         Question findQuestion = findVerifiedQuestion(question.getQuestionId()); // 질문 검증
         Optional.ofNullable(question.getTitle()).ifPresent(title -> findQuestion.setTitle(title));  // 제목 업데이트
@@ -35,8 +39,9 @@ public class QuestionService {
         return findQuestion;
     }
 
-    public List<Question> findQuestions() {
-        return null;
+    public Page<Question> findQuestions(int page, int size) {
+        // 신규 질문 정렬
+        return questionRepository.findAll(PageRequest.of(page, size, Sort.by("createdAt").descending()));
     }
 
     public void deleteQuestion(long questionId) {
