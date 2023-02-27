@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import axios from "axios";
-import instance from "../../api/axios";
 import AnswerVoteForm from "./AnswerVoteForm";
 import AnswerForm from "./AnswerForm";
 import {
@@ -21,7 +20,7 @@ import {
 
 const Question = () => {
   const { id } = useParams();
-  // const id = 1;
+
   const [Question, setQuestion] = useState({});
   const [Answer, setAnswer] = useState([]);
   const [content, setContent] = useState();
@@ -36,12 +35,13 @@ const Question = () => {
     setLoading(true);
     const getQuestion = async () => {
       await axios
-        .get(`/api/questions/9`, {
+        .get(`/api/questions/1`, {
           headers: { "ngrok-skip-browser-warning": "12" },
         })
         .then((res) => {
           setQuestion(res.data.data);
           setContent(res.data.data.content);
+          setAnswer(res.data.data.answers);
         })
         .catch((err) => {
           console.log(err);
@@ -54,12 +54,11 @@ const Question = () => {
   //* 질문 id에 맞는 답변 목록 받아오기
   const getAnswer = async () => {
     await axios
-      .get(`/api/questions/9`, {
+      .get(`/api/questions/1`, {
         headers: { "ngrok-skip-browser-warning": "12" },
       })
       .then((res) => {
         setAnswer(res.data.data.answers);
-        console.log(res.data.data.answers);
       })
       .catch((error) => {
         console.log(error);
@@ -74,8 +73,8 @@ const Question = () => {
   //* 질문 삭제
   const DeleteQuestion = async () => {
     await axios
-      .delete(`/api/questions/9`, {
-        headers: { "ngorok-skip-browser-warning": "20230227" },
+      .delete(`/api/questions/1`, {
+        headers: { "ngrok-skip-browser-warning": "12" },
       })
       // 삭제 후 다시 메인페이지로 이동한다.
       .then(() => {
@@ -88,8 +87,10 @@ const Question = () => {
 
   //* 답변 삭제
   const DeleteAnswer = async (id) => {
-    await instance
-      .delete(`/api/answers/${id}`)
+    await axios
+      .delete(`/api/answers/${id}`, {
+        headers: { "ngrok-skip-browser-warning": "12" },
+      })
       .then(() => {
         //질문 페이지 다시 렌더링
         getAnswer();
@@ -186,30 +187,26 @@ const Question = () => {
         {/* 답변 갯수 */}
         <AnswerArea>
           <div className="answer-count">
-            <h1> Answer</h1>
+            <h1>{Answer.length} Answer</h1>
           </div>
           {/* 답변 내용 */}
           {Answer.map((SingleA) => (
-            <AnswerContent key={SingleA.id}>
+            <AnswerContent key={SingleA.answerId}>
               <AnswerVoteForm
-                id={SingleA.id}
-                voteCount={SingleA.voteCount}
+                id={SingleA.answerId}
+                voteCount={SingleA.voteCnt}
                 voteA={voteA}
                 setVoteA={setVoteA}
               />
               <Content>
-                <div className="post-area">답변 내용</div>
+                <div className="post-area">{SingleA.content}</div>
                 <div className="writer-area">
                   <div>
                     <span>Share</span>
                     <Link to={`/edit/answer/${SingleA.id}`}>Edit</Link>
                     <span>Follow</span>
                   </div>
-                  <div>
-                    <span>
-                      Edited <time>{`${SingleA.modifiedAt}`.slice(0, 10)}</time>
-                    </span>
-                  </div>
+                  <div></div>
                   <div className="flex">
                     <div className="user-info">
                       <span className="asked">
@@ -226,10 +223,14 @@ const Question = () => {
                             <path d="M500,10C227,10,10,227,10,500s217,490,490,490s490-217,490-490S773,10,500,10z M500,206c77,0,140,63,140,140c0,77-63,140-140,140c-77,0-140-63-140-140C360,269,423,206,500,206z M801,773c-77,77-182,133-301,133s-224-49-301-133c-21-21-21-56,0-77c77-84,182-140,301-140s224,56,301,140C822,717,822,752,801,773z" />
                           </svg>
                         </div>
-                        <span className="user-name">{SingleA.memberName}</span>
+                        <span className="user-name">Amy</span>
                       </div>
                     </div>
-                    <DeleteButton onClick={DeleteQuestion}>Delete</DeleteButton>
+                    <DeleteButton
+                      onClick={() => DeleteAnswer(SingleA.answerId)}
+                    >
+                      Delete
+                    </DeleteButton>
                   </div>
                 </div>
               </Content>

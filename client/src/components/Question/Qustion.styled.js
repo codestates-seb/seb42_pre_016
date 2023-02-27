@@ -193,3 +193,28 @@ export const DeleteButton = styled.button`
     background: #fac7c965;
   }
 `;
+
+export const EditorWrap = styled.div`
+  border-radius: 4px;
+`;
+
+export const ErrorMassage = styled.p`
+  margin-top: 4px;
+  padding: 2px;
+  font-size: 12px;
+  color: #d0393e;
+`;
+
+export const AnswerButton = styled.button`
+  background: #0a95ff;
+  border: transparent;
+  border-radius: 4px;
+  margin: 10px 0px 15px 0px;
+  padding: 10px;
+
+  color: #ffffff;
+
+  &:hover {
+    background: #0074cc;
+  }
+`;
