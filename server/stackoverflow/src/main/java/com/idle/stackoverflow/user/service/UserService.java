@@ -61,7 +61,7 @@ public class UserService {
     }
 
     // 이메일 검증
-    private void verifyExistsEmail(String email) {
+    public void verifyExistsEmail(String email) {
         Optional<User> user = userRepository.findByEmail(email);
         if (user.isPresent())
             throw new BusinessLogicException(ExceptionCode.USER_EXISTS);

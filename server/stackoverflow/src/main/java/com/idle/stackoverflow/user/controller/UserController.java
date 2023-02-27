@@ -4,7 +4,6 @@ import com.idle.stackoverflow.response.MultiResponseDto;
 import com.idle.stackoverflow.response.SingleResponseDto;
 import com.idle.stackoverflow.user.dto.UserPatchDto;
 import com.idle.stackoverflow.user.dto.UserPostDto;
-import com.idle.stackoverflow.user.dto.UserResponseDto;
 import com.idle.stackoverflow.user.entity.User;
 import com.idle.stackoverflow.user.mapper.UserMapper;
 import com.idle.stackoverflow.user.service.UserService;
@@ -34,12 +33,13 @@ public class UserController {
     @PostMapping("/signup")
     public ResponseEntity postUser(@RequestBody UserPostDto userPostDto) {
         User user = userMapper.userPostDtoToUser(userPostDto);
-//        User response = userService.createUser(user);   // 유저 등록
-//        return new ResponseEntity<>(userMapper.userToUserResponseDto(response), HttpStatus.CREATED);
-        userService.createUser(user);   // 유저 등록
-        URI location = UriComponentsBuilder.newInstance()   // Location : 응답 헤더에 페이지를 리디렉션 할 URL
-                .path("/stackoverflow.com/users" + "/signup" + "/{user-id}").buildAndExpand(user.getUserId()).toUri();
-        return ResponseEntity.created(location).build();
+        User response = userService.createUser(user);   // 유저 등록
+        return new ResponseEntity<>(userMapper.userToUserResponseDto(response), HttpStatus.CREATED);
+
+//        userService.createUser(user);   // 유저 등록
+//        URI location = UriComponentsBuilder.newInstance()
+//                .path("/stackoverflow.com/users" + "/signup" + "/{user-id}").buildAndExpand(user.getUserId()).toUri();
+//        return ResponseEntity.created(location).build();
     }
 
     // 유저 정보 수정
