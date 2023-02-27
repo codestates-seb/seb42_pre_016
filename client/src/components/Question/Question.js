@@ -37,11 +37,11 @@ const Question = () => {
     const getQuestion = async () => {
       await axios
         .get(`/api/questions/9`, {
-          headers: { "ngorok-skip-browser-warning": "20230227" },
+          headers: { "ngrok-skip-browser-warning": "12" },
         })
         .then((res) => {
-          setQuestion(res.data);
-          setContent(res.data.content);
+          setQuestion(res.data.data);
+          setContent(res.data.data.content);
         })
         .catch((err) => {
           console.log(err);
@@ -49,7 +49,22 @@ const Question = () => {
     };
     setLoading(false);
     getQuestion();
-  }, [loading, VoteQ]);
+  }, [loading]);
+
+  //* 질문 id에 맞는 답변 목록 받아오기
+  const getAnswer = async () => {
+    await axios
+      .get(`/api/questions/9`, {
+        headers: { "ngrok-skip-browser-warning": "12" },
+      })
+      .then((res) => {
+        setAnswer(res.data.data.answers);
+        console.log(res.data.data.answers);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
 
   //* 질문 content 가져오기
   useEffect(() => {
@@ -59,8 +74,8 @@ const Question = () => {
   //* 질문 삭제
   const DeleteQuestion = async () => {
     await axios
-      .delete(`/api/questions/${id}`, {
-        headers: { "ngorok-skip-browser-warning": "1" },
+      .delete(`/api/questions/9`, {
+        headers: { "ngorok-skip-browser-warning": "20230227" },
       })
       // 삭제 후 다시 메인페이지로 이동한다.
       .then(() => {
@@ -71,23 +86,23 @@ const Question = () => {
       });
   };
 
-  // * 답변 삭제
-  // const DeleteAnswer = async (id) => {
-  //   await instance
-  //     .delete(`/api/answers/${id}`)
-  //     .then(() => {
-  //       //질문 페이지 다시 렌더링
-  //       getQuestion();
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //     });
-  // };
+  //* 답변 삭제
+  const DeleteAnswer = async (id) => {
+    await instance
+      .delete(`/api/answers/${id}`)
+      .then(() => {
+        //질문 페이지 다시 렌더링
+        getAnswer();
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
   return (
     <QuestionContainer>
       <QuestionHeader>
-        <h1>{setQuestion.title}</h1>
+        <h1>{Question.title}</h1>
         <div>
           <Link to="/askquestions">
             <AskButton>Ask Question</AskButton>
@@ -142,11 +157,7 @@ const Question = () => {
                 <Link to={`/edit/question/${Question.id}`}>Edit</Link>
                 <span>Follow</span>
               </div>
-              <div>
-                <span>
-                  Edited <time>{`${Question.modifiedAt}`.slice(0, 10)}</time>
-                </span>
-              </div>
+              <div></div>
               <div className="flex">
                 <div className="user-info">
                   <span className="asked">
@@ -166,7 +177,7 @@ const Question = () => {
                     <span className="user-name">Haizel</span>
                   </div>
                 </div>
-                <DeleteButton>Delete</DeleteButton>
+                <DeleteButton onClick={DeleteQuestion}>Delete</DeleteButton>
               </div>
             </div>
           </Content>
@@ -175,7 +186,7 @@ const Question = () => {
         {/* 답변 갯수 */}
         <AnswerArea>
           <div className="answer-count">
-            <h1>1 Answer</h1>
+            <h1> Answer</h1>
           </div>
           {/* 답변 내용 */}
           {Answer.map((SingleA) => (

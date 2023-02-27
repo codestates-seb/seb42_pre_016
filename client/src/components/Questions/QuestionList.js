@@ -198,7 +198,7 @@ const QuestionList = () => {
                 </ListLeft>
                 <ListMain>
                   {/* <div className="question">0 question</div> */}
-                  <Link to="/questions/1">
+                  <Link to="/questions/9">
                     <Questiontitle>{data.title}</Questiontitle>
                   </Link>
 

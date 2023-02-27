@@ -67,10 +67,11 @@ export const QuestionArea = styled.div`
 `;
 
 export const LeftBtn = styled.div`
+  height: 60px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-around;
+  justify-content: space-between;
   padding-right: 16px;
 
   .btn_frame {
