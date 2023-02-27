@@ -1,29 +1,61 @@
 package com.idle.stackoverflow.user.service;
 
+import com.idle.stackoverflow.auth.utils.CustomAuthorityUtils;
+import com.idle.stackoverflow.helper.event.UserRegistrationApplicationEvent;
 import com.idle.stackoverflow.user.entity.User;
 import com.idle.stackoverflow.exception.BusinessLogicException;
 import com.idle.stackoverflow.exception.ExceptionCode;
 import com.idle.stackoverflow.user.repository.UserRepository;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Optional;
 
+@Transactional     // -----------------------  JWT.
 @Service
 public class UserService {
     // DI
     private final UserRepository userRepository;
+    private final ApplicationEventPublisher publisher;     // ------- JWT 진행 중 추가
+    private final PasswordEncoder passwordEncoder;         // ------- JWT 진행 중 추가. PasswordEncoder와 CustomAuthorityUtils 클래스를 DI 받도록 필드를 추가
+    private final CustomAuthorityUtils authorityUtils;     // ------- JWT 진행 중 추가. PasswordEncoder와 CustomAuthorityUtils 클래스를 DI 받도록 필드를 추가
 
-    public UserService(UserRepository userRepository) {
+    // public UserService(UserRepository userRepository) {
+    //        this.userRepository = userRepository;            -------- JWT 진행 중. 주석 처리 함.
+    //    }
+
+
+
+    public UserService(UserRepository userRepository, ApplicationEventPublisher publisher, PasswordEncoder passwordEncoder, CustomAuthorityUtils authorityUtils) {
         this.userRepository = userRepository;
+        this.publisher = publisher;
+        this.passwordEncoder = passwordEncoder;
+        this.authorityUtils = authorityUtils;
     }
 
     public User createUser(User user) {
         verifyExistsEmail(user.getEmail()); // 이메일 검증
-        return userRepository.save(user);   // 유저 등록
+
+        String encryptedPassword = passwordEncoder.encode(user.getPassword());  // -- JWT 진행 중 추가. 패스워드를 단방향 암호화
+        user.setPassword(encryptedPassword);  // -- JWT 진행 중 추가.
+
+        List<String> roles = authorityUtils.createRoles(user.getEmail());  // -- JWT 진행 중 추가. DB에 User Role 저장,  등록하는 사용자의 권한 정보 생성
+        user.setRoles(roles);       // -- JWT 진행 중 추가.
+
+        User savedUser = userRepository.save(user);       // -- JWT 진행 중 추가.
+
+        publisher.publishEvent(new UserRegistrationApplicationEvent(savedUser));    // -- JWT 진행 중 추가.
+        return savedUser;  // -- JWT 진행 중 추가.
+
+
+       // return userRepository.save(user);   // 유저 등록. -----------------------------  JWT 진행 중 주석 처리
     }
 
     public User updateUser(User user) {

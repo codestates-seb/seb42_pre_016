@@ -19,6 +19,7 @@ import javax.validation.constraints.Positive;
 import java.net.URI;
 import java.util.List;
 
+//@CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
 @RequestMapping("/stackoverflow.com/questions")
 public class QuestionController {
@@ -54,8 +55,8 @@ public class QuestionController {
 //        return ResponseEntity.created(location).build();
     }
 
-    @PatchMapping("/{question-id}")
-    public ResponseEntity patchQuestion(@PathVariable("question-id") long questionId,
+    @PatchMapping("/{questions-id}")
+    public ResponseEntity patchQuestion(@PathVariable("questions-id") long questionId,
                                          @RequestBody QuestionPatchDto questionPatchDto) {
         questionPatchDto.setQuestionId(questionId);
         Question question = questionService.updateQuestion(mapper.questionPatchToQuestion(questionPatchDto));

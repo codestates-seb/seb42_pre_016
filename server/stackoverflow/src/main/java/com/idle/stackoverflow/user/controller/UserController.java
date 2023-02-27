@@ -13,10 +13,12 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
+
 import javax.validation.constraints.Positive;
 import java.net.URI;
 import java.util.List;
 
+//@CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
 @RequestMapping("/stackoverflow.com/users")
 public class UserController {
@@ -60,7 +62,7 @@ public class UserController {
 
     // 전체 유저 조회(페이지네이션)
     @GetMapping
-    public ResponseEntity getUsers(@Positive @RequestParam(required = false, defaultValue = "1") int page,
+    public ResponseEntity getUsers( @Positive @RequestParam(required = false, defaultValue = "1") int page,
                                    @Positive @RequestParam(required = false, defaultValue = "36") int size) {
         Page<User> pageUsers = userService.findUsers(page -1, size);
         List<User> users = pageUsers.getContent();

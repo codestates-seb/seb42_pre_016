@@ -19,7 +19,7 @@ public class Tag {
     @Column(name = "name")
     private String name;
 
-    @ManyToOne                                // 다대일 매핑
+    /*@ManyToOne                                // 다대일 매핑
     @JoinColumn(name = "question_Id")
     private Question question;
 
@@ -50,12 +50,10 @@ public class Tag {
 
     public void setQuestion(Question question) {
         this.question = question;
-    }
+    }*/
 }
 
-//    public void addQuestion(Question question) {
-//        this.question = question;
-//    }
+
 
 
 
