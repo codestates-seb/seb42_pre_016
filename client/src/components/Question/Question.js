@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import axios from "axios";
+import instance from "../../api/axios";
 import AnswerVoteForm from "./AnswerVoteForm";
 import AnswerForm from "./AnswerForm";
 import {
@@ -35,7 +36,9 @@ const Question = () => {
     setLoading(true);
     const getQuestion = async () => {
       await axios
-        .get(`${process.env.REACT_APP_API_URL}/questions/1`)
+        .get(`api/questions/1`, {
+          headers: { "ngorok-skip-browser-warning": "20230227" },
+        })
         .then((res) => {
           setQuestion(res.data);
           setContent(res.data.content);
@@ -56,7 +59,9 @@ const Question = () => {
   //* 질문 삭제
   const DeleteQuestion = async () => {
     await axios
-      .delete(`${process.env.REACT_APP_API_URL}/questions/${id}`)
+      .delete(`api/questions/${id}`, {
+        headers: { "ngorok-skip-browser-warning": "12" },
+      })
       // 삭제 후 다시 메인페이지로 이동한다.
       .then(() => {
         window.location.replace("/");
@@ -66,13 +71,17 @@ const Question = () => {
       });
   };
 
-  // //* 답변 삭제
-  // const DeleteAnswer = async () => {
-  //   await axios.delete(`${process.env.REACT_APP_API_URL}/answers/${id}`).then(() => {
-  //     // 질문 페이지 다시 렌더링
-  //     getQuestion()
-  //   )}
-
+  // * 답변 삭제
+  // const DeleteAnswer = async (id) => {
+  //   await instance
+  //     .delete(`/api/answers/${id}`)
+  //     .then(() => {
+  //       //질문 페이지 다시 렌더링
+  //       getQuestion();
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
   // };
 
   return (
@@ -157,7 +166,7 @@ const Question = () => {
                     <span className="user-name">Haizel</span>
                   </div>
                 </div>
-                <DeleteButton onClick={DeleteQuestion}>Delete</DeleteButton>
+                <DeleteButton>Delete</DeleteButton>
               </div>
             </div>
           </Content>
@@ -209,6 +218,7 @@ const Question = () => {
                         <span className="user-name">{SingleA.memberName}</span>
                       </div>
                     </div>
+                    <DeleteButton onClick={DeleteQuestion}>Delete</DeleteButton>
                   </div>
                 </div>
               </Content>
