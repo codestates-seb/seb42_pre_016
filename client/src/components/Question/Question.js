@@ -36,7 +36,7 @@ const Question = () => {
     setLoading(true);
     const getQuestion = async () => {
       await axios
-        .get(`api/questions/1`, {
+        .get(`/api/questions/9`, {
           headers: { "ngorok-skip-browser-warning": "20230227" },
         })
         .then((res) => {
@@ -59,8 +59,8 @@ const Question = () => {
   //* 질문 삭제
   const DeleteQuestion = async () => {
     await axios
-      .delete(`api/questions/${id}`, {
-        headers: { "ngorok-skip-browser-warning": "12" },
+      .delete(`/api/questions/${id}`, {
+        headers: { "ngorok-skip-browser-warning": "1" },
       })
       // 삭제 후 다시 메인페이지로 이동한다.
       .then(() => {
