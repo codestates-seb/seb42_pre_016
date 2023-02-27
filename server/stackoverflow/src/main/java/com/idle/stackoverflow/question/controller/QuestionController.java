@@ -2,6 +2,7 @@ package com.idle.stackoverflow.question.controller;
 
 import com.idle.stackoverflow.question.dto.QuestionPatchDto;
 import com.idle.stackoverflow.question.dto.QuestionPostDto;
+import com.idle.stackoverflow.question.dto.QuestionResponseDto;
 import com.idle.stackoverflow.question.entity.Question;
 import com.idle.stackoverflow.question.mapper.QuestionMapper;
 import com.idle.stackoverflow.question.service.QuestionService;
@@ -84,4 +85,17 @@ public class QuestionController {
         return new ResponseEntity(HttpStatus.NO_CONTENT);
     }
 
+    @PatchMapping("/voteUp/{question-id}")
+    public ResponseEntity QuestionVoteUp(@PathVariable("question-id") long questionId) {
+        Question voteUp = questionService.QuestionVoteUp(questionId);
+        QuestionResponseDto responseDto = mapper.questionToQuestionResponse(voteUp);
+        return new ResponseEntity<>(new SingleResponseDto<>(responseDto), HttpStatus.OK);
+    }
+
+    @PatchMapping("/voteDown/{question-id}")
+    public ResponseEntity QuestionVoteDown(@PathVariable("question-id") long questionId) {
+        Question voteUp = questionService.QuestionVoteDown(questionId);
+        QuestionResponseDto responseDto = mapper.questionToQuestionResponse(voteUp);
+        return new ResponseEntity<>(new SingleResponseDto<>(responseDto), HttpStatus.OK);
+    }
 }

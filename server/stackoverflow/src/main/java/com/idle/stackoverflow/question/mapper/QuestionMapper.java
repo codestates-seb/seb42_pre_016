@@ -25,7 +25,8 @@ public interface QuestionMapper {
                 question.getContent(),
                 question.getCreatedAt(),
                 question.getModifiedAt(),
-                question.getUser().getUserId()
+                question.getUser().getUserId(),
+                question.getQuestionVoteCnt()
         );
         return responseDto;
     }

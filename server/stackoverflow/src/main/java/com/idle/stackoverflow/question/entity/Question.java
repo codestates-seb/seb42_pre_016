@@ -34,6 +34,9 @@ public class Question {
     @Column(nullable = false)
     private LocalDateTime modifiedAt = LocalDateTime.now(); // 수정 시간
 
+    @Column
+    private int questionVoteCnt;    // default value : 0
+
     @ManyToOne
     @JoinColumn(name = "USER_ID")
     private User user;

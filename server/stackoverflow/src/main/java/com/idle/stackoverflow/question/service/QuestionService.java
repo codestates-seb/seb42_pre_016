@@ -1,5 +1,6 @@
 package com.idle.stackoverflow.question.service;
 
+import com.idle.stackoverflow.answer.entity.Answer;
 import com.idle.stackoverflow.exception.BusinessLogicException;
 import com.idle.stackoverflow.exception.ExceptionCode;
 import com.idle.stackoverflow.question.entity.Question;
@@ -54,5 +55,17 @@ public class QuestionService {
         Optional<Question> optionalQuestion = questionRepository.findById(questionId);
         Question findQuestion = optionalQuestion.orElseThrow(() -> new BusinessLogicException(ExceptionCode.QUESTION_NOT_FOUND));
         return findQuestion;
+    }
+
+    public Question QuestionVoteUp(long questionId) {
+        Question findQuestion = findVerifiedQuestion(questionId);   // 질문 검증
+        findQuestion.setQuestionVoteCnt(findQuestion.getQuestionVoteCnt() +1);
+        return questionRepository.save(findQuestion);
+    }
+
+    public Question QuestionVoteDown(long questionId) {
+        Question findQuestion = findVerifiedQuestion(questionId);   // 질문 검증
+        findQuestion.setQuestionVoteCnt(findQuestion.getQuestionVoteCnt() -1);
+        return questionRepository.save(findQuestion);
     }
 }
