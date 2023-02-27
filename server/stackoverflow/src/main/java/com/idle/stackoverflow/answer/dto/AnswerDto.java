@@ -38,7 +38,7 @@ public class AnswerDto {
         private String content;
         private LocalDateTime createdAt;
         private LocalDateTime modifiedAt;
-        private long voteCnt;
+        private int voteCnt;
         private long userId;
         private long questionId;
     }

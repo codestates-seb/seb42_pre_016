@@ -74,6 +74,24 @@ public class AnswerController {
                 new SingleResponseDto<>(mapper.answerToAnswerResponse(response)), HttpStatus.OK);
     }
 
+    @PatchMapping("/voteUp/{answer-id}")
+    public ResponseEntity AnswerVoteUp(@PathVariable("answer-id") long answerId) {
+        Answer voteUp = answerService.AnswerVoteUp(answerId);
+
+        AnswerDto.Response response = mapper.answerToAnswerResponse(voteUp);
+        return new ResponseEntity<>(
+                new SingleResponseDto<>(response), HttpStatus.OK);
+    }
+
+    @PatchMapping("/voteDown/{answer-id}")
+    public ResponseEntity AnswerVoteDown(@PathVariable("answer-id") long answerId) {
+        Answer voteUp = answerService.AnswerVoteDown(answerId);
+
+        AnswerDto.Response response = mapper.answerToAnswerResponse(voteUp);
+        return new ResponseEntity<>(
+                new SingleResponseDto<>(response), HttpStatus.OK);
+    }
+
    /*
    * questionId에 해당하는 answers목록 조회 QuestionController에 적용함
    @GetMapping("/{question-id}") // 일단 전체 목록 조회, 할 수 있으면 페이지네이션 적용
