@@ -30,7 +30,7 @@ const Question = () => {
   const [content, setContent] = useState();
   const [loading, setLoading] = useState(false);
 
-  // vote (isVote: 서버에 등록된 투표 이력, isClickVote: 현재 누른 버튼)
+  //* vote (isVote: 서버에 등록된 투표 이력, isClickVote: 현재 누른 버튼)
   const [VoteQ, setVoteQ] = useState("");
   const [voteA, setVoteA] = useState(0);
 
@@ -83,7 +83,7 @@ const Question = () => {
       .delete(`/api/questions/1`, {
         headers: { "ngrok-skip-browser-warning": "12" },
       })
-      // 삭제 후 다시 메인페이지로 이동한다.
+      // 삭제 후 다시 메인페이지로 이동
       .then(() => {
         window.location.replace("/");
       })
@@ -187,7 +187,7 @@ const Question = () => {
             <div className="writer-area">
               <div>
                 <span>Share</span>
-                <Link to={`/edit/question/${Question.id}`}>Edit</Link>
+                <Link to={`/questionedit`}>Edit</Link>
                 <span>Follow</span>
               </div>
               <div></div>
@@ -235,7 +235,7 @@ const Question = () => {
                 <div className="writer-area">
                   <div>
                     <span>Share</span>
-                    <Link to={`/edit/answer/${SingleA.id}`}>Edit</Link>
+                    <Link to={`/answeredit`}>Edit</Link>
                     <span>Follow</span>
                   </div>
                   <div></div>
@@ -275,6 +275,7 @@ const Question = () => {
             <div className="answer-header">
               <h1>Your Answer</h1>
             </div>
+
             {/* 답변 에디터 */}
             <EditorWrap>
               <CKEditor
