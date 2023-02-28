@@ -48,17 +48,17 @@ public class AnswerService {
         return answerRepository.save(findAnswer);
     }
 
-    public Answer AnswerVoteUp(long answerId) {
+    public Answer answerVoteUp(long answerId) {
         // 존재하는 answer인지 검증
         Answer findAnswer = findVerifiedAnswer(answerId);
-        findAnswer.setVoteCnt(findAnswer.getVoteCnt()+1);
+        findAnswer.setAnswerVoteCnt(findAnswer.getAnswerVoteCnt()+1);
         return answerRepository.save(findAnswer);
     }
 
-    public Answer AnswerVoteDown(long answerId) {
+    public Answer answerVoteDown(long answerId) {
         // 존재하는 answer인지 검증
         Answer findAnswer = findVerifiedAnswer(answerId);
-        findAnswer.setVoteCnt(findAnswer.getVoteCnt()-1);
+        findAnswer.setAnswerVoteCnt(findAnswer.getAnswerVoteCnt()-1);
         return answerRepository.save(findAnswer);
     }
 

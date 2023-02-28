@@ -71,8 +71,8 @@ public class AnswerController {
     }
 
     @PatchMapping("/voteUp/{answer-id}")
-    public ResponseEntity AnswerVoteUp(@PathVariable("answer-id") long answerId) {
-        Answer voteUp = answerService.AnswerVoteUp(answerId);
+    public ResponseEntity answerVoteUp(@PathVariable("answer-id") long answerId) {
+        Answer voteUp = answerService.answerVoteUp(answerId);
 
         AnswerDto.Response response = mapper.answerToAnswerResponse(voteUp);
         return new ResponseEntity<>(
@@ -80,8 +80,8 @@ public class AnswerController {
     }
 
     @PatchMapping("/voteDown/{answer-id}")
-    public ResponseEntity AnswerVoteDown(@PathVariable("answer-id") long answerId) {
-        Answer voteUp = answerService.AnswerVoteDown(answerId);
+    public ResponseEntity answerVoteDown(@PathVariable("answer-id") long answerId) {
+        Answer voteUp = answerService.answerVoteDown(answerId);
 
         AnswerDto.Response response = mapper.answerToAnswerResponse(voteUp);
         return new ResponseEntity<>(

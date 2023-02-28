@@ -16,7 +16,7 @@ public interface AnswerMapper {
                 answer.getContent(),
                 answer.getCreatedAt(),
                 answer.getModifiedAt(),
-                answer.getVoteCnt(),
+                answer.getAnswerVoteCnt(),
                 answer.getUser().getUserId(),
                 answer.getQuestion().getQuestionId()
         );

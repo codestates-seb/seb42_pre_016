@@ -23,6 +23,8 @@ public interface QuestionMapper {
                 question.getQuestionId(),
                 question.getTitle(),
                 question.getContent(),
+                question.getQuestionViewCnt(),
+                question.getAnswerCnt(),
                 question.getCreatedAt(),
                 question.getModifiedAt(),
                 question.getUser().getUserId(),
@@ -40,7 +42,7 @@ public interface QuestionMapper {
                         .content(answer.getContent())
                         .createdAt(answer.getCreatedAt())
                         .modifiedAt(answer.getModifiedAt())
-                        .voteCnt(answer.getVoteCnt())
+                        .answerVoteCnt(answer.getAnswerVoteCnt())
                         .userId(answer.getUser().getUserId())
                         .questionId(answer.getQuestion().getQuestionId())
                         .build()).collect(Collectors.toList());
@@ -54,6 +56,9 @@ public interface QuestionMapper {
                 question.getQuestionId(),
                 question.getTitle(),
                 question.getContent(),
+                question.getQuestionVoteCnt(),
+                question.getQuestionViewCnt(),
+                question.getAnswerCnt(),
                 question.getCreatedAt(),
                 question.getModifiedAt(),
                 QuestionAnswersToAnswerResponse(answers)

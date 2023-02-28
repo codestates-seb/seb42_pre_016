@@ -31,7 +31,7 @@ public class Answer {
     private LocalDateTime modifiedAt = LocalDateTime.now();
 
     @Column
-    private int voteCnt; // 기본으론 0이 들어간다
+    private int answerVoteCnt; // 기본으론 0이 들어간다
 
     @ManyToOne
     @JoinColumn(name = "USER_ID")

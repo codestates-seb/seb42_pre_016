@@ -86,16 +86,16 @@ public class QuestionController {
     }
 
     @PatchMapping("/voteUp/{question-id}")
-    public ResponseEntity QuestionVoteUp(@PathVariable("question-id") long questionId) {
-        Question voteUp = questionService.QuestionVoteUp(questionId);
+    public ResponseEntity questionVoteUp(@PathVariable("question-id") long questionId) {
+        Question voteUp = questionService.questionVoteUp(questionId);
         QuestionResponseDto responseDto = mapper.questionToQuestionResponse(voteUp);
         return new ResponseEntity<>(new SingleResponseDto<>(responseDto), HttpStatus.OK);
     }
 
     @PatchMapping("/voteDown/{question-id}")
-    public ResponseEntity QuestionVoteDown(@PathVariable("question-id") long questionId) {
-        Question voteUp = questionService.QuestionVoteDown(questionId);
-        QuestionResponseDto responseDto = mapper.questionToQuestionResponse(voteUp);
+    public ResponseEntity questionVoteDown(@PathVariable("question-id") long questionId) {
+        Question voteDown = questionService.questionVoteDown(questionId);
+        QuestionResponseDto responseDto = mapper.questionToQuestionResponse(voteDown);
         return new ResponseEntity<>(new SingleResponseDto<>(responseDto), HttpStatus.OK);
     }
 }

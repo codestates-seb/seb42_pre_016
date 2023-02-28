@@ -37,7 +37,8 @@ public class QuestionService {
     public Question findQuestion(long questionId) {
 //        return findVerifiedQuestion(questionId);    // 질문 검증
         Question findQuestion = questionRepository.findById(questionId).orElseThrow(() -> new BusinessLogicException(ExceptionCode.QUESTION_NOT_FOUND));
-        return findQuestion;
+        findQuestion.setQuestionViewCnt(findQuestion.getQuestionViewCnt() + 1);
+        return questionRepository.save(findQuestion);
     }
 
     public Page<Question> findQuestions(int page, int size) {
@@ -57,13 +58,13 @@ public class QuestionService {
         return findQuestion;
     }
 
-    public Question QuestionVoteUp(long questionId) {
+    public Question questionVoteUp(long questionId) {
         Question findQuestion = findVerifiedQuestion(questionId);   // 질문 검증
         findQuestion.setQuestionVoteCnt(findQuestion.getQuestionVoteCnt() +1);
         return questionRepository.save(findQuestion);
     }
 
-    public Question QuestionVoteDown(long questionId) {
+    public Question questionVoteDown(long questionId) {
         Question findQuestion = findVerifiedQuestion(questionId);   // 질문 검증
         findQuestion.setQuestionVoteCnt(findQuestion.getQuestionVoteCnt() -1);
         return questionRepository.save(findQuestion);

@@ -37,6 +37,9 @@ public class Question {
     @Column
     private int questionVoteCnt;    // default value : 0
 
+    @Column
+    private int questionViewCnt;
+
     @ManyToOne
     @JoinColumn(name = "USER_ID")
     private User user;
@@ -59,6 +62,10 @@ public class Question {
         if (answer.getQuestion() != this) {
             answer.setQuestion(this);
         }
+    }
+
+    public int getAnswerCnt() {
+        return answers.size();
     }
 
     // TODO 질문 상태 (질문 등록, 질문 삭제)
