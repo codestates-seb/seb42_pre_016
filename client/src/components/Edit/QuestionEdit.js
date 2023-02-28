@@ -1,7 +1,7 @@
 import axios from "axios";
 import React from "react";
 import { useState, useEffect, useRef } from "react";
-import { useNavigate, Link, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
 import { Space } from "../AskQuestions/AskQuestions";
 
@@ -42,7 +42,7 @@ const QuestionEdit = () => {
   };
 
   //* 취소버튼
-  const handleCancle = () => {
+  const handleCancel = () => {
     navigate(-1);
   };
 
@@ -85,7 +85,6 @@ const QuestionEdit = () => {
           <input
             type="text"
             className="title-input"
-            placeholder=" Question 원문 제목"
             value={title}
             onChange={(event) => setTitle(event.target.value)}
           />
@@ -110,7 +109,7 @@ const QuestionEdit = () => {
         <QuestionText>{content}</QuestionText>
         <ButtonWrapper>
           <SaveEditsButton onClick={handleSubmit}>Save edits</SaveEditsButton>
-          <CancelButton onClick={handleCancle}>Cancel</CancelButton>
+          <CancelButton onClick={handleCancel}>Cancel</CancelButton>
         </ButtonWrapper>
       </QuestionEditContainer>
       <EditingTip>
