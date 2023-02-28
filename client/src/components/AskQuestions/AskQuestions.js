@@ -12,7 +12,6 @@ const AskQuestions = () => {
   const handleEditorChange = (event, editor) => {
     const data = editor.getData();
     const cutData = data.slice(3, data.length - 4); //앞뒤 <p></p> 마크다운 제거
-    // setContent(cutData);
     setContent(data);
     console.log("내용 : ", cutData);
   };

@@ -1,6 +1,8 @@
 import { useState, useEffect, useRef } from "react";
 import { Link, useParams } from "react-router-dom";
 import axios from "axios";
+import { CKEditor } from "@ckeditor/ckeditor5-react";
+import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import AnswerVoteForm from "./AnswerVoteForm";
 import {
   QuestionContainer,
@@ -15,14 +17,12 @@ import {
   AnswerCreate,
   DeleteButton,
   QuestionHeader,
+  EditorWrap,
+  AnswerButton,
 } from "./Qustion.styled";
 
-import { CKEditor } from "@ckeditor/ckeditor5-react";
-import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
-import { EditorWrap, ErrorMassage, AnswerButton } from "./Qustion.styled";
-
 const Question = () => {
-  const { id } = useParams();
+  const { id } = useParams(); //vote에 있는 1도
 
   const [Question, setQuestion] = useState({});
   const [Answer, setAnswer] = useState([]);
