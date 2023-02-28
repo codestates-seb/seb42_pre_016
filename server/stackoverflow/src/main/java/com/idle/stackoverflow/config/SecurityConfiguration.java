@@ -56,9 +56,9 @@ public class SecurityConfiguration {
                 .and()   // 추가
                 .authorizeHttpRequests(authorize -> authorize
                         .antMatchers(HttpMethod.POST, "/*/users").permitAll()   // 회원 등록의 경우, 접근 권한 여부와 상관없이 누구나 접근이 가능해야 하므로, 회원등록에 사용되는 URL(”/stackoverflow.com/users/signup”)과 HTTP Method(여기서는 POST)에 해당된다면 접근을 허용
-                        .antMatchers(HttpMethod.PATCH, "/%/users/**").hasRole("USER")  // 회원 정보 수정의 경우, 일반 사용자(USER) 권한만 가진 사용자만 접근이 가능하도록 허용 ( UserController의 patchUser() 핸들러 메서드에 대한 접근 권한 부여 설정이라는 사실을 기억하기)
-                        .antMatchers(HttpMethod.GET, "/*/users").hasRole("ADMIN")  // 모든 회원 정보의 목록은 관리자(ADMIN) 권한을 가진 사용자만 접근이 가능하여야 할 것이기에 회원 정보 목록 조회 요청을 처리하는 UserController의 getUsers() 핸들러 메서드에 대한 접근 권한 부여 설정에 해당한다.
-                        .antMatchers(HttpMethod.GET, "/*/users/**").hasAnyRole("USER", "ADMIN")  // 특정 회원에 대한 정보 조회는, 일반 사용자(USER)와 관리자(ADMIN) 권한을 가진 사용자 모두 접근이 가능하면 된다. 특정 회원 정보 조회 요청을 처리하는 UserController의 getUser() 핸들러 메서드에 대한 접근 권한 부여 설정에 해당된다.
+                        .antMatchers(HttpMethod.PATCH, "/*/users/**").hasRole("USER")  // 회원 정보 수정의 경우, 일반 사용자(USER) 권한만 가진 사용자만 접근이 가능하도록 허용 ( UserController의 patchUser() 핸들러 메서드에 대한 접근 권한 부여 설정이라는 사실을 기억하기)
+                        .antMatchers(HttpMethod.GET, "/%/users").hasRole("USER")  // 모든 회원 정보의 목록은 관리자(ADMIN) 권한을 가진 사용자만 접근이 가능하여야 할 것이기에 회원 정보 목록 조회 요청을 처리하는 UserController의 getUsers() 핸들러 메서드에 대한 접근 권한 부여 설정에 해당한다.
+                        .antMatchers(HttpMethod.GET, "/%/users/**").hasRole("USER")  // 특정 회원에 대한 정보 조회는, 일반 사용자(USER)와 관리자(ADMIN) 권한을 가진 사용자 모두 접근이 가능하면 된다. 특정 회원 정보 조회 요청을 처리하는 UserController의 getUser() 핸들러 메서드에 대한 접근 권한 부여 설정에 해당된다.
                         .antMatchers(HttpMethod.DELETE, "/*/users/**").hasRole("USER")  // 특정 회원을 삭제하는 요청은, 해당 사용자가 탈퇴같은 처리를 할 수 있어야 하므로 일반 사용자(USER) 권한만 가진 사용자만 접근이 가능하도록 허용. 특정 회원 정보 삭제 요청을 처리하는 UserController의 deleteUser() 핸들러 메서드에 대한 접근 권한 부여 설정에 해당
                         .anyRequest().permitAll()       // ‘**’는 하위 URL로 어떤 URL이 오더라도 매치가 된다는 의미
                 );
