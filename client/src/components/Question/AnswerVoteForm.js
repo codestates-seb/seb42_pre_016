@@ -3,19 +3,21 @@ import styled from "styled-components";
 import axios from "axios";
 
 const AnswerVoteForm = ({ id, voteCount, voteA, setVoteA }) => {
-  const [isVotedA, setIsVotedA] = useState("");
+  const [isVotedA, setIsVotedA] = useState(false);
 
-  //* VoteUp 버튼 눌렀을 때
+  //* Answer VoteUp 버튼 눌렀을 때
   const ClickAnswerVoteUp = (e) => {
     //첫투표라면
-    if (isVotedA === "" && e.target.id) {
+    if (isVotedA === false && e.target.id) {
       PatchAnswerVoteUp(e.target.id);
-    } else {
-      return;
+      setIsVotedA(true);
+      //두번 눌렀다면
+    } else if (isVotedA !== false) {
+      alert("이미 투표했습니다.");
     }
   };
 
-  //* VoteUp - patch 요청 보내기
+  //* Answer VoteUp - patch 요청 보내기
   const PatchAnswerVoteUp = async () => {
     await axios
       .patch(`/api/answers/voteUp/1`, {
@@ -28,15 +30,19 @@ const AnswerVoteForm = ({ id, voteCount, voteA, setVoteA }) => {
       });
   };
 
-  //* VoteDown 버튼 눌렀을 때
+  //* Answer VoteDown 버튼 눌렀을 때
   const ClickAnswerVoteDown = (e) => {
     //첫투표라면
-    if (isVotedA === "" && e.target.id) {
-      PatchAnswerVoteDown(e.target.id);
+    if (isVotedA === false && e.target.id) {
+      PatchAnswerVoteDown();
+      setIsVotedA(true);
+      //두번 눌렀다면
+    } else if (isVotedA !== false) {
+      alert("이미 투표했습니다.");
     }
   };
 
-  //* VoteUp - patch 요청 보내기
+  //* Question VoteDown - patch 요청 보내기
   const PatchAnswerVoteDown = async () => {
     await axios
       .patch(`/api/answers/voteDown/1`, {
@@ -49,10 +55,9 @@ const AnswerVoteForm = ({ id, voteCount, voteA, setVoteA }) => {
       });
   };
 
-  //* 투표 정보 즉각 업데이트 (투표 post 또는 patch 할 때마다 발생하도록)
+  //* Answer Vote 결과가 바뀔 때마다 투표수 바로 업데이트
   useEffect(() => {
-    PatchAnswerVoteUp();
-    PatchAnswerVoteDown();
+    setIsVotedA(isVotedA);
   }, [isVotedA]);
 
   return (
@@ -64,7 +69,7 @@ const AnswerVoteForm = ({ id, voteCount, voteA, setVoteA }) => {
             width="36"
             height="36"
             viewBox="0 0 36 36"
-            fill={isVotedA ? "#f48225" : "#babfc4"}
+            fill={isVotedA === "UPVOTE" ? "#f48225" : "#babfc4"}
           >
             <path
               id="UPVOTE"
@@ -82,7 +87,7 @@ const AnswerVoteForm = ({ id, voteCount, voteA, setVoteA }) => {
             width="36"
             height="36"
             viewBox="0 0 36 36"
-            fill={isVotedA ? "#f48225" : "#babfc4"}
+            fill={isVotedA === "DOWNVOTE" ? "#f48225" : "#babfc4"}
           >
             <path
               id="DOWNVOTE"

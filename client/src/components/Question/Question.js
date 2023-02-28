@@ -28,13 +28,12 @@ const Question = () => {
   const [Answer, setAnswer] = useState([]);
   const [content, setContent] = useState();
   const [loading, setLoading] = useState(false);
-
-  //* vote (isVote: 서버에 등록된 투표 이력, isClickVote: 현재 누른 버튼)
-  const [VoteQ, setVoteQ] = useState("");
-  const [voteA, setVoteA] = useState(0);
-
   const [body, setBody] = useState("");
   const answerRef = useRef();
+
+  //* vote (isVote: 서버에 등록된 투표 이력, isClickVote: 현재 누른 버튼)
+  const [VoteQ, setVoteQ] = useState(false);
+  const [voteA, setVoteA] = useState(false);
 
   //* 질문 총 정보(data) 가져오기
   useEffect(() => {
@@ -55,7 +54,7 @@ const Question = () => {
     };
     setLoading(false);
     getQuestion();
-  }, [loading]);
+  }, [loading, VoteQ]);
 
   //* 질문 id에 맞는 답변 목록 받아오기
   const getAnswer = async () => {
@@ -123,13 +122,65 @@ const Question = () => {
           },
         }
       )
-      .then(() => {
-        window.location.reload();
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+  //* Question VoteUp 버튼 눌렀을 때
+  const ClickQuestionVoteUp = (e) => {
+    //첫투표라면
+    if (VoteQ === false && e.target.id) {
+      PatchQuestionVoteUp(e.target.id);
+      setVoteQ(true);
+      //두번 눌렀다면
+    } else if (VoteQ !== false) {
+      alert("이미 투표했습니다.");
+    }
+  };
+
+  //* Question VoteUp - patch 요청 보내기
+  const PatchQuestionVoteUp = async () => {
+    await axios
+      .patch(`/api/questions/voteUp/1`, {
+        headers: {
+          "ngrok-skip-browser-warning": "12",
+        },
       })
       .catch((error) => {
         console.log(error);
       });
   };
+
+  //* Question VoteDown 버튼 눌렀을 때
+  const ClickQuestionVoteDown = (e) => {
+    //첫투표라면
+    if (VoteQ === false && e.target.id) {
+      PatchQuestionVoteDown();
+      setVoteQ(true);
+      //두번 눌렀다면
+    } else if (VoteQ !== false) {
+      alert("이미 투표했습니다.");
+    }
+  };
+
+  //* Question VoteDown - patch 요청 보내기
+  const PatchQuestionVoteDown = async () => {
+    await axios
+      .patch(`/api/questions/voteDown/1`, {
+        headers: {
+          "ngrok-skip-browser-warning": "12",
+        },
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+  //* Question Vote 결과가 바뀔 때마다 투표수 바로 업데이트
+  useEffect(() => {
+    setVoteQ(VoteQ);
+  }, [VoteQ]);
 
   return (
     <QuestionContainer>
@@ -149,7 +200,9 @@ const Question = () => {
         <div>
           Modified <time>{`${Question.modifiedAt}`.slice(0, 10)}</time>
         </div>
-        <div>view 6</div>
+        <div>
+          view <time>{`${Question.questionViewCnt}`.slice(0, 10)}</time>
+        </div>
       </AskDate>
 
       <Section>
@@ -163,10 +216,14 @@ const Question = () => {
                 viewBox="0 0 36 36"
                 fill={VoteQ === "UPVOTE" ? "#f48225" : "#babfc4"}
               >
-                <path id="UPVOTE" d="M2 25h32L18 9 2 25Z"></path>
+                <path
+                  id="UPVOTE"
+                  d="M2 25h32L18 9 2 25Z"
+                  onClick={ClickQuestionVoteUp}
+                ></path>
               </svg>
             </div>
-            <div className="count">0</div>
+            <div className="count">{Question.questionVoteCnt}</div>
             <div className="btn_frame">
               <svg
                 className="icon"
@@ -175,7 +232,11 @@ const Question = () => {
                 viewBox="0 0 36 36"
                 fill={VoteQ === "DOWNVOTE" ? "#f48225" : "#babfc4"}
               >
-                <path id="DOWNVOTE" d="M2 11h32L18 27 2 11Z"></path>
+                <path
+                  id="DOWNVOTE"
+                  d="M2 11h32L18 27 2 11Z"
+                  onClick={ClickQuestionVoteDown}
+                ></path>
               </svg>
             </div>
           </LeftBtn>
@@ -226,7 +287,7 @@ const Question = () => {
               <AnswerVoteForm
                 //AnswerVoteForm에 props으로 내려준다.
                 id={SingleA.answerId}
-                voteCount={SingleA.voteCnt}
+                voteCount={SingleA.answerVoteCnt}
                 voteA={voteA}
                 setVoteA={setVoteA}
               />
