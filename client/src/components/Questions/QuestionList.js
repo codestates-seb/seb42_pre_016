@@ -215,13 +215,8 @@ const QuestionList = () => {
                 </ListLeft>
                 <ListMain>
                   {/* <div className="question">0 question</div> */}
-<<<<<<< HEAD
-                  <Link to={`/questions/`}>
-                    <Questiontitle>{question.title}</Questiontitle>
-=======
                   <Link to="/questions/1">
-                    <Questiontitle>{data.title}</Questiontitle>
->>>>>>> f7f02707146bfadaf9ae53d395f83010f6cb5b52
+                    <Questiontitle>{question.title}</Questiontitle>
                   </Link>
 
                   <WriterAndtime>
