@@ -21,7 +21,14 @@ import {
   AnswerButton,
 } from "./Qustion.styled";
 
+
+
 const Question = () => {
+
+  const urlStr = window.location.href;
+  const url = new URL(urlStr);
+  const urlParams = url.searchParams.get('questID'); //url파라미터값
+
   const { id } = useParams(); //vote에 있는 1도
 
   const [Question, setQuestion] = useState({});
@@ -40,7 +47,7 @@ const Question = () => {
     setLoading(true);
     const getQuestion = async () => {
       await axios
-        .get(`/api/questions/1`, {
+        .get(`/api/questions/${urlParams}`, {
           headers: { "ngrok-skip-browser-warning": "12" },
         })
         .then((res) => {
@@ -59,7 +66,7 @@ const Question = () => {
   //* 질문 id에 맞는 답변 목록 받아오기
   const getAnswer = async () => {
     await axios
-      .get(`/api/questions/1`, {
+      .get(`/api/questions/${urlParams}`, {
         headers: { "ngrok-skip-browser-warning": "12" },
       })
       .then((res) => {
@@ -78,7 +85,7 @@ const Question = () => {
   //* 질문 삭제
   const DeleteQuestion = async () => {
     await axios
-      .delete(`/api/questions/1`, {
+      .delete(`/api/questions/${urlParams}`, {
         headers: { "ngrok-skip-browser-warning": "12" },
       })
       // 삭제 후 다시 메인페이지로 이동
