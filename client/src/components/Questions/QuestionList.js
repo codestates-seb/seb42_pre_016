@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-import { dummydata } from "../Questions/testdata2";
+
+
 
 const QustionButton = styled.button`
   height: 33px;
@@ -57,7 +59,7 @@ const MainStyle = styled.div`
 `;
 
 const timecheck = (createdAtUTC) => {
-  const createdAt = Date.parse(createdAtUTC.replace("T", "Z"));
+  const createdAt = Date.parse(createdAtUTC);
   const diffSeconds = Math.round((Date.now() - createdAt) / 1000);
 
   if (diffSeconds < 60) {
@@ -104,11 +106,11 @@ const timecheck = (createdAtUTC) => {
     "Dec",
   ];
 
-  return `${
+  return (`${
     month[dateCreatedAt.getMonth()]
   } ${dateCreatedAt.getDate()}, ${dateCreatedAt.getFullYear()} at ${String(
     dateCreatedAt.getHours()
-  ).padStart(2, "0")}:${String(dateCreatedAt.getMinutes()).padStart(2, "0")}`;
+  ).padStart(2, "0")}:${String(dateCreatedAt.getMinutes()).padStart(2, "0")}`);
   // 시간 두자리수 표기법 padStart 사용하기
 };
 
@@ -177,7 +179,21 @@ export const Space = styled.div`
   width: 5%;
 `;
 
+
 const QuestionList = () => {
+
+  const [questions, setQuestions] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get('/api/questions', {
+        headers: { "ngrok-skip-browser-warning": "12"},
+      })
+      .then((res) => {
+        setQuestions(res.data.data);
+      });
+  }, []);
+  
   return (
     <>
       <MainStyle>
@@ -187,9 +203,10 @@ const QuestionList = () => {
             <QustionButton>Ask Question</QustionButton>
           </Link>
         </div>
-        {dummydata.map((data) => {
-          return (
-            <div className="question_data" key={data.id}>
+        
+          {questions.map((question) =>{
+            return (
+              <div className="question_data" key={question.questionId}>
               <List>
                 <ListLeft>
                   <span>0 votes</span>
@@ -198,21 +215,24 @@ const QuestionList = () => {
                 </ListLeft>
                 <ListMain>
                   {/* <div className="question">0 question</div> */}
-                  <Link to="/questions">
-                    <Questiontitle>{data.title}</Questiontitle>
+                  <Link to={`/questions/`}>
+                    <Questiontitle>{question.title}</Questiontitle>
                   </Link>
 
                   <WriterAndtime>
-                    <Author>{data.username}</Author>
-                    <CreatedAt>{`asked ${timecheck(
-                      data.createdAt
-                    )}`}</CreatedAt>
+                    <Author>{question.userId}</Author>
+                    <CreatedAt>
+                      {`asked ${timecheck(question.createdAt)}`}
+                    </CreatedAt>
                   </WriterAndtime>
                 </ListMain>
               </List>
             </div>
-          );
-        })}
+            );
+          })}
+            
+         
+       
       </MainStyle>
       <Space />
     </>
