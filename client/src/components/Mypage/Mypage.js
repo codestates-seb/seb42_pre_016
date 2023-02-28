@@ -26,7 +26,8 @@ const device = {
 };
 
 const MypageContainer = styled.div`
-  width: max-width;
+  flex: 2 1 auto;
+  width: 1000px;
   height: 200px;
   background: #ffffff;
   display: flex;
@@ -36,8 +37,8 @@ const MypageContainer = styled.div`
   margin-top: 1px;
   align-items: center;
   position: relative;
-  padding-top: 100px;
-  padding-left: 300px;
+  margin: 5px 60px;
+  /* border: red solid; */
 `;
 
 const ProfilePicture = styled.img`
@@ -148,7 +149,43 @@ const PenIcon = styled(FaPen)`
   margin-right: 5px;
 `;
 
+export const Space = styled.div`
+  border-right: solid 1px #d6d8db;
+  background-color: #ffffff;
+  display: flex;
+  flex: 1 1 auto;
+  width: 5%;
+`;
+
+const RemoveButton = styled.button`
+  width: 130px;
+  height: 38px;
+  background-color: #ffffff;
+  border: solid 1px #d2393f;
+  color: #d2393f;
+  margin-right: 10px;
+  border-radius: 4px;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  &:hover {
+    background-color: #fac7c965;
+  }
+`;
+
 const MypageProfile = () => {
+  const OnRemove = () => {
+    if (
+      window.confirm(
+        "Are you sure you want to remove this login from your account?"
+      )
+    ) {
+      alert("Remove Account is complete");
+    } else {
+      return;
+    }
+  };
+
   return (
     <>
       <MypageContainer>
@@ -162,6 +199,7 @@ const MypageProfile = () => {
             Profiles
             <TriangleIcon />
           </ProfilesButton>
+          <RemoveButton onClick={OnRemove}>Remove Account</RemoveButton>
         </ButtonContainer>
         <NameCard>
           <YourName>Your Name Here</YourName>
@@ -175,6 +213,7 @@ const MypageProfile = () => {
           </Anniversaries>
         </NameCard>
       </MypageContainer>
+      <Space />
     </>
   );
 };

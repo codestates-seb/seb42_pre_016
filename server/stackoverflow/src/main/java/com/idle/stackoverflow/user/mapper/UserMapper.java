@@ -11,7 +11,20 @@ import java.util.List;
 @Mapper(componentModel = "spring")
 public interface UserMapper {
     User userPostDtoToUser(UserPostDto userPostDto);
+
     User userPatchDtotoUser(UserPatchDto userPatchDto);
-    UserResponseDto userToUserResponseDto(User user);
-    List<UserResponseDto> usersToUserResponseDtos(List<User> users);
+
+    default UserResponseDto userToUserResponseDto(User user) {
+        UserResponseDto responseDto = new UserResponseDto(
+                user.getUserId(),
+                user.getEmail(),
+                user.getDisplayName(),
+                user.getCreatedAt(),
+                user.getModifiedAt(),
+                user.getUserStatus()
+        );
+        return responseDto;
+    }
+
+    List<UserResponseDto> usersToUserResponseDtos(List<User> users);    // 전체 유저 조회
 }

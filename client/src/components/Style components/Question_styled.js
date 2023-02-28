@@ -1,14 +1,49 @@
 import styled from "styled-components";
 
+export const EditWrapper = styled.div`
+  display: flex;
+  width: 100%;
+  height: 20px;
+  position: absolute;
+  top: 88%;
+  margin-left: 200px;
+`;
+
+export const AEditWrapper = styled.div`
+  display: flex;
+  width: 100%;
+  height: 20px;
+  position: absolute;
+  top: 85%;
+  margin-left: 200px;
+`;
+
+export const EditText = styled.div`
+  display: flex;
+  font-size: 16px;
+  color: #888888;
+  cursor: pointer;
+`;
+
 export const HeadWrapper = styled.div`
   display: flex;
-  width: 1480px;
+  width: 1200px;
   height: 120px;
-  position: absolute;
-  top: 4.5%;
+  position: relative;
   left: 19%;
+  margin-top: -1250px;
+  /* background: #eafc91; */
+`;
+
+export const AHeadWrapper = styled.div`
+  display: flex;
+  width: 1480px;
+  height: 50px;
+  position: relative;
+  top: 40%;
+  margin-bottom: 480px;
   flex: 1 1 auto;
-  overflow: hidden;
+  margin-left: 60px;
 `;
 
 export const H1Text = styled.div`
@@ -17,6 +52,15 @@ export const H1Text = styled.div`
   position: absolute;
   left: 2%;
   top: 20%;
+  flex: 1 1 auto;
+`;
+
+export const H4Text = styled.div`
+  padding-left: 20px;
+  display: flex;
+  font-size: 20px;
+  position: relative;
+  top: 25%;
   flex: 1 1 auto;
 `;
 
@@ -36,7 +80,7 @@ export const AskButton = styled.button`
   }
   position: absolute;
   top: 15%;
-  left: 70%;
+  left: 80%;
 `;
 
 export const SubWrapper = styled.div`
@@ -59,10 +103,11 @@ export const SubText = styled.div`
 `;
 
 export const Line = styled.hr`
-  width: 95%;
+  width: 1200px;
   border: solid 0.1px #d1cfcfe6;
-  position: absolute;
-  top: 90%;
+  position: relative;
+  left: -3%;
+  bottom: 0%;
   display: flex;
   flex: 1 1 auto;
 `;
@@ -77,6 +122,35 @@ export const SideWrapper = styled.div`
   position: absolute;
   top: 0%;
   left: 0%;
+  padding: 5px 5px;
+
+  button:nth-child(1),
+  button:nth-child(3),
+  span {
+    margin: 2px;
+  }
+  span {
+    font-size: 25px;
+    color: var(--black-500);
+  }
+  button:nth-child(4) {
+    padding: 6px 0;
+  }
+  button:nth-child(5) {
+    margin: 2px 11.5px;
+    padding: 6px 0;
+  }
+`;
+
+export const ASideWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  width: 70px;
+  height: 590px;
+  position: relative;
+  top: 50%;
+  right: 95%;
   padding: 5px 5px;
 
   button:nth-child(1),
@@ -121,33 +195,62 @@ export const BodyWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 1440px;
-  height: 700px;
-  position: absolute;
-  top: 14%;
+  width: 1200px;
+  height: 600px;
+  position: relative;
   left: 19%;
+  /* background: #eafc91; */
+`;
+
+export const ABodyWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 1200px;
+  height: 300px;
+  position: relative;
+  left: 19%;
+  top: 0%;
+  border-top: solid 0.1px #d1cfcfe6;
+  border-bottom: solid 0.1px #d1cfcfe6;
+  /* background: #eafc91; */
+  /* margin-top: 10px; */
 `;
 
 export const MainWrapper = styled.div`
   display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 1300px;
-  height: 700px;
+  text-align: left;
+  width: 1200px;
+  height: 600px;
   position: absolute;
   left: 6%;
+  /* background: #7a75ff; */
+`;
+
+export const AMainWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 1150px;
+  height: 250px;
+  padding: 20px 10px;
+  position: absolute;
+  top: 0%;
+  left: 5%;
+  /* background: #7a75ff; */
 `;
 
 export const AnswerWrapper = styled.div`
+  margin-top: 2%;
   display: flex;
   justify-content: center;
   align-items: center;
   width: 1440px;
   height: 540px;
   margin-bottom: 100px;
-  position: absolute;
-  top: 62%;
+  position: relative;
   left: 18%;
+  bottom: 40%;
 `;
 
 export const H2Text = styled.div`
