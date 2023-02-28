@@ -54,7 +54,7 @@ const Question = () => {
     };
     setLoading(false);
     getQuestion();
-  }, [loading, VoteQ]);
+  }, [loading, VoteQ, voteA]);
 
   //* 질문 id에 맞는 답변 목록 받아오기
   const getAnswer = async () => {
@@ -122,6 +122,9 @@ const Question = () => {
           },
         }
       )
+      .then(() => {
+        window.location.reload();
+      })
       .catch((error) => {
         console.log(error);
       });
@@ -181,6 +184,11 @@ const Question = () => {
   useEffect(() => {
     setVoteQ(VoteQ);
   }, [VoteQ]);
+
+  //* 답변 투표에 따른 상태 변경 발생할 때마다 재실행
+  useEffect(() => {
+    getAnswer();
+  }, [voteA]);
 
   return (
     <QuestionContainer>

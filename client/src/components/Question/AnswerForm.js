@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "../../api/axios";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
@@ -26,11 +26,8 @@ const AnswerForm = () => {
   //   addAnswer(id, body);
   // };
 
-  const headers = { "ngrok-skip-browser-warning": "12" };
-
   //* post 요청
   const addAnswer = async (id, body) => {
-    axios.defaults.withCredentials = true;
     await axios
       .post(
         `/api/answers`,

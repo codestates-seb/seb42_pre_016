@@ -183,7 +183,7 @@ const QuestionList = () => {
       <MainStyle>
         <div className="title">
           <h1>All Questions</h1>
-          <Link to="/askquestions/1">
+          <Link to="/askquestions">
             <QustionButton>Ask Question</QustionButton>
           </Link>
         </div>
