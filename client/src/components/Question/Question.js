@@ -224,6 +224,7 @@ const Question = () => {
           {Answer.map((SingleA) => (
             <AnswerContent key={SingleA.answerId}>
               <AnswerVoteForm
+                //AnswerVoteForm에 props으로 내려준다.
                 id={SingleA.answerId}
                 voteCount={SingleA.voteCnt}
                 voteA={voteA}
