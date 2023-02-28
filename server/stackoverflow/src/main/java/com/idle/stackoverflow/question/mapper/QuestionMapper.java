@@ -1,6 +1,5 @@
 package com.idle.stackoverflow.question.mapper;
 
-
 import com.idle.stackoverflow.answer.dto.AnswerDto;
 import com.idle.stackoverflow.answer.entity.Answer;
 import com.idle.stackoverflow.question.dto.QuestionMainResponseDto;
@@ -18,7 +17,21 @@ import java.util.stream.Collectors;
 public interface QuestionMapper {
     Question questionPostToQuestion(QuestionPostDto questionPostDto);
     Question questionPatchToQuestion(QuestionPatchDto questionPatchDto);
-    QuestionResponseDto questionToQuestionResponse(Question question);
+
+    default QuestionResponseDto questionToQuestionResponse(Question question) { // Entity -> DTO
+        QuestionResponseDto responseDto = new QuestionResponseDto(
+                question.getQuestionId(),
+                question.getTitle(),
+                question.getContent(),
+                question.getQuestionViewCnt(),
+                question.getAnswerCnt(),
+                question.getCreatedAt(),
+                question.getModifiedAt(),
+                question.getUser().getUserId(),
+                question.getQuestionVoteCnt()
+        );
+        return responseDto;
+    }
 
     default List<AnswerDto.Response> QuestionAnswersToAnswerResponse(List<Answer> answers) {
         return answers
@@ -29,12 +42,13 @@ public interface QuestionMapper {
                         .content(answer.getContent())
                         .createdAt(answer.getCreatedAt())
                         .modifiedAt(answer.getModifiedAt())
-                        .voteCnt(answer.getVoteCnt())
+                        .answerVoteCnt(answer.getAnswerVoteCnt())
                         .userId(answer.getUser().getUserId())
                         .questionId(answer.getQuestion().getQuestionId())
                         .build()).collect(Collectors.toList());
     }
 
+    // 질문 조회
     default QuestionMainResponseDto questionToQuestionMainResponseDto(Question question) {
         List<Answer> answers = question.getAnswers();
 
@@ -42,6 +56,9 @@ public interface QuestionMapper {
                 question.getQuestionId(),
                 question.getTitle(),
                 question.getContent(),
+                question.getQuestionVoteCnt(),
+                question.getQuestionViewCnt(),
+                question.getAnswerCnt(),
                 question.getCreatedAt(),
                 question.getModifiedAt(),
                 QuestionAnswersToAnswerResponse(answers)
@@ -50,4 +67,5 @@ public interface QuestionMapper {
         return response;
     }
 
+    List<QuestionResponseDto> questionMainResponseDtos(List<Question> questions);   // 전체 질문 조회
 }

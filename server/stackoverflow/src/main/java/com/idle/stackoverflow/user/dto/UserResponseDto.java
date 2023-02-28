@@ -6,9 +6,8 @@ import lombok.*;
 import java.time.LocalDateTime;
 
 @Getter
-@Setter
 @AllArgsConstructor
-@NoArgsConstructor
+@Builder
 public class UserResponseDto {
     private Long userId; // 유저 식별 번호
 

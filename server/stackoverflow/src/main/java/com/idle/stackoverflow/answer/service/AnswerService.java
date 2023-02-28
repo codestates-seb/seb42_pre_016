@@ -48,6 +48,21 @@ public class AnswerService {
         return answerRepository.save(findAnswer);
     }
 
+    public Answer answerVoteUp(long answerId) {
+        // 존재하는 answer인지 검증
+        Answer findAnswer = findVerifiedAnswer(answerId);
+        findAnswer.setAnswerVoteCnt(findAnswer.getAnswerVoteCnt()+1);
+        return answerRepository.save(findAnswer);
+    }
+
+    public Answer answerVoteDown(long answerId) {
+        // 존재하는 answer인지 검증
+        Answer findAnswer = findVerifiedAnswer(answerId);
+        findAnswer.setAnswerVoteCnt(findAnswer.getAnswerVoteCnt()-1);
+        return answerRepository.save(findAnswer);
+    }
+
+
     /*
     * questionId에 해당하는 answers목록 조회 QuestionController에 적용함
     public List<Answer> findAnswers() { // 해당 질문 Id에 해당하는 답변리스트 반환

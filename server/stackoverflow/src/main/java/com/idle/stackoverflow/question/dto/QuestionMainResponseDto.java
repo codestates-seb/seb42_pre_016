@@ -17,6 +17,9 @@ public class QuestionMainResponseDto {
     private long questionId;
     private String title;
     private String content;
+    private int questionVoteCnt;
+    private int questionViewCnt;
+    private int answerCnt;
     private LocalDateTime createdAt;
     private LocalDateTime modifiedAt;
     private List<AnswerDto.Response> answers;

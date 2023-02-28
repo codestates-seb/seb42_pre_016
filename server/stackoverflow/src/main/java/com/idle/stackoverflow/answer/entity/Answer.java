@@ -30,8 +30,8 @@ public class Answer {
     @Column(nullable = false)
     private LocalDateTime modifiedAt = LocalDateTime.now();
 
-    @Column(nullable = false)
-    private Long voteCnt = 0L; // vote와 매핑, answerVoteId를 해야하나?...1대1인가?
+    @Column
+    private int answerVoteCnt; // 기본으론 0이 들어간다
 
     @ManyToOne
     @JoinColumn(name = "USER_ID")

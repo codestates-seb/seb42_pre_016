@@ -9,6 +9,8 @@ import QuestionPage from "./page/QuestionPage";
 import Mypage from "./page/MyPage";
 import AskQuestionsPage from "./page/AskQuestionsPage";
 import SignupSuccess from "./page/SignupSuccess";
+import QuestionEditPage from "./page/QuestionEditPage";
+import AnswerEditPage from "./page/AnswerEditPage";
 
 function App() {
   return (
@@ -19,12 +21,12 @@ function App() {
           <Route path="/login" element={<LoginPage />} />
           <Route path="/signup" element={<SignupPage />} />
           <Route path="/logout" element={<LogoutPage />} />
-          <Route path="/questions" element={<QuestionPage />} />
+          <Route path="/questions/1" element={<QuestionPage />} />
           <Route path="/mypage" element={<Mypage />} />
           <Route path="/askquestions" element={<AskQuestionsPage />} />
           <Route path="/siunpsuccess" element={<SignupSuccess />} />
-          {/* <Route path="/questionedit" element={<Questionedit />} /> */}
-          {/* <Route path="/answeredit" element={<Answeredit />} /> */}
+          <Route path="/questionedit" element={<QuestionEditPage />} />
+          <Route path="/answeredit" element={<AnswerEditPage />} />
         </Routes>
       </BrowserRouter>
     </>

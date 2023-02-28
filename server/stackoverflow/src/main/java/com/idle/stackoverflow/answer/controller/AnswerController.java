@@ -12,10 +12,6 @@ import com.idle.stackoverflow.user.service.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.util.UriComponentsBuilder;
-
-import java.net.URI;
-import java.util.List;
 
 @RestController
 @RequestMapping("/stackoverflow.com/answers")
@@ -72,6 +68,24 @@ public class AnswerController {
 
         return new ResponseEntity<>(
                 new SingleResponseDto<>(mapper.answerToAnswerResponse(response)), HttpStatus.OK);
+    }
+
+    @PatchMapping("/voteUp/{answer-id}")
+    public ResponseEntity answerVoteUp(@PathVariable("answer-id") long answerId) {
+        Answer voteUp = answerService.answerVoteUp(answerId);
+
+        AnswerDto.Response response = mapper.answerToAnswerResponse(voteUp);
+        return new ResponseEntity<>(
+                new SingleResponseDto<>(response), HttpStatus.OK);
+    }
+
+    @PatchMapping("/voteDown/{answer-id}")
+    public ResponseEntity answerVoteDown(@PathVariable("answer-id") long answerId) {
+        Answer voteUp = answerService.answerVoteDown(answerId);
+
+        AnswerDto.Response response = mapper.answerToAnswerResponse(voteUp);
+        return new ResponseEntity<>(
+                new SingleResponseDto<>(response), HttpStatus.OK);
     }
 
    /*

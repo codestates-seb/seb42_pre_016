@@ -1,7 +1,132 @@
+import axios from "axios";
 import React from "react";
+import { useState, useEffect, useRef } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
 import { Space } from "../AskQuestions/AskQuestions";
-import QuestionEditor from "../Editor/Editor";
+
+import { CKEditor } from "@ckeditor/ckeditor5-react";
+import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
+
+const QuestionEdit = () => {
+  const { id } = useParams();
+  const [title, setTitle] = useState("");
+  const [content, setContent] = useState("");
+  const editorRef = useRef();
+  const navigate = useNavigate();
+
+  //* 질문 원문의 title, content 가져오기
+  useEffect(() => {
+    const getEditQuestion = async () => {
+      await axios
+        .get(`/api/questions/1`, {
+          headers: { "ngrok-skip-browser-warning": "12" },
+        })
+        .then((res) => {
+          setTitle(res.data.data.title);
+          setContent(res.data.data.content);
+          console.log(res.data.data.content);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    };
+    getEditQuestion();
+  }, []);
+
+  //* 제출버튼
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    editQuestion(); //path 요청
+    window.location.replace(`/questions/1`);
+  };
+
+  //* 취소버튼
+  const handleCancel = () => {
+    navigate(-1);
+  };
+
+  //* 질문 수정 patch 요청
+  const editQuestion = async () => {
+    await axios
+      .patch(
+        `/api/questions/1`,
+        {
+          title: `${title}`,
+          content: `${content}`,
+        },
+        {
+          headers: {
+            "ngrok-skip-browser-warning": "12",
+          },
+        }
+      )
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+  return (
+    <QuestionEditWrapper>
+      <QuestionEditContainer>
+        <Space />
+        <EditNotice>
+          <p>Your edit will be placed in a queue until it is peer reviewed.</p>
+          <p>
+            We welcome edits that make the post easier to understand and more
+            valuable for readers. Because community members review edits, please
+            try to make the post substantially better than how you found it, for
+            example, by fixing grammar or adding additional resources and
+            hyperlinks.
+          </p>
+        </EditNotice>
+        <Title>
+          Title
+          <input
+            type="text"
+            className="title-input"
+            value={title}
+            onChange={(event) => setTitle(event.target.value)}
+          />
+        </Title>
+        <BodyWrapper>
+          <Body>Body</Body>
+          <EditorContainer>
+            <CKEditor
+              ref={editorRef}
+              editor={ClassicEditor}
+              onFocus={(event, editor) => {
+                editor.setData(`${content}`);
+              }}
+              onChange={(event, editor) => {
+                const data = editor.getData();
+                const cutData = data.slice(3, data.length - 4); //앞뒤 <p></p> 마크다운 제거
+                setContent(cutData);
+              }}
+            />
+          </EditorContainer>
+        </BodyWrapper>
+        <QuestionText>{content}</QuestionText>
+        <ButtonWrapper>
+          <SaveEditsButton onClick={handleSubmit}>Save edits</SaveEditsButton>
+          <CancelButton onClick={handleCancel}>Cancel</CancelButton>
+        </ButtonWrapper>
+      </QuestionEditContainer>
+      <EditingTip>
+        <div className="editing-tip-title">How to Edit</div>
+        <div className="editing-tip-description">
+          <li>Correct minor typos or mistakes</li>
+          <li>Clarify meaning without changing it</li>
+          <li>Add related resources or links</li>
+          <li>Always respect the author’s intent</li>
+          <li>Don’t use edits to reply to the author</li>
+        </div>
+      </EditingTip>
+    </QuestionEditWrapper>
+  );
+};
+
+export default QuestionEdit;
 
 // Edit Notice div your edit will be placed ..
 // Title
@@ -17,7 +142,7 @@ const QuestionEditWrapper = styled.div`
   margin: 0;
   display: flex;
   /* flex: 1 1 auto; */
-`
+`;
 
 const QuestionEditContainer = styled.div`
   width: fit-content;
@@ -25,16 +150,15 @@ const QuestionEditContainer = styled.div`
   margin-left: 10px;
   box-sizing: border-box;
   position: relative;
-
-`
+`;
 
 const EditNotice = styled.div`
-    background-color: #fcf7e4;
-    border: solid 1px #e3d085;
-    padding: 0px 20px;
-    width: 745px;
-    margin: 25px;
-`
+  background-color: #fcf7e4;
+  border: solid 1px #e3d085;
+  padding: 0px 20px;
+  width: 745px;
+  margin: 25px;
+`;
 
 const Title = styled.div`
   background-color: white;
@@ -55,8 +179,8 @@ const Title = styled.div`
 `;
 
 const BodyWrapper = styled.div`
-    width: 790px;
-`
+  width: 790px;
+`;
 
 const Body = styled.div`
   background-color: white;
@@ -66,17 +190,17 @@ const Body = styled.div`
   font-weight: bold;
   font-size: 18px;
   margin-left: 25px;
-
-`
+`;
 
 const QuestionText = styled.form`
   background-color: white;
-  width: 790px;
+  width: 780px;
   margin-top: 20px;
   font-size: 18px;
   margin-left: 25px;
-  border: 1px black dotted;
-`
+  /* border: 1px black dotted; */
+  padding: 5px;
+`;
 
 const EditorContainer = styled.div`
   width: 100%;
@@ -91,10 +215,10 @@ const EditorContainer = styled.div`
 `;
 
 const ButtonWrapper = styled.div`
-    margin-left: 25px;
-    margin-top: 40px;
-    margin-bottom: 40px;
-`
+  margin-left: 25px;
+  margin-top: 40px;
+  margin-bottom: 40px;
+`;
 
 const SaveEditsButton = styled.button`
   background-color: #0c96fe;
@@ -148,56 +272,11 @@ const EditingTip = styled.div`
     margin-top: -1px;
     font-size: 15px;
     align-content: center;
-    
+
     li {
-        margin-top: 10px;
-        margin-bottom: 10px;
-        margin-left: 20px;
+      margin-top: 10px;
+      margin-bottom: 10px;
+      margin-left: 20px;
     }
   }
 `;
-
-
-
-const QuestionEdit = () => {
-    return (
-        <QuestionEditWrapper>
-        <QuestionEditContainer>
-        <Space />
-            <EditNotice>
-                <p>Your edit will be placed in a queue until it is peer reviewed.</p>
-                <p>We welcome edits that make the post easier to understand and more valuable for readers. Because community members review edits, please try to make the post substantially better than how you found it, for example, by fixing grammar or adding additional resources and hyperlinks.</p>
-            </EditNotice>
-        <Title>
-            Title
-            <input type="text" className="title-input" placeholder=" Question 원문 제목"/>
-        </Title>
-        <BodyWrapper>
-            <Body>Body</Body>
-            <EditorContainer>
-                <QuestionEditor />
-            </EditorContainer>
-        </BodyWrapper>
-        <QuestionText>Question 원문이 들어갑니다.</QuestionText>
-        <ButtonWrapper>
-            <SaveEditsButton>Save edits</SaveEditsButton>
-            <CancelButton>Cancel</CancelButton>
-        </ButtonWrapper>
-        </QuestionEditContainer>
-        <EditingTip>
-            <div className="editing-tip-title">How to Edit</div>
-            <div className="editing-tip-description">
-                <li>Correct minor typos or mistakes</li>
-                <li>Clarify meaning without changing it</li>
-                <li>Add related resources or links</li>
-                <li>Always respect the author’s intent</li>
-                <li>Don’t use edits to reply to the author</li>
-            </div>
-        </EditingTip>
-        </QuestionEditWrapper>
-    
-        
-    )
-};
-
-export default QuestionEdit;
