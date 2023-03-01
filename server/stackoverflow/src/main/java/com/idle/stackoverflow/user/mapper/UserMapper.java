@@ -17,8 +17,8 @@ public interface UserMapper {
     default UserResponseDto userToUserResponseDto(User user) {
         UserResponseDto responseDto = new UserResponseDto(
                 user.getUserId(),
-                user.getEmail(),
                 user.getDisplayName(),
+                user.getEmail(),
                 user.getCreatedAt(),
                 user.getModifiedAt(),
                 user.getUserStatus()

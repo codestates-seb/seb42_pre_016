@@ -3,6 +3,10 @@ import styled from "styled-components";
 import axios from "axios";
 
 const AnswerVoteForm = ({ id, voteCount, voteA, setVoteA }) => {
+  const urlStr = window.location.href;
+  const url = new URL(urlStr);
+  const urlParams = url.searchParams.get("questID"); //url파라미터값
+
   const [isVotedA, setIsVotedA] = useState(false);
 
   //* Answer VoteUp 버튼 눌렀을 때

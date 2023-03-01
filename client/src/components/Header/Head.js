@@ -25,7 +25,7 @@ const Head = () => {
     <>
       <HeadBar>
         <Space />
-        <Link to="/">
+        <Link to="/main">
           <LogoSrc src={Logo} />
         </Link>
         <ProductsButton>Products</ProductsButton>

@@ -46,7 +46,7 @@ const Logout = () => {
         <Checkbox type="checkbox" />
         <CheckText>Log out on all devices</CheckText>
         <LogoutButton>Log out</LogoutButton>
-        <Link to="/">
+        <Link to="/main">
           <CancelButton>Cancel</CancelButton>
         </Link>
       </Form>

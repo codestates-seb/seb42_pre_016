@@ -34,14 +34,14 @@ const HeadLogout = (type) => {
             {click ? <Dropdown page2={type.page2} /> : null}
           </div>
         </div>
-        <Link to="/">
+        <Link to="/main">
           <LogoSrc src={Logo} />
         </Link>
         <StatusButton>About</StatusButton>
         <StatusButton>Products</StatusButton>
         <StatusButton>ForTeams</StatusButton>
         <SearchInput placeholder="Search..."></SearchInput>
-        <Link to="/login">
+        <Link to="/">
           <LoginButton>Log in</LoginButton>
         </Link>
         <Link to="/signup">
