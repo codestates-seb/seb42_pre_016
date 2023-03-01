@@ -21,7 +21,7 @@ public class Answer {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long answerId;
 
-    @Column(nullable = false) // length기본값 255, length = 10000+a 설정 해줘야 하나?
+    @Column(nullable = false, length = 5000) // length기본값 255, length = 10000+a 설정 해줘야 하나?
     private String content;
 
     @Column(nullable = false)
