@@ -38,7 +38,7 @@ const QuestionEdit = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     editQuestion(); //path 요청
-    window.location.replace(`/questions/1`);
+    window.history.back();
   };
 
   //* 취소버튼

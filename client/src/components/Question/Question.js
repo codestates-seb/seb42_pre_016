@@ -21,13 +21,10 @@ import {
   AnswerButton,
 } from "./Qustion.styled";
 
-
-
 const Question = () => {
-
   const urlStr = window.location.href;
   const url = new URL(urlStr);
-  const urlParams = url.searchParams.get('questID'); //url파라미터값
+  const urlParams = url.searchParams.get("questID"); //url파라미터값
 
   const { id } = useParams(); //vote에 있는 1도
 
@@ -121,7 +118,7 @@ const Question = () => {
         {
           content: `${body}`,
           userId: 1,
-          questionId: 1,
+          questionId: `${urlParams}`,
         },
         {
           headers: {
@@ -152,7 +149,7 @@ const Question = () => {
   //* Question VoteUp - patch 요청 보내기
   const PatchQuestionVoteUp = async () => {
     await axios
-      .patch(`/api/questions/voteUp/1`, {
+      .patch(`/api/questions/voteUp/${urlParams}`, {
         headers: {
           "ngrok-skip-browser-warning": "12",
         },
@@ -177,7 +174,7 @@ const Question = () => {
   //* Question VoteDown - patch 요청 보내기
   const PatchQuestionVoteDown = async () => {
     await axios
-      .patch(`/api/questions/voteDown/1`, {
+      .patch(`/api/questions/voteDown/${urlParams}`, {
         headers: {
           "ngrok-skip-browser-warning": "12",
         },
@@ -311,7 +308,16 @@ const Question = () => {
                 <div className="writer-area">
                   <div>
                     <span>Share</span>
-                    <Link to={`/answeredit`}>Edit</Link>
+                    <Link
+                      to={"/answeredit"}
+                      state={{
+                        questionId: Question.questionId,
+                        answerId: SingleA.answerId,
+                        userId: urlParams,
+                      }}
+                    >
+                      Edit
+                    </Link>
                     <span>Follow</span>
                   </div>
                   <div></div>
