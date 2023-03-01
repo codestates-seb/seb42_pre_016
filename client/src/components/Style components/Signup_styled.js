@@ -1,150 +1,173 @@
 import styled from "styled-components";
 
-export const Wrapper = styled.div`
+//* new styled component
+
+export const Container = styled.section`
   display: flex;
-  justify-content: flex-start;
-  position: absolute;
-  width: 1000px;
-  height: 1000px;
-  top: 10%;
-  left: 20%;
-  flex: 1 0 auto;
+  background-color: rgb(237, 239, 240);
+  justify-content: center;
+  margin-top: 120px;
 `;
 
-export const SideWrapper = styled.form`
+export const LeftSideContainer = styled.div`
   display: flex;
-  justify-content: flex-start;
-  position: absolute;
-  width: 500px;
-  height: 285px;
-  top: 41%;
-  left: 12%;
-  flex: 1 0 auto;
+  flex-direction: column;
+  align-items: center;
+  margin: 290px 30px 20px 100px;
+  font-size: 17px;
+  .greyfont {
+    color: grey;
+    font-size: 14px;
+  }
+  & link {
+    font-size: 12px;
+    font-weight: 500;
+  }
+  & h1 {
+    justify-content: flex-start;
+    font-size: 27.2px;
+    font-weight: 500;
+    margin-left: 10px;
+    margin-bottom: 5px;
+  }
 `;
 
-export const HText = styled.div`
+export const SignupContainer = styled.section`
+  width: 400px;
   display: flex;
-  justify-content: flex-start;
-  position: absolute;
-  font-size: 27.2px;
-  font-weight: 500;
+  flex-direction: column;
+  margin: 50px 40px 20px 100px;
+
+  .social-signup-container {
+    width: 360px;
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+  }
+  .social-signup-container > button {
+    margin: 4px 0px;
+    padding: 14px;
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 16px;
+    font-weight: 500;
+    border-radius: 5px;
+    text-decoration: none;
+    cursor: pointer;
+    > span {
+      margin-left: 6px;
+    }
+  }
+
+  .google {
+    color: #2f3337;
+    background-color: #ffffff;
+    border: 1px solid #cbcbcbe6;
+    &:hover {
+      background-color: #f5f5f5;
+      color: #2f3337;
+    }
+  }
+  .github {
+    color: #ffffff;
+    background-color: #2f3337;
+    border-color: transparent;
+    &:hover {
+      background-color: #000000;
+      color: #ffffff;
+    }
+  }
+  .facebook {
+    color: #ffffff;
+    background-color: #385499;
+    border-color: transparent;
+    &:hover {
+      background-color: #364984;
+      color: #ffffff;
+    }
+  }
+
+  .message {
+    color: red;
+  }
+
+  .account-signup-container {
+    width: 320px;
+    height: 550px;
+    margin-bottom: 30px;
+    padding: 30px 20px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px #a7a7a7;
+    background-color: #ffffff;
+    > div {
+      margin-bottom: 25px;
+    }
+    & input {
+      border: solid 1px #c2c2c2;
+      width: 310px;
+      height: 38px;
+      margin-top: 7px;
+      &:focus {
+        border: 1px solid #92c3e9;
+        border-radius: 5px;
+        box-shadow: 0px 0px 0px 5px #d9eaf7;
+        outline: 0;
+      }
+    }
+
+    .checkbox {
+      margin-top: 30px;
+      width: 12px;
+      height: 12px;
+    }
+    .checkbox-wrap {
+      font-size: 13px;
+    }
+
+    .password-valid {
+      font-size: 14px;
+      color: #717c83;
+      margin-top: 0rem;
+    }
+
+    .name {
+      margin-bottom: 10px;
+    }
+
+    & button {
+      width: 310px;
+      height: 40px;
+      margin: 10px 0;
+      border: none;
+      border-radius: 5px;
+      box-shadow: 1px 1px 2px #ffffffb1 inset;
+      background: #0c96fe;
+      border: solid 1px #0c96fe;
+      font-size: 17px;
+      color: #ffffff;
+      :hover {
+        cursor: pointer;
+        background-color: #0074cc;
+      }
+    }
+  }
+  & a {
+    font-weight: 500;
+    color: #0b79ce;
+    :hover {
+      color: #4da4de;
+      cursor: pointer;
+    }
+  }
 `;
 
-export const SubImg = styled.img`
+export const Policy = styled.div`
   display: flex;
   flex-direction: row;
-  width: 26px;
-  height: 26px;
-  margin: 0 5px;
-`;
-
-export const SubText = styled.p`
-  width: 410px;
-  font-size: 15px;
-  font-weight: 500;
-  display: flex;
-  justify-content: flex-start;
-  position: absolute;
-  top: ${(props) => props.top};
-`;
-
-export const LittleText = styled.div`
-  display: flex;
-  justify-content: flex-start;
-  width: 500px;
-  color: ${(props) => props.color || "#717c83"};
-  font-size: 12px;
-  position: absolute;
-  top: ${(props) => props.top};
-`;
-
-export const Form = styled.form`
-  width: 288.45px;
-  height: 400px;
-  background: #ffffff;
-  border-radius: 10px;
-  box-shadow: 2px 2px 5px #c2c2c2;
-  position: absolute;
-  top: 39%;
-  left: 58%;
-`;
-
-export const SignupButton = styled.button`
-  width: 240.45px;
-  height: 37.8px;
-  border-radius: 5px;
-  box-shadow: 1px 1px 2px #ffffffb1 inset;
-  background: #0c96fe;
-  border: solid 1px #0c96fe;
-  color: white;
-  position: absolute;
-  top: ${(props) => props.top};
-  left: ${(props) => props.left};
-  cursor: pointer;
-`;
-
-export const Checkbox = styled.input`
-  display: flex;
-  position: absolute;
-  top: ${(props) => props.top};
-  left: ${(props) => props.left};
-`;
-
-export const CheckText = styled.span`
-  width: 210px;
-  height: 32.59px;
-  color: ${(props) => props.color};
-  font-size: 12.5px;
-  position: absolute;
-  top: ${(props) => props.top};
-  left: ${(props) => props.left};
-`;
-
-export const GoogleButton = styled.button`
-  width: 288.45px;
-  height: 37.8px;
-  border-radius: 6px;
-  background: #ffffff;
-  color: ${(props) => props.color};
-  border: solid 1px #cbcbcbe6;
-  position: absolute;
-  top: 26.5%;
-  left: 58%;
-  cursor: pointer;
-`;
-
-export const GithubButton = styled.button`
-  width: 288.45px;
-  height: 37.8px;
-  border-radius: 6px;
-  background: #2f3339;
-  color: ${(props) => props.color};
-  border: solid 1px #cbcbcbe6;
-  position: absolute;
-  top: 30.5%;
-  left: 58%;
-  cursor: pointer;
-`;
-
-export const FacebookButton = styled.button`
-  width: 288.45px;
-  height: 37.8px;
-  border-radius: 6px;
-  background: #385399;
-  color: ${(props) => props.color};
-  border: solid 1px #cbcbcbe6;
-  position: absolute;
-  top: 34.5%;
-  left: 58%;
-  cursor: pointer;
-`;
-
-export const FootWrapper = styled.form`
-  display: flex;
-  justify-content: flex-start;
-  position: absolute;
-  width: 288.45px;
-  height: 20px;
-  top: 105%;
-  left: 12%;
+  flex-wrap: wrap;
+  font-size: 13px;
+  margin-top: 10px;
+  color: #717c83;
 `;

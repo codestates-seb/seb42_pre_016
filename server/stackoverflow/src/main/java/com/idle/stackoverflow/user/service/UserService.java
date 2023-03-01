@@ -62,7 +62,8 @@ public class UserService {
         User findUser = findVerifiedUser(user.getUserId()); // 유저 검증
         Optional.ofNullable(user.getDisplayName()).ifPresent(displayName -> findUser.setDisplayName(displayName));  // 닉네임 업데이트
         Optional.ofNullable(user.getEmail()).ifPresent(email -> findUser.setEmail(email));  // 이메일 업데이트
-        Optional.ofNullable(user.getUserStatus()).ifPresent(userStatus -> findUser.setUserStatus(userStatus));  // 상태 업데이트
+        Optional.ofNullable(user.getPassword()).ifPresent(password -> findUser.setPassword(password));  // 패스워드 업데이트
+//        Optional.ofNullable(user.getUserStatus()).ifPresent(userStatus -> findUser.setUserStatus(userStatus));  // 상태 업데이트
         findUser.setModifiedAt(LocalDateTime.now());    // 수정 시간 업데이트
         return userRepository.save(findUser);   // 유저 등록
     }
