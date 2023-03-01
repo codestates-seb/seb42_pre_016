@@ -209,9 +209,9 @@ const QuestionList = () => {
               <div className="question_data" key={question.questionId}>
               <List>
                 <ListLeft>
-                  <span>0 votes</span>
-                  <span>1 answer</span>
-                  <span>10 views</span>
+                  <span>{`${question.questionVoteCnt} votes`} </span>
+                  <span>{`${question.answerCnt } answer`}</span>
+                  <span>{`${question.questionViewCnt } views`}</span>
                 </ListLeft>
                 <ListMain>
                   {/* <div className="question">0 question</div> */}
