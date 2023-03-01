@@ -87,7 +87,7 @@ const Question = () => {
       })
       // 삭제 후 다시 메인페이지로 이동
       .then(() => {
-        window.location.replace("/");
+        window.location.replace("/main");
       })
       .catch((err) => {
         console.log(err);
@@ -110,7 +110,7 @@ const Question = () => {
   };
 
   //* 새 답변 post 요청
-  const addAnswer = async (id, body) => {
+  const addAnswer = async (body) => {
     axios.defaults.withCredentials = true;
     await axios
       .post(

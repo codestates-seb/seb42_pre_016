@@ -28,7 +28,7 @@ const AnswerEdit = () => {
       .then((res) => {
         setQuestion(res.data.data);
         setAnswers(res.data.data.answers); //댓글 전체 목록
-        // console.log(res.data.data.answers);
+        console.log(res.data.data.answers);
       })
       .catch((err) => {
         console.log(err);
@@ -105,26 +105,24 @@ const AnswerEdit = () => {
         <BodyWrapper>
           <Answer>Answer</Answer>
           <EditorContainer>
-            {answer.content && (
-              <CKEditor
-                ref={editARef}
-                editor={ClassicEditor}
-                // onFocus={(event, editor) => {
-                //   if (answer.content) {
-                //     editor.setData(answer.content);
-                //   }
-                // }}
-                onReady={(editor) => {
-                  editor.setData(answer.content);
-                }}
-                onChange={(event, editor) => {
-                  const data = editor.getData();
-                  const cutData = data.slice(3, data.length - 4); //앞뒤 <p></p> 마크다운 제거
-                  editor.setData(cutData);
-                  // answer.content = cutData;
-                }}
-              />
-            )}
+            <CKEditor
+              ref={editARef}
+              editor={ClassicEditor}
+              // onFocus={(event, editor) => {
+              //   if (answer.content) {
+              //     editor.setData(answer.content);
+              //   }
+              // }}
+              onReady={(editor) => {
+                editor.setData(answer.content);
+              }}
+              onChange={(event, editor) => {
+                const data = editor.getData();
+                const cutData = data.slice(3, data.length - 4); //앞뒤 <p></p> 마크다운 제거
+                editor.setData(cutData);
+                // answer.content = cutData;
+              }}
+            />
           </EditorContainer>
           <AnswerText>{answer.content}</AnswerText>
         </BodyWrapper>

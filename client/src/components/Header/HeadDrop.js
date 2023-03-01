@@ -41,7 +41,7 @@ const Head = (type) => {
             {click ? <Dropdown page2={type.page2} /> : null}
           </div>
         </div>
-        <Link to="/">
+        <Link to="/main">
           <LogoSrc src={Logo} />
         </Link>
         <ProductsButton>Products</ProductsButton>

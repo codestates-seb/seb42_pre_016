@@ -1,5 +1,5 @@
-import React,{ useState } from "react";
-import { useNavigate } from 'react-router-dom';
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import LogoLogin from "../../img/Logo_Login.png";
 import Gmail from "../../img/Gmail.png";
 import Github from "../../img/Github.png";
@@ -19,14 +19,11 @@ import {
 } from "../Style components/Login_styled";
 import axios from "axios";
 
-
-
 const Login = () => {
   const [inputUsername, setUsername] = useState("");
   const [inputPassord, setPassword] = useState("");
 
   const navigate = useNavigate();
-
 
   const handleChangename = (event) => {
     setUsername(event.target.value);
@@ -36,26 +33,28 @@ const Login = () => {
     setPassword(event.target.value);
   };
 
-  const checkLogin = async () => { 
+  const checkLogin = async () => {
     await axios
-    .post(
-      `/api/auth/login`,
-      {
-        username : `${inputUsername}`,
-        password : `${inputPassord}`
-      },
-      {
-        headers: { "ngrok-skip-browser-warning": "12" },
-      }
-    ).then(() => {
-      alert("login success")
-      navigate('/');
-    }).catch((err) =>{
-      console.log(err);
-      alert("login fail")
-    })
+      .post(
+        `/api/auth/login`,
+        {
+          username: `${inputUsername}`,
+          password: `${inputPassord}`,
+        },
+        {
+          headers: { "ngrok-skip-browser-warning": "12" },
+        }
+      )
+      .then(() => {
+        alert("login success");
+        navigate("/main");
+      })
+      .catch((err) => {
+        console.log(err);
+        alert("login fail");
+      });
   };
-  
+
   return (
     <>
       <LogoWapper>
@@ -75,9 +74,10 @@ const Login = () => {
       </FacebookButton>
       <Form>
         <Text top="12%">Email</Text>
-        <Input top="21%"
+        <Input
+          top="21%"
           type="email"
-          name = "username"
+          name="username"
           defaultValue={inputUsername}
           onChange={handleChangename}
         />
@@ -85,13 +85,16 @@ const Login = () => {
         <UnderText color="#0f79ce" top="44%" left="60%">
           Forgot Password?
         </UnderText>
-        <Input top="53%"
+        <Input
+          top="53%"
           type="password"
           name="password"
           defaultValue={inputPassord}
-          onChange={handleChangePass}  
+          onChange={handleChangePass}
         />
-        <LoginButton type="button" onClick={() => checkLogin()}>Log in</LoginButton>
+        <LoginButton type="button" onClick={() => checkLogin()}>
+          Log in
+        </LoginButton>
       </Form>
     </>
   );
