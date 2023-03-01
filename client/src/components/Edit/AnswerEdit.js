@@ -13,10 +13,8 @@ const AnswerEdit = () => {
   const selectedAnswerId = state.answerId;
   const selectedUserId = state.userId;
 
-  const { id } = useParams();
   const [question, setQuestion] = useState({});
   const [answer, setAnswer] = useState({});
-  const [answers, setAnswers] = useState([]);
   const editARef = useRef();
   const navigate = useNavigate();
 
@@ -27,24 +25,30 @@ const AnswerEdit = () => {
       })
       .then((res) => {
         setQuestion(res.data.data);
-        setAnswers(res.data.data.answers); //댓글 전체 목록
-        console.log(res.data.data.answers);
       })
       .catch((err) => {
         console.log(err);
       });
   };
+  const getAnswer = async () => {
+    await axios
+    .get(`/api/answers/${selectedAnswerId}`, {
+      headers: { "ngrok-skip-browser-warning": "12" },
+    })
+    .then((res) => {
+      setAnswer(res.data.content)
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+  }
 
   //* 질문 / 답변 원문 가져오기
   useEffect(() => {
     getQuestion();
-    answers.filter((val) => {
-      if (val.answerId === selectedAnswerId) {
-        setAnswer(val);
+    getAnswer();
         // console.log(val);
-      }
-    });
-  }, []);
+      }, [])
 
   //* 제출버튼
   const handleSubmit = (e) => {
@@ -64,7 +68,7 @@ const AnswerEdit = () => {
       .patch(
         `/api/answers/${selectedAnswerId}`,
         {
-          content: `${answer.content}`,
+          content: `${answer}`,
         },
         {
           headers: {
@@ -108,23 +112,17 @@ const AnswerEdit = () => {
             <CKEditor
               ref={editARef}
               editor={ClassicEditor}
-              // onFocus={(event, editor) => {
-              //   if (answer.content) {
-              //     editor.setData(answer.content);
-              //   }
-              // }}
-              onReady={(editor) => {
-                editor.setData(answer.content);
+              onFocus={(event, editor) => {
+                editor.setData(`${answer}`);
               }}
               onChange={(event, editor) => {
                 const data = editor.getData();
                 const cutData = data.slice(3, data.length - 4); //앞뒤 <p></p> 마크다운 제거
-                editor.setData(cutData);
-                // answer.content = cutData;
+                setAnswer(cutData);
               }}
             />
           </EditorContainer>
-          <AnswerText>{answer.content}</AnswerText>
+          <AnswerText>{`${answer}`}</AnswerText>
         </BodyWrapper>
         <ButtonWrapper>
           <SaveEditsButton onClick={handleSubmit}>Save edits</SaveEditsButton>
@@ -206,8 +204,8 @@ const AnswerText = styled.form`
   margin-top: 20px;
   font-size: 18px;
   margin-left: 25px;
-  border: 1px black dotted;
 `;
+
 
 const EditorContainer = styled.div`
   width: 100%;

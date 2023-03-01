@@ -367,7 +367,6 @@ const Question = () => {
                   const data = editor.getData();
                   const cutData = data.slice(3, data.length - 4); //앞뒤 <p></p> 마크다운 제거
                   setBody(cutData);
-                  console.log(data);
                 }}
               />
             </EditorWrap>
