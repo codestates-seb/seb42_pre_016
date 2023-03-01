@@ -28,6 +28,7 @@ const AnswerEdit = () => {
       .then((res) => {
         setQuestion(res.data.data);
         setAnswers(res.data.data.answers); //댓글 전체 목록
+        // console.log(res.data.data.answers);
       })
       .catch((err) => {
         console.log(err);
@@ -40,7 +41,7 @@ const AnswerEdit = () => {
     answers.filter((val) => {
       if (val.answerId === selectedAnswerId) {
         setAnswer(val);
-        console.log(val);
+        // console.log(val);
       }
     });
   }, []);

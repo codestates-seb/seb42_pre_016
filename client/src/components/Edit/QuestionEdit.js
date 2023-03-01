@@ -8,8 +8,11 @@ import { Space } from "../AskQuestions/AskQuestions";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 
-const QuestionEdit = () => {
-  const { id } = useParams();
+const QuestionEdit = ({ id }) => {
+  const urlStr = window.location.href;
+  const url = new URL(urlStr);
+  const urlParams = url.searchParams.get("questID"); //url파라미터값
+
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const editorRef = useRef();
@@ -19,7 +22,7 @@ const QuestionEdit = () => {
   useEffect(() => {
     const getEditQuestion = async () => {
       await axios
-        .get(`/api/questions/1`, {
+        .get(`/api/questions/${urlParams}`, {
           headers: { "ngrok-skip-browser-warning": "12" },
         })
         .then((res) => {
@@ -50,7 +53,7 @@ const QuestionEdit = () => {
   const editQuestion = async () => {
     await axios
       .patch(
-        `/api/questions/1`,
+        `/api/questions/${urlParams}`,
         {
           title: `${title}`,
           content: `${content}`,

@@ -259,7 +259,7 @@ const Question = () => {
             <div className="writer-area">
               <div>
                 <span>Share</span>
-                <Link to={`/questionedit`}>Edit</Link>
+                <Link to={`/questionedit/?questID=${urlParams}`}>Edit</Link>
                 <span>Follow</span>
               </div>
               <div></div>
