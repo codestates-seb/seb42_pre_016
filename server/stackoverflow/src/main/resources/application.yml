@@ -1,14 +1,15 @@
 spring:
-  h2:
-    console:
-      enabled: true # H2 Console 사용 여부
-      path: /h2     # Context path 변경
   datasource:
-    url: jdbc:h2:mem:test     # JDBC URL 변경
+    url: jdbc:mysql://localhost:3306/stackoverflow?useSSL=false&serverTimezone=Asia/Seoul
+    username: root
+    password:
+    driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
+    database: mysql
+    database-platform: org.hibernate.dialect.MySQL8Dialect
     hibernate:
-      ddl-auto: create  # 스키마 자동 생성
-    show-sql: true      # SQL 쿼리 출력
+      ddl-auto: update
+    show-sql: true
 mail:
   address:
     admin: admin@gmail.com
@@ -16,4 +17,3 @@ jwt:
   key: ${JWT_SECRET_KEY}
   access-token-expiration-minutes: 30
   refresh-token-expiration-minutes: 420
-
