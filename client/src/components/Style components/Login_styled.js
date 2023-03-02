@@ -13,6 +13,17 @@ export const LogoWapper = styled.div`
 export const LogoSrc = styled.img`
   width: 45px;
   height: 42px;
+  margin-bottom: 20px;
+`;
+
+export const Buttons = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 288.45px;
+  position: absolute;
+  top: 34%;
+  left: 35%;
 `;
 
 export const GoogleButton = styled.button`
@@ -22,10 +33,9 @@ export const GoogleButton = styled.button`
   background: #ffffff;
   color: ${(props) => props.color};
   border: solid 1px #cbcbcbe6;
-  position: absolute;
-  top: 35%;
-  left: 35%;
+  position: relative;
   cursor: pointer;
+  margin-bottom: 10px;
 `;
 
 export const GithubButton = styled.button`
@@ -35,10 +45,9 @@ export const GithubButton = styled.button`
   background: #2f3339;
   color: ${(props) => props.color};
   border: solid 1px #cbcbcbe6;
-  position: absolute;
-  top: 38.5%;
-  left: 35%;
+  position: relative;
   cursor: pointer;
+  margin-bottom: 10px;
 `;
 
 export const FacebookButton = styled.button`
@@ -48,10 +57,9 @@ export const FacebookButton = styled.button`
   background: #385399;
   color: ${(props) => props.color};
   border: solid 1px #cbcbcbe6;
-  position: absolute;
-  top: 42%;
-  left: 35%;
+  position: relative;
   cursor: pointer;
+  margin-bottom: 10px;
 `;
 
 export const Form = styled.form`

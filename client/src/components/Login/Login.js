@@ -5,6 +5,7 @@ import Gmail from "../../img/Gmail.png";
 import Github from "../../img/Github.png";
 import Facebook from "../../img/Facebook.png";
 import {
+  Buttons,
   LogoWapper,
   LogoSrc,
   GoogleButton,
@@ -57,21 +58,22 @@ const Login = () => {
 
   return (
     <>
-      <LogoWapper>
+      <Buttons>
         <LogoSrc src={LogoLogin} />
-      </LogoWapper>
-      <GoogleButton color="black">
-        <ImgSrc src={Gmail} />
-        Log in with Google
-      </GoogleButton>
-      <GithubButton color="white">
-        <ImgSrc src={Github} />
-        Log in with GitHub
-      </GithubButton>
-      <FacebookButton color="white">
-        <ImgSrc src={Facebook} />
-        Log in with Facebook
-      </FacebookButton>
+        <GoogleButton color="black">
+          <ImgSrc src={Gmail} />
+          Log in with Google
+        </GoogleButton>
+        <GithubButton color="white">
+          <ImgSrc src={Github} />
+          Log in with GitHub
+        </GithubButton>
+        <FacebookButton color="white">
+          <ImgSrc src={Facebook} />
+          Log in with Facebook
+        </FacebookButton>
+      </Buttons>
+
       <Form>
         <Text top="12%">Email</Text>
         <Input
