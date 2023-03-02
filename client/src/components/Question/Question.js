@@ -22,6 +22,10 @@ import {
 } from "./Qustion.styled";
 
 const Question = () => {
+  const urlStr = window.location.href;
+  const url = new URL(urlStr);
+  const urlParams = url.searchParams.get("questID"); //url파라미터값
+
   const { id } = useParams(); //vote에 있는 1도
 
   const [Question, setQuestion] = useState({});
@@ -40,7 +44,7 @@ const Question = () => {
     setLoading(true);
     const getQuestion = async () => {
       await axios
-        .get(`/api/questions/1`, {
+        .get(`/api/questions/${urlParams}`, {
           headers: { "ngrok-skip-browser-warning": "12" },
         })
         .then((res) => {
@@ -59,7 +63,7 @@ const Question = () => {
   //* 질문 id에 맞는 답변 목록 받아오기
   const getAnswer = async () => {
     await axios
-      .get(`/api/questions/1`, {
+      .get(`/api/questions/${urlParams}`, {
         headers: { "ngrok-skip-browser-warning": "12" },
       })
       .then((res) => {
@@ -78,12 +82,12 @@ const Question = () => {
   //* 질문 삭제
   const DeleteQuestion = async () => {
     await axios
-      .delete(`/api/questions/1`, {
+      .delete(`/api/questions/${urlParams}`, {
         headers: { "ngrok-skip-browser-warning": "12" },
       })
       // 삭제 후 다시 메인페이지로 이동
       .then(() => {
-        window.location.replace("/");
+        window.location.replace("/main");
       })
       .catch((err) => {
         console.log(err);
@@ -106,7 +110,7 @@ const Question = () => {
   };
 
   //* 새 답변 post 요청
-  const addAnswer = async (id, body) => {
+  const addAnswer = async () => {
     axios.defaults.withCredentials = true;
     await axios
       .post(
@@ -114,7 +118,7 @@ const Question = () => {
         {
           content: `${body}`,
           userId: 1,
-          questionId: 1,
+          questionId: `${urlParams}`,
         },
         {
           headers: {
@@ -145,7 +149,7 @@ const Question = () => {
   //* Question VoteUp - patch 요청 보내기
   const PatchQuestionVoteUp = async () => {
     await axios
-      .patch(`/api/questions/voteUp/1`, {
+      .patch(`/api/questions/voteUp/${urlParams}`, {
         headers: {
           "ngrok-skip-browser-warning": "12",
         },
@@ -170,7 +174,7 @@ const Question = () => {
   //* Question VoteDown - patch 요청 보내기
   const PatchQuestionVoteDown = async () => {
     await axios
-      .patch(`/api/questions/voteDown/1`, {
+      .patch(`/api/questions/voteDown/${urlParams}`, {
         headers: {
           "ngrok-skip-browser-warning": "12",
         },
@@ -255,7 +259,7 @@ const Question = () => {
             <div className="writer-area">
               <div>
                 <span>Share</span>
-                <Link to={`/questionedit`}>Edit</Link>
+                <Link to={`/questionedit/?questID=${urlParams}`}>Edit</Link>
                 <span>Follow</span>
               </div>
               <div></div>
@@ -304,7 +308,16 @@ const Question = () => {
                 <div className="writer-area">
                   <div>
                     <span>Share</span>
-                    <Link to={`/answeredit`}>Edit</Link>
+                    <Link
+                      to={"/answeredit"}
+                      state={{
+                        questionId: Question.questionId,
+                        answerId: SingleA.answerId,
+                        userId: urlParams,
+                      }}
+                    >
+                      Edit
+                    </Link>
                     <span>Follow</span>
                   </div>
                   <div></div>
@@ -354,7 +367,7 @@ const Question = () => {
                   const data = editor.getData();
                   const cutData = data.slice(3, data.length - 4); //앞뒤 <p></p> 마크다운 제거
                   setBody(cutData);
-                  console.log(data);
+                  console.log(cutData);
                 }}
               />
             </EditorWrap>

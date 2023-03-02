@@ -3,8 +3,6 @@ import axios from "axios";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 
-
-
 const QustionButton = styled.button`
   height: 33px;
   outline: none;
@@ -106,11 +104,11 @@ const timecheck = (createdAtUTC) => {
     "Dec",
   ];
 
-  return (`${
+  return `${
     month[dateCreatedAt.getMonth()]
   } ${dateCreatedAt.getDate()}, ${dateCreatedAt.getFullYear()} at ${String(
     dateCreatedAt.getHours()
-  ).padStart(2, "0")}:${String(dateCreatedAt.getMinutes()).padStart(2, "0")}`);
+  ).padStart(2, "0")}:${String(dateCreatedAt.getMinutes()).padStart(2, "0")}`;
   // 시간 두자리수 표기법 padStart 사용하기
 };
 
@@ -179,21 +177,19 @@ export const Space = styled.div`
   width: 5%;
 `;
 
-
 const QuestionList = () => {
-
   const [questions, setQuestions] = useState([]);
 
   useEffect(() => {
     axios
-      .get('/api/questions', {
-        headers: { "ngrok-skip-browser-warning": "12"},
+      .get("/api/questions", {
+        headers: { "ngrok-skip-browser-warning": "12" },
       })
       .then((res) => {
         setQuestions(res.data.data);
       });
   }, []);
-  
+
   return (
     <>
       <MainStyle>
@@ -203,19 +199,18 @@ const QuestionList = () => {
             <QustionButton>Ask Question</QustionButton>
           </Link>
         </div>
-        
-          {questions.map((question) =>{
-            return (
-              <div className="question_data" key={question.questionId}>
+
+        {questions.map((question) => {
+          return (
+            <div className="question_data" key={question.questionId}>
               <List>
                 <ListLeft>
-                  <span>0 votes</span>
-                  <span>1 answer</span>
-                  <span>10 views</span>
+                  <span>{`${question.questionVoteCnt} votes`} </span>
+                  <span>{`${question.answerCnt} answer`}</span>
+                  <span>{`${question.questionViewCnt} views`}</span>
                 </ListLeft>
                 <ListMain>
-                  {/* <div className="question">0 question</div> */}
-                  <Link to="/questions/1">
+                  <Link to={`/questions/?questID=${question.questionId}`}>
                     <Questiontitle>{question.title}</Questiontitle>
                   </Link>
 
@@ -228,11 +223,8 @@ const QuestionList = () => {
                 </ListMain>
               </List>
             </div>
-            );
-          })}
-            
-         
-       
+          );
+        })}
       </MainStyle>
       <Space />
     </>

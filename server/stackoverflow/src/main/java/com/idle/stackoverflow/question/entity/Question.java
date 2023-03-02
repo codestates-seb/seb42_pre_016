@@ -25,7 +25,7 @@ public class Question {
     @Column(nullable = false)
     private String title;   // 제목
 
-    @Column(nullable = false)
+    @Column(nullable = false, length = 5000)
     private String content; // 내용
 
     @Column(nullable = false)
@@ -44,7 +44,8 @@ public class Question {
     @JoinColumn(name = "USER_ID")
     private User user;
 
-    @OneToMany(mappedBy = "question", cascade = CascadeType.PERSIST)
+    @OneToMany(mappedBy = "question", cascade = CascadeType.REMOVE)
+//    @OneToMany(mappedBy = "question", cascade = CascadeType.PERSIST)
     private List<Answer> answers = new ArrayList<>();
 
     // 연관관계 매핑 메서드

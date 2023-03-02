@@ -13,6 +13,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/stackoverflow.com/answers")
 public class AnswerController {
@@ -88,15 +90,12 @@ public class AnswerController {
                 new SingleResponseDto<>(response), HttpStatus.OK);
     }
 
-   /*
-   * questionId에 해당하는 answers목록 조회 QuestionController에 적용함
-   @GetMapping("/{question-id}") // 일단 전체 목록 조회, 할 수 있으면 페이지네이션 적용
-    public ResponseEntity getAnswers(@PathVariable("question-id") long questionId) {
-        List<Answer> answers = answerService.findAnswers();
-
-        List<AnswerDto.Response> response = mapper.answersToAnswerResponse(answers);
+   @GetMapping("/{answer-id}") // answerId에 해당하는 답변 하나 조회
+    public ResponseEntity getAnswer(@PathVariable("answer-id") long answerId) {
+        Answer answer = answerService.findVerifiedAnswer(answerId);
+        AnswerDto.Response response = mapper.answerToAnswerResponse(answer);
         return new ResponseEntity(response, HttpStatus.OK);
-    }*/
+    }
 
     @DeleteMapping("/{answer-id}")
     public ResponseEntity deleteAnswer(@PathVariable("answer-id") long answerId) {

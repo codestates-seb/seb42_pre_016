@@ -2,55 +2,73 @@ import { useState, useEffect, useRef } from "react";
 import styled from "styled-components";
 import { Space } from "../AskQuestions/AskQuestions";
 import axios from "axios";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams, useLocation, Link } from "react-router-dom";
 
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 
 const AnswerEdit = () => {
-  const { id } = useParams();
+  const { state } = useLocation();
+  const selectedQuestionId = state.questionId;
+  const selectedAnswerId = state.answerId;
+  const selectedUserId = state.userId;
+
   const [question, setQuestion] = useState({});
   const [answer, setAnswer] = useState({});
   const editARef = useRef();
   const navigate = useNavigate();
 
+  const getQuestion = async () => {
+    await axios
+      .get(`/api/questions/${selectedUserId}`, {
+        headers: { "ngrok-skip-browser-warning": "12" },
+      })
+      .then((res) => {
+        setQuestion(res.data.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+  const getAnswer = async () => {
+    await axios
+      .get(`/api/answers/${selectedAnswerId}`, {
+        headers: { "ngrok-skip-browser-warning": "12" },
+      })
+      .then((res) => {
+        setAnswer(res.data.content);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   //* 질문 / 답변 원문 가져오기
   useEffect(() => {
-    const getQuestion = async () => {
-      await axios
-        .get(`/api/questions/1`, {
-          headers: { "ngrok-skip-browser-warning": "12" },
-        })
-        .then((res) => {
-          setQuestion(res.data.data);
-          setAnswer(res.data.data.answers);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    };
     getQuestion();
+    getAnswer();
+    // console.log(val);
   }, []);
 
   //* 제출버튼
   const handleSubmit = (e) => {
     e.preventDefault();
-    editAnswer(); //path 요청
-    window.location.replace(`/questions/1`);
+    editAnswer(); //patch 요청
+    window.location.replace(`/questions/?questID=${selectedQuestionId}`);
   };
 
   //* 취소버튼
   const handleCancel = () => {
-    navigate(-1);
+    window.location.replace(`/questions/?questID=${selectedQuestionId}`);
   };
 
-  //* 답변 수정 path 요청
+  //* 답변 수정 patch 요청
   const editAnswer = async () => {
     await axios
       .patch(
-        `/api/answers/1`,
+        `/api/answers/${selectedAnswerId}`,
         {
-          content: `${answer.content}`,
+          content: `${answer}`,
         },
         {
           headers: {
@@ -59,13 +77,15 @@ const AnswerEdit = () => {
         }
       )
       .then(() => {
-        navigate(-1);
+        window.location.replace(`/questions/?questID=${selectedQuestionId}`);
       })
       .catch((error) => {
         console.log(error);
       });
   };
-
+  // 질문 제목 (링크) 질문 params ?questID=(숫자)
+  // 답변 에디터 내에 답변 내용 똑같이 복붙 getquestion-answer
+  // 답변 에디터 아래에 답변 내용 getquestions-answer
   return (
     <AnswerEditWrapper>
       <AnswerEditContainer>
@@ -81,7 +101,9 @@ const AnswerEdit = () => {
           </p>
         </EditNotice>
         <QuestionText>
-          <div className="h1">{question.title}</div>
+          <Link to={`/questions/?questID=${selectedQuestionId}`}>
+            <div className="h1">{question.title}</div>
+          </Link>
           {question.content}
         </QuestionText>
         <BodyWrapper>
@@ -91,7 +113,7 @@ const AnswerEdit = () => {
               ref={editARef}
               editor={ClassicEditor}
               onFocus={(event, editor) => {
-                editor.setData(`${answer.content}`);
+                editor.setData(`${answer}`);
               }}
               onChange={(event, editor) => {
                 const data = editor.getData();
@@ -100,7 +122,7 @@ const AnswerEdit = () => {
               }}
             />
           </EditorContainer>
-          <AnswerText></AnswerText>
+          <AnswerText>{`${answer}`}</AnswerText>
         </BodyWrapper>
         <ButtonWrapper>
           <SaveEditsButton onClick={handleSubmit}>Save edits</SaveEditsButton>
@@ -182,7 +204,6 @@ const AnswerText = styled.form`
   margin-top: 20px;
   font-size: 18px;
   margin-left: 25px;
-  border: 1px black dotted;
 `;
 
 const EditorContainer = styled.div`

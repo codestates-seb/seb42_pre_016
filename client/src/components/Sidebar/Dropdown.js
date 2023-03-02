@@ -1,4 +1,5 @@
 import { EarthSvg, InfoSvg, StarSvg } from "../../img/HomeSvg";
+import { Link } from "react-router-dom";
 import {
   DropdownContainer,
   Wrapper,
@@ -11,7 +12,9 @@ export const Dropdown = (type) => {
       <Wrapper>
         <div className="side-bar-tabs">
           <div className="tab-menu">
-            <div>Home</div>
+            <Link to="/main">
+              <div>Home</div>
+            </Link>
           </div>
           <p className="title">PUBLIC</p>
           <a href="/" className={type.page2 === "home" ? "selected" : ""}>

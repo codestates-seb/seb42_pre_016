@@ -6,25 +6,13 @@ import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import { EditorWrap, ErrorMassage, AnswerButton } from "./Qustion.styled";
 
 const AnswerForm = () => {
-  const { id } = useParams();
   const [body, setBody] = useState("");
   const answerRef = useRef();
 
-  //* 유효성 검사 : 댓글 길이는 30자를 넘어야 한다.
-  // const [isError, setIsError] = useState(false);
-  // const bodyLength = body.length;
-
-  // const onLetters = () => {
-  //   const data = answerRef.getInstance().getMarkdown();
-  //   console.log(data);
-  //   data.length <= 30 ? setIsError(true) : setIsError(false);
-  //   setBody(data);
-  // };
-
-  // //* 제출 버튼
-  // const onSubmit = () => {
-  //   addAnswer(id, body);
-  // };
+  const urlStr = window.location.href;
+  const url = new URL(urlStr);
+  const urlParams = url.searchParams.get("questID"); //url파라미터값
+  console.log(urlParams);
 
   //* post 요청
   const addAnswer = async (id, body) => {
@@ -34,7 +22,7 @@ const AnswerForm = () => {
         {
           content: body,
           userId: 1,
-          questionId: id,
+          questionId: `${urlParams}`,
         },
         {
           headers: {
@@ -49,6 +37,8 @@ const AnswerForm = () => {
         console.log(error);
       });
   };
+
+  console.log(body);
 
   return (
     <div>
