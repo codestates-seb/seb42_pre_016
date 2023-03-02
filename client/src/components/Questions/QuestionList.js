@@ -200,31 +200,32 @@ const QuestionList = () => {
           </Link>
         </div>
 
-        {questions.map((question) => {
-          return (
-            <div className="question_data" key={question.questionId}>
-              <List>
-                <ListLeft>
-                  <span>{`${question.questionVoteCnt} votes`} </span>
-                  <span>{`${question.answerCnt} answer`}</span>
-                  <span>{`${question.questionViewCnt} views`}</span>
-                </ListLeft>
-                <ListMain>
-                  <Link to={`/questions/?questID=${question.questionId}`}>
-                    <Questiontitle>{question.title}</Questiontitle>
-                  </Link>
+        {questions &&
+          questions.map((question) => {
+            return (
+              <div className="question_data" key={question.questionId}>
+                <List>
+                  <ListLeft>
+                    <span>{`${question.questionVoteCnt} votes`} </span>
+                    <span>{`${question.answerCnt} answer`}</span>
+                    <span>{`${question.questionViewCnt} views`}</span>
+                  </ListLeft>
+                  <ListMain>
+                    <Link to={`/questions/?questID=${question.questionId}`}>
+                      <Questiontitle>{question.title}</Questiontitle>
+                    </Link>
 
-                  <WriterAndtime>
-                    <Author>{question.userId}</Author>
-                    <CreatedAt>
-                      {`asked ${timecheck(question.createdAt)}`}
-                    </CreatedAt>
-                  </WriterAndtime>
-                </ListMain>
-              </List>
-            </div>
-          );
-        })}
+                    <WriterAndtime>
+                      <Author>{question.userId}</Author>
+                      <CreatedAt>
+                        {`asked ${timecheck(question.createdAt)}`}
+                      </CreatedAt>
+                    </WriterAndtime>
+                  </ListMain>
+                </List>
+              </div>
+            );
+          })}
       </MainStyle>
       <Space />
     </>

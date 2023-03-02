@@ -13,12 +13,12 @@ const AskQuestions = () => {
     const data = editor.getData();
     const cutData = data.slice(3, data.length - 4); //앞뒤 <p></p> 마크다운 제거
     setContent(data);
-    console.log("내용 : ", cutData);
+    // console.log("내용 : ", cutData);
   };
 
   const handleChange = (event) => {
     setInputTitle(event.target.value);
-    console.log("제목 : ", event.target.value);
+    // console.log("제목 : ", event.target.value);
   };
 
   const postQuestion = async () => {

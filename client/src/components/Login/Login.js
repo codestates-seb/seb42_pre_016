@@ -5,6 +5,7 @@ import Gmail from "../../img/Gmail.png";
 import Github from "../../img/Github.png";
 import Facebook from "../../img/Facebook.png";
 import {
+  Buttons,
   LogoWapper,
   LogoSrc,
   GoogleButton,
@@ -16,6 +17,8 @@ import {
   Input,
   LoginButton,
   UnderText,
+  LoginWrapper,
+  LoginContainer,
 } from "../Style components/Login_styled";
 import axios from "axios";
 
@@ -36,7 +39,7 @@ const Login = () => {
   const checkLogin = async () => {
     await axios
       .post(
-        `/api/auth/login`,
+        `/api/auth/login`, //${process.env.REACT_APP_API_URL}
         {
           username: `${inputUsername}`,
           password: `${inputPassord}`,
@@ -56,47 +59,50 @@ const Login = () => {
   };
 
   return (
-    <>
-      <LogoWapper>
-        <LogoSrc src={LogoLogin} />
-      </LogoWapper>
-      <GoogleButton color="black">
-        <ImgSrc src={Gmail} />
-        Log in with Google
-      </GoogleButton>
-      <GithubButton color="white">
-        <ImgSrc src={Github} />
-        Log in with GitHub
-      </GithubButton>
-      <FacebookButton color="white">
-        <ImgSrc src={Facebook} />
-        Log in with Facebook
-      </FacebookButton>
-      <Form>
-        <Text top="12%">Email</Text>
-        <Input
-          top="21%"
-          type="email"
-          name="username"
-          defaultValue={inputUsername}
-          onChange={handleChangename}
-        />
-        <Text top="43%">Password</Text>
-        <UnderText color="#0f79ce" top="44%" left="60%">
-          Forgot Password?
-        </UnderText>
-        <Input
-          top="53%"
-          type="password"
-          name="password"
-          defaultValue={inputPassord}
-          onChange={handleChangePass}
-        />
-        <LoginButton type="button" onClick={() => checkLogin()}>
-          Log in
-        </LoginButton>
-      </Form>
-    </>
+    <LoginContainer>
+      <LoginWrapper>
+        <Buttons>
+          <LogoSrc src={LogoLogin} />
+          <GoogleButton color="black">
+            <ImgSrc src={Gmail} />
+            Log in with Google
+          </GoogleButton>
+          <GithubButton color="white">
+            <ImgSrc src={Github} />
+            Log in with GitHub
+          </GithubButton>
+          <FacebookButton color="white">
+            <ImgSrc src={Facebook} />
+            Log in with Facebook
+          </FacebookButton>
+        </Buttons>
+
+        <Form>
+          <Text top="12%">Email</Text>
+          <Input
+            top="21%"
+            type="email"
+            name="username"
+            defaultValue={inputUsername}
+            onChange={handleChangename}
+          />
+          <Text top="43%">Password</Text>
+          <UnderText color="#0f79ce" top="44%" left="60%">
+            Forgot Password?
+          </UnderText>
+          <Input
+            top="53%"
+            type="password"
+            name="password"
+            defaultValue={inputPassord}
+            onChange={handleChangePass}
+          />
+          <LoginButton type="button" onClick={() => checkLogin()}>
+            Log in
+          </LoginButton>
+        </Form>
+      </LoginWrapper>
+    </LoginContainer>
   );
 };
 
