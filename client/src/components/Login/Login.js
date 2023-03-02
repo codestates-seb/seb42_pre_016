@@ -17,6 +17,8 @@ import {
   Input,
   LoginButton,
   UnderText,
+  LoginWrapper,
+  LoginContainer,
 } from "../Style components/Login_styled";
 import axios from "axios";
 
@@ -57,7 +59,8 @@ const Login = () => {
   };
 
   return (
-    <>
+    <LoginContainer>
+    <LoginWrapper>
       <Buttons>
         <LogoSrc src={LogoLogin} />
         <GoogleButton color="black">
@@ -98,7 +101,8 @@ const Login = () => {
           Log in
         </LoginButton>
       </Form>
-    </>
+    </LoginWrapper>
+    </LoginContainer>
   );
 };
 

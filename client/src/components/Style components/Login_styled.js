@@ -8,6 +8,7 @@ export const LogoWapper = styled.div`
   position: absolute;
   top: 30%;
   left: 35%;
+  
 `;
 
 export const LogoSrc = styled.img`
@@ -21,9 +22,7 @@ export const Buttons = styled.div`
   flex-direction: column;
   align-items: center;
   width: 288.45px;
-  position: absolute;
-  top: 34%;
-  left: 35%;
+  position: relative;
 `;
 
 export const GoogleButton = styled.button`
@@ -60,6 +59,7 @@ export const FacebookButton = styled.button`
   position: relative;
   cursor: pointer;
   margin-bottom: 10px;
+  
 `;
 
 export const Form = styled.form`
@@ -68,9 +68,7 @@ export const Form = styled.form`
   background: #ffffff;
   border-radius: 10px;
   box-shadow: 2px 2px 5px #c2c2c2;
-  position: absolute;
-  top: 47%;
-  left: 35%;
+  position: relative;
 `;
 
 export const ImgSrc = styled.img`
@@ -115,7 +113,7 @@ export const LoginButton = styled.button`
 `;
 
 export const UnderText = styled.span`
-  width: 250px;
+  width: fit-content;
   height: 32.59px;
   color: ${(props) => props.color};
   font-size: 12.5px;
@@ -123,3 +121,24 @@ export const UnderText = styled.span`
   top: ${(props) => props.top};
   left: ${(props) => props.left};
 `;
+
+export const LoginWrapper = styled.div`
+  width: fit-content;
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: absolute;
+  top: 25%;
+`
+
+export const LoginContainer = styled.div`
+width: 100%;
+min-height: 100vh;
+margin: 0px;
+padding: 0px;
+display: flex;
+flex-direction: row;
+justify-content: center;
+box-sizing: border-box;
+`
