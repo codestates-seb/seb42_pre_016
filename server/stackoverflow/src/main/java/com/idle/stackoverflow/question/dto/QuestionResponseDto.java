@@ -13,8 +13,8 @@ public class QuestionResponseDto {
     private String content;
     private int questionViewCnt;
     private int answerCnt;
-    private LocalDateTime createdAt;    // 생성 시간
-    private LocalDateTime modifiedAt;   // 수정 시간
-    private Long userId; // 유저 식별 번호
+    private LocalDateTime createdAt;
+    private LocalDateTime modifiedAt;
+    private Long userId;
     private int questionVoteCnt;
 }

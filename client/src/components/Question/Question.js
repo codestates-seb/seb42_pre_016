@@ -110,7 +110,7 @@ const Question = () => {
   };
 
   //* 새 답변 post 요청
-  const addAnswer = async (body) => {
+  const addAnswer = async () => {
     axios.defaults.withCredentials = true;
     await axios
       .post(
@@ -367,7 +367,7 @@ const Question = () => {
                   const data = editor.getData();
                   const cutData = data.slice(3, data.length - 4); //앞뒤 <p></p> 마크다운 제거
                   setBody(cutData);
-                  console.log(data);
+                  console.log(cutData);
                 }}
               />
             </EditorWrap>

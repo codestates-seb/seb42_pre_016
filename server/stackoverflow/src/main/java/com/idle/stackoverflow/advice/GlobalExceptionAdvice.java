@@ -1,6 +1,5 @@
 package com.idle.stackoverflow.advice;
 
-
 import com.idle.stackoverflow.exception.BusinessLogicException;
 import com.idle.stackoverflow.response.ErrorResponse;
 import lombok.extern.slf4j.Slf4j;
@@ -20,8 +19,7 @@ import javax.validation.ConstraintViolationException;
 public class GlobalExceptionAdvice {
     @ExceptionHandler
     @ResponseStatus(HttpStatus.BAD_REQUEST)
-    public ErrorResponse handleMethodArgumentNotValidException(
-            MethodArgumentNotValidException e) {
+    public ErrorResponse handleMethodArgumentNotValidException(MethodArgumentNotValidException e) {
         final ErrorResponse response = ErrorResponse.of(e.getBindingResult());
 
         return response;
@@ -29,8 +27,7 @@ public class GlobalExceptionAdvice {
 
     @ExceptionHandler
     @ResponseStatus(HttpStatus.BAD_REQUEST)
-    public ErrorResponse handleConstraintViolationException(
-            ConstraintViolationException e) {
+    public ErrorResponse handleConstraintViolationException(ConstraintViolationException e) {
         final ErrorResponse response = ErrorResponse.of(e.getConstraintViolations());
 
         return response;
@@ -40,14 +37,12 @@ public class GlobalExceptionAdvice {
     public ResponseEntity handleBusinessLogicException(BusinessLogicException e) {
         final ErrorResponse response = ErrorResponse.of(e.getExceptionCode());
 
-        return new ResponseEntity<>(response, HttpStatus.valueOf(e.getExceptionCode()
-                .getStatus()));
+        return new ResponseEntity<>(response, HttpStatus.valueOf(e.getExceptionCode().getStatus()));
     }
 
     @ExceptionHandler
     @ResponseStatus(HttpStatus.METHOD_NOT_ALLOWED)
-    public ErrorResponse handleHttpRequestMethodNotSupportedException(
-        HttpRequestMethodNotSupportedException e) {
+    public ErrorResponse handleHttpRequestMethodNotSupportedException(HttpRequestMethodNotSupportedException e) {
 
         final ErrorResponse response = ErrorResponse.of(HttpStatus.METHOD_FAILURE);
 
@@ -56,11 +51,9 @@ public class GlobalExceptionAdvice {
 
     @ExceptionHandler
     @ResponseStatus(HttpStatus.BAD_REQUEST)
-    public ErrorResponse handleMissingServletRequestParameterException(
-            MissingServletRequestParameterException e) {
+    public ErrorResponse handleMissingServletRequestParameterException(MissingServletRequestParameterException e) {
 
-        final ErrorResponse response = ErrorResponse.of(HttpStatus.BAD_REQUEST,
-                e.getMessage());
+        final ErrorResponse response = ErrorResponse.of(HttpStatus.BAD_REQUEST, e.getMessage());
 
         return response;
     }
@@ -73,9 +66,5 @@ public class GlobalExceptionAdvice {
         final ErrorResponse response = ErrorResponse.of(HttpStatus.INTERNAL_SERVER_ERROR);
 
         return response;
-
-
-
     }
-
 }

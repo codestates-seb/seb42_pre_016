@@ -12,11 +12,9 @@ import javax.validation.constraints.NotBlank;
 @AllArgsConstructor
 @NoArgsConstructor
 public class UserPostDto {
-    private String displayName;    // 닉네임
-
-    @NotBlank                               // jwt. 애너테이션 추가
-    private String email;   // 이메일
-
+    private String displayName;
     @NotBlank
-    private String password;    // ---------------------  JWT 패스워드 추가
+    private String email;
+    @NotBlank
+    private String password;
 }

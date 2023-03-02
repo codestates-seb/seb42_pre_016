@@ -4,11 +4,9 @@ import com.idle.stackoverflow.exception.ExceptionCode;
 import lombok.Getter;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.FieldError;
 
 import javax.validation.ConstraintViolation;
 import java.util.List;
-import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -69,11 +67,9 @@ public class ErrorResponse {
             return fieldErrors.stream()
                     .map(error -> new FieldError(
                             error.getField(),
-                            error.getRejectedValue() == null ?
-                                    "" : error.getRejectedValue().toString(),
+                            error.getRejectedValue() == null ? "" : error.getRejectedValue().toString(),
                             error.getDefaultMessage()))
                     .collect(Collectors.toList());
-
         }
     }
 
@@ -97,8 +93,6 @@ public class ErrorResponse {
                                     constraintViolation.getInvalidValue().toString(),
                                     constraintViolation.getMessage()
                                     )).collect(Collectors.toList());
-
         }
-
     }
 }

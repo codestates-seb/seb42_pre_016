@@ -38,6 +38,8 @@ const AnswerForm = () => {
       });
   };
 
+  console.log(body);
+
   return (
     <div>
       <EditorWrap>

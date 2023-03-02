@@ -10,7 +10,7 @@ import javax.persistence.EntityListeners;
 import javax.persistence.MappedSuperclass;
 import java.time.LocalDateTime;
 
-@Getter                                                   // JWT 진행 과정 중 추가 !
+@Getter
 @MappedSuperclass
 @EntityListeners(AuditingEntityListener.class)
 public class Auditable {
@@ -21,5 +21,4 @@ public class Auditable {
     @LastModifiedDate
     @Column(name = "LAST_MODIFIED_AT")
     private LocalDateTime modifiedAt;
-
 }

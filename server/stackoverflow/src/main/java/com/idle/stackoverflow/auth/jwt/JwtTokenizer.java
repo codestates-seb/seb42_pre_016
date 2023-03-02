@@ -1,6 +1,5 @@
 package com.idle.stackoverflow.auth.jwt;
 
-
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jws;
 import io.jsonwebtoken.Jwts;
@@ -16,18 +15,18 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Map;
 
-@Component                             // JWT 진행. JwtTokenizer 클래스를 Spring Container(ApplicationContext)에 Bean으로 등록하기 위해 @Component 애너테이션을 추가
+@Component
 public class JwtTokenizer {
     @Getter
     @Value("${jwt.key}")
-    private String secretKey;     // JWT 생성 및 검증 시 사용되는 Secret Key 정보
+    private String secretKey;
 
     @Getter
-    @Value("${jwt.access-token-expiration-minutes}") // Access Token에 대한 만료 시간 정보
+    @Value("${jwt.access-token-expiration-minutes}")
     private int accessTokenExpirationMinutes;
 
     @Getter
-    @Value("${jwt.refresh-token-expiration-minutes}")  //  Refresh Token에 대한 만료 시간 정보
+    @Value("${jwt.refresh-token-expiration-minutes}")
     private int refreshTokenExpirationMinutes;
 
     public String encodeBase64SecretKey(String secretKey) {
@@ -79,7 +78,7 @@ public class JwtTokenizer {
                 .parseClaimsJws(jws);
     }
 
-    public Date getTokenExpiration(int expirationMinutes) {    // getTokenExpiration() 메서드는 JWT의 만료 일시를 지정하기 위한 메서드로 JWT 생성 시 사용
+    public Date getTokenExpiration(int expirationMinutes) {
         Calendar calendar = Calendar.getInstance();
         calendar.add(Calendar.MINUTE, expirationMinutes);
         Date expiration = calendar.getTime();

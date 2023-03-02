@@ -8,7 +8,7 @@ import org.springframework.http.MediaType;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-public class ErrorResponder {    //  클라이언트에게 전송하기 위한 ErrorResponder 클래스, ErrorResponder 클래스는 ErrorResponse를 출력 스트림으로 생성하는 역할을 한다.
+public class ErrorResponder {
     public static void sendErrorResponse(HttpServletResponse response, HttpStatus status) throws IOException {
         Gson gson = new Gson();
         ErrorResponse errorResponse = ErrorResponse.of(status);
