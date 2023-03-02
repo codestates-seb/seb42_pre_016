@@ -1,0 +1,12 @@
+{
+  "rewrites": [
+    {
+      "source": "/api/:path",
+      "destination": "http://ec2-43-201-55-170.ap-northeast-2.compute.amazonaws.com:8080/stackoverflow.com/:path"
+    },
+    {
+      "source": "/api/:path/",
+      "destination": "http://ec2-43-201-55-170.ap-northeast-2.compute.amazonaws.com:8080/stackoverflow.com/:path/"
+    }
+  ]
+}
