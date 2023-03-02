@@ -32,23 +32,23 @@ const AnswerEdit = () => {
   };
   const getAnswer = async () => {
     await axios
-    .get(`/api/answers/${selectedAnswerId}`, {
-      headers: { "ngrok-skip-browser-warning": "12" },
-    })
-    .then((res) => {
-      setAnswer(res.data.content)
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-  }
+      .get(`/api/answers/${selectedAnswerId}`, {
+        headers: { "ngrok-skip-browser-warning": "12" },
+      })
+      .then((res) => {
+        setAnswer(res.data.content);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
   //* 질문 / 답변 원문 가져오기
   useEffect(() => {
     getQuestion();
     getAnswer();
-        // console.log(val);
-      }, [])
+    // console.log(val);
+  }, []);
 
   //* 제출버튼
   const handleSubmit = (e) => {
@@ -205,7 +205,6 @@ const AnswerText = styled.form`
   font-size: 18px;
   margin-left: 25px;
 `;
-
 
 const EditorContainer = styled.div`
   width: 100%;
