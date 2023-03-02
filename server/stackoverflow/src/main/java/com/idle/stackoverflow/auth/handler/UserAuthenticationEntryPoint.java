@@ -14,7 +14,7 @@ import java.io.IOException;
 
 @Slf4j
 @Component
-public class UserAuthenticationEntryPoint implements AuthenticationEntryPoint {   // AuthenticationEntryPoint를 구현한 UserAuthenticationEntryPoint 이다.
+public class UserAuthenticationEntryPoint implements AuthenticationEntryPoint {
     @Override
     public void commence(HttpServletRequest request, HttpServletResponse response, AuthenticationException authException) throws IOException, ServletException {
         Exception exception = (Exception) request.getAttribute("exception");
@@ -25,6 +25,6 @@ public class UserAuthenticationEntryPoint implements AuthenticationEntryPoint { 
 
     private void logExceptionMessage(AuthenticationException authException, Exception exception) {
         String message = exception != null ? exception.getMessage() : authException.getMessage();
-        log.warn("Unauthorized error happened: {}", message);     // AuthenticationException 발생하면 ErrorResponse를 생성해서 클라이언트에게 전송한다.
+        log.warn("Unauthorized error happened: {}", message);
     }
 }

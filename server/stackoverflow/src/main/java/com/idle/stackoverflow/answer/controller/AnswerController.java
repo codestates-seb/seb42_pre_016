@@ -13,17 +13,12 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
 @RestController
 @RequestMapping("/stackoverflow.com/answers")
 public class AnswerController {
-    private final static String ANSWER_DEFAULT_URL = "/stackoverflow.com/answers"; // default URL 경로
     private final AnswerService answerService;
     private final AnswerMapper mapper;
-
     private final UserService userService;
-
     private final QuestionService questionService;
 
     public AnswerController(AnswerService answerService,
@@ -46,16 +41,7 @@ public class AnswerController {
         answer.setUser(user);
         answer.setQuestion(question);
 
-        answerService.createAnswer(answer); // DB에 저장
-
-        /*
-        * Answer는 get요청 없어짐
-        URI location =
-                UriComponentsBuilder
-                        .newInstance()
-                        .path(ANSWER_DEFAULT_URL + "/{question-id}")
-                        .buildAndExpand(answer.getQuestion().getQuestionId())
-                        .toUri(); // "/stackoverflow.com/{question-id}"*/
+        answerService.createAnswer(answer);
 
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
@@ -68,8 +54,7 @@ public class AnswerController {
         Answer answer = mapper.answerPatchToAnswer(requestBody);
         Answer response = answerService.updateAnswer(answer);
 
-        return new ResponseEntity<>(
-                new SingleResponseDto<>(mapper.answerToAnswerResponse(response)), HttpStatus.OK);
+        return new ResponseEntity<>(new SingleResponseDto<>(mapper.answerToAnswerResponse(response)), HttpStatus.OK);
     }
 
     @PatchMapping("/voteUp/{answer-id}")
@@ -77,8 +62,7 @@ public class AnswerController {
         Answer voteUp = answerService.answerVoteUp(answerId);
 
         AnswerDto.Response response = mapper.answerToAnswerResponse(voteUp);
-        return new ResponseEntity<>(
-                new SingleResponseDto<>(response), HttpStatus.OK);
+        return new ResponseEntity<>(new SingleResponseDto<>(response), HttpStatus.OK);
     }
 
     @PatchMapping("/voteDown/{answer-id}")
@@ -86,11 +70,10 @@ public class AnswerController {
         Answer voteUp = answerService.answerVoteDown(answerId);
 
         AnswerDto.Response response = mapper.answerToAnswerResponse(voteUp);
-        return new ResponseEntity<>(
-                new SingleResponseDto<>(response), HttpStatus.OK);
+        return new ResponseEntity<>(new SingleResponseDto<>(response), HttpStatus.OK);
     }
 
-   @GetMapping("/{answer-id}") // answerId에 해당하는 답변 하나 조회
+   @GetMapping("/{answer-id}")
     public ResponseEntity getAnswer(@PathVariable("answer-id") long answerId) {
         Answer answer = answerService.findVerifiedAnswer(answerId);
         AnswerDto.Response response = mapper.answerToAnswerResponse(answer);

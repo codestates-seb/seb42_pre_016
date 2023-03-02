@@ -26,5 +26,5 @@ public interface UserMapper {
         return responseDto;
     }
 
-    List<UserResponseDto> usersToUserResponseDtos(List<User> users);    // 전체 유저 조회
+    List<UserResponseDto> usersToUserResponseDtos(List<User> users);
 }
