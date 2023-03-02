@@ -58,46 +58,47 @@ const Login = () => {
 
   return (
     <>
-      <Buttons>
-        <LogoSrc src={LogoLogin} />
-        <GoogleButton color="black">
-          <ImgSrc src={Gmail} />
-          Log in with Google
-        </GoogleButton>
-        <GithubButton color="white">
-          <ImgSrc src={Github} />
-          Log in with GitHub
-        </GithubButton>
-        <FacebookButton color="white">
-          <ImgSrc src={Facebook} />
-          Log in with Facebook
-        </FacebookButton>
-      </Buttons>
-
-      <Form>
-        <Text top="12%">Email</Text>
-        <Input
-          top="21%"
-          type="email"
-          name="username"
-          defaultValue={inputUsername}
-          onChange={handleChangename}
-        />
-        <Text top="43%">Password</Text>
-        <UnderText color="#0f79ce" top="44%" left="60%">
-          Forgot Password?
-        </UnderText>
-        <Input
-          top="53%"
-          type="password"
-          name="password"
-          defaultValue={inputPassord}
-          onChange={handleChangePass}
-        />
-        <LoginButton type="button" onClick={() => checkLogin()}>
-          Log in
-        </LoginButton>
-      </Form>
+      <div>
+        <Buttons>
+          <LogoSrc src={LogoLogin} />
+          <GoogleButton color="black">
+            <ImgSrc src={Gmail} />
+            Log in with Google
+          </GoogleButton>
+          <GithubButton color="white">
+            <ImgSrc src={Github} />
+            Log in with GitHub
+          </GithubButton>
+          <FacebookButton color="white">
+            <ImgSrc src={Facebook} />
+            Log in with Facebook
+          </FacebookButton>
+        </Buttons>
+        <Form>
+          <Text top="12%">Email</Text>
+          <Input
+            top="21%"
+            type="email"
+            name="username"
+            defaultValue={inputUsername}
+            onChange={handleChangename}
+          />
+          <Text top="43%">Password</Text>
+          <UnderText color="#0f79ce" top="44%" left="60%">
+            Forgot Password?
+          </UnderText>
+          <Input
+            top="53%"
+            type="password"
+            name="password"
+            defaultValue={inputPassord}
+            onChange={handleChangePass}
+          />
+          <LoginButton type="button" onClick={() => checkLogin()}>
+            Log in
+          </LoginButton>
+        </Form>
+      </div>
     </>
   );
 };
