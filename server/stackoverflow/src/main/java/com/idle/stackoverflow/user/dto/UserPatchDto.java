@@ -11,11 +11,8 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 public class UserPatchDto {
-    private Long userId; // 유저 식별 번호
-
-    private String displayName;    // 닉네임
-
-    private String email;   // 이메일
-
+    private Long userId;
+    private String displayName;
+    private String email;
     private User.UserStatus userStatus;
 }

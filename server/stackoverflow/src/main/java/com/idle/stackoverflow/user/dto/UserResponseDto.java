@@ -9,15 +9,11 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @Builder
 public class UserResponseDto {
-    private Long userId; // 유저 식별 번호
+    private Long userId;
+    private String displayName;
+    private String email;
+    private LocalDateTime createdAt;
 
-    private String displayName;    // 닉네임
-
-    private String email;   // 이메일
-
-    private LocalDateTime createdAt;   // 생성 시간
-
-    private LocalDateTime modifiedAt;  // 수정 시간
-
+    private LocalDateTime modifiedAt;
     private User.UserStatus userStatus;
 }

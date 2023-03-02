@@ -20,22 +20,22 @@ import java.util.List;
 public class Question {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long questionId;    // 질문 고유 번호
+    private Long questionId;
 
     @Column(nullable = false)
-    private String title;   // 제목
+    private String title;
 
     @Column(nullable = false, length = 5000)
-    private String content; // 내용
+    private String content;
 
     @Column(nullable = false)
-    private LocalDateTime createdAt = LocalDateTime.now();  // 생성 시간
+    private LocalDateTime createdAt = LocalDateTime.now();
 
     @Column(nullable = false)
-    private LocalDateTime modifiedAt = LocalDateTime.now(); // 수정 시간
+    private LocalDateTime modifiedAt = LocalDateTime.now();
 
     @Column
-    private int questionVoteCnt;    // default value : 0
+    private int questionVoteCnt;
 
     @Column
     private int questionViewCnt;
@@ -45,7 +45,6 @@ public class Question {
     private User user;
 
     @OneToMany(mappedBy = "question", cascade = CascadeType.REMOVE)
-//    @OneToMany(mappedBy = "question", cascade = CascadeType.PERSIST)
     private List<Answer> answers = new ArrayList<>();
 
     // 연관관계 매핑 메서드
@@ -68,6 +67,4 @@ public class Question {
     public int getAnswerCnt() {
         return answers.size();
     }
-
-    // TODO 질문 상태 (질문 등록, 질문 삭제)
 }

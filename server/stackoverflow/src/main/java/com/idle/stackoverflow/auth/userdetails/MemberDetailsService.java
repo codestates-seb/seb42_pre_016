@@ -1,6 +1,5 @@
 package com.idle.stackoverflow.auth.userdetails;
 
-
 import com.idle.stackoverflow.auth.utils.CustomAuthorityUtils;
 import com.idle.stackoverflow.exception.BusinessLogicException;
 import com.idle.stackoverflow.exception.ExceptionCode;
@@ -16,7 +15,7 @@ import java.util.Collection;
 import java.util.Optional;
 
 @Component
-public class MemberDetailsService implements UserDetailsService {    // JWT. UserDetailsService를 구현한 MemberDetailsService. 클래스 이름 주의.
+public class MemberDetailsService implements UserDetailsService {
     private final UserRepository userRepository;
     private final CustomAuthorityUtils authorityUtils;
 
@@ -30,11 +29,9 @@ public class MemberDetailsService implements UserDetailsService {    // JWT. Use
         User findUserMember = optionalUser.orElseThrow(()-> new BusinessLogicException(ExceptionCode.USER_NOT_FOUND));
 
         return new UserMemberDetails(findUserMember);
-
     }
 
     private final class UserMemberDetails extends User implements UserDetails {
-
         UserMemberDetails(User user) {
             setUserId(user.getUserId());
             setEmail(user.getEmail());
@@ -72,9 +69,4 @@ public class MemberDetailsService implements UserDetailsService {    // JWT. Use
             return true;
         }
     }
-
-
-
-
-
 }

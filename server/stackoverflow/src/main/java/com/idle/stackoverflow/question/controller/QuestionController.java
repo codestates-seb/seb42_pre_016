@@ -14,17 +14,13 @@ import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.util.UriComponentsBuilder;
 
 import javax.validation.constraints.Positive;
-import java.net.URI;
 import java.util.List;
 
-//@CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
 @RequestMapping("/stackoverflow.com/questions")
 public class QuestionController {
-//    private final static String QUESTION_DEFAULT_URL = "/stackoverflow.com/questions";   // url 추가
     private final QuestionService questionService;
     private final QuestionMapper mapper;
     private final UserService userService;
@@ -35,7 +31,6 @@ public class QuestionController {
         this.userService = userService;
     }
 
-    // 질문 등록
     @PostMapping("/ask")
     public ResponseEntity postQuestion(@RequestBody QuestionPostDto questionPostDto) {
         Question question = mapper.questionPostToQuestion(questionPostDto);
@@ -43,17 +38,6 @@ public class QuestionController {
         question.setUser(user);
         questionService.createQuestion(question);
         return new ResponseEntity<>(HttpStatus.CREATED);
-
-//        Question question = mapper.questionPostToQuestion(questionPostDto);
-//        questionService.createQuestion(question); // db
-//        URI location =
-//                UriComponentsBuilder
-//                        .newInstance()
-//                        .path(QUESTION_DEFAULT_URL + "/{question-id}")
-//                        .buildAndExpand(question.getQuestionId())
-//                        .toUri();
-//
-//        return ResponseEntity.created(location).build();
     }
 
     @PatchMapping("/{questions-id}")
@@ -70,7 +54,6 @@ public class QuestionController {
         return new ResponseEntity<>(new SingleResponseDto<>(mapper.questionToQuestionMainResponseDto(question)), HttpStatus.OK);
     }
 
-    // 전체 질문 조회(페이지네이션)(메인페이지)
     @GetMapping
     public ResponseEntity getQuestions(@Positive @RequestParam(required = false, defaultValue = "1") int page,
                                        @Positive @RequestParam(required = false, defaultValue = "100") int size) {

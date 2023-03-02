@@ -7,16 +7,12 @@ import lombok.Getter;
 import java.time.LocalDateTime;
 
 public class AnswerDto {
-
     @Getter
     @AllArgsConstructor
     public static class Post {
-        // private long answerId; // DB에서 등록
         private String content;
-        // 없애기
         private long userId;
         private long questionId;
-
     }
 
     @Getter
